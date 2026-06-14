@@ -13,9 +13,9 @@ My contribution was designing and implementing the Al-Osta AI Agent, including t
 
 ## Agent Architecture
 
-The agent follows a three-stage Planner-Executor-Synthesizer architecture:
+The agent follows a three-stage Reasoner-Executor-Synthesizer architecture:
 
-- Planner: interprets the user request and breaks it into actionable steps.
+- Reasoner: interprets the user request and breaks it into actionable steps.
 - Executor: calls the required tools and services deterministically.
 - Synthesizer: turns the tool outputs into a clear final response.
 
@@ -23,13 +23,13 @@ This structure keeps the agent reliable, reduces unnecessary token usage, and ma
 
 ![Al-Osta AI Agent architecture](image.png)
 
-### Planner
+### Reasoner
 
-The Planner understands the user request and converts it into a sequence of steps. It decides which tools are needed, in what order they should run, and what information must be collected before answering.
+The Reasoner understands the user request and converts it into a sequence of steps. It decides which tools are needed, in what order they should run, and what information must be collected before answering.
 
 ### Executor
 
-The Executor runs the plan produced by the Planner. It interacts with external tools, databases, and services to gather the required data and perform the needed computations. The Executor uses no LLM tokens during execution; it only passes tool results and the user query to the Synthesizer.
+The Executor runs the plan produced by the Reasoner. It interacts with external tools, databases, and services to gather the required data and perform the needed computations. The Executor uses no LLM tokens during execution; it only passes tool results and the user query to the Synthesizer.
 
 ### Core Tools
 
@@ -77,7 +77,7 @@ TripState holds normalized travel information such as origin, destination, mode 
 
 ### Workflow
 
-- Before planning, the agent uses the trip-state snapshot, recent conversation, and cached tool outputs to build the planner context.
+- Before planning, the agent uses the trip-state snapshot, recent conversation, and cached tool outputs to build the Reasoner context.
 - During execution, the agent updates memory by logging tool calls and storing newly discovered locations or route details.
 - After execution, the Synthesizer uses the conversation history, recent tool log, and current trip snapshot to generate the final response.
 
@@ -86,7 +86,7 @@ TripState holds normalized travel information such as origin, destination, mode 
 ## Tech Stack
 
 - LLM client: Gemini
-- Planner model: `gemini-2.5-flash`
+- Reasoner model: `gemini-2.5-flash`
 - Synthesizer model: `gemini-2.5-flash-lite`
 - Maps services: Google Maps API for traffic and geocoding
 - `grok-4-latest` api for evals LLM judje 

@@ -16,12 +16,12 @@ from tools import (
 
 
 class AlOstaAgent:
-    """Planner-Executor-Synthesizer agent for Alexandria routing."""
+    """Reasoner-Executor-Synthesizer agent for Alexandria routing."""
 
-    def __init__(self, api_key, planner_model=None, synthesizer_model=None):
-        self.planner_llm = GeminiClient(
+    def __init__(self, api_key, Reasoner_model=None, synthesizer_model=None):
+        self.Reasoner_llm = GeminiClient(
             api_key,
-            model_name=planner_model or os.getenv("PLANNER_MODEL", "gemini-2.5-flash"),
+            model_name=Reasoner_model or os.getenv("Reasoner_MODEL", "gemini-2.5-flash"),
         )
         self.synthesizer_slm = GeminiClient(
             api_key,
@@ -33,10 +33,10 @@ class AlOstaAgent:
         self._last_tool_output = None
 
         # Load prompts from files so business rules can be edited without a
-        # code change. The planner prompt gets the tools schema injected once
+        # code change. The Reasoner prompt gets the tools schema injected once
         # at startup; the synthesizer prompt needs no substitution.
-        self.planner_prompt = load_prompt(
-            "planner",
+        self.Reasoner_prompt = load_prompt(
+            "Reasoner",
             tools_schema=json.dumps(AVAILABLE_TOOLS_SCHEMA, ensure_ascii=False, indent=2),
         )
         self.synthesizer_prompt = load_prompt("synthesizer")
@@ -55,8 +55,8 @@ class AlOstaAgent:
         trace = {
             "user_query": user_query,
             "turn": current_turn,
-            "planner_response": None,
-            "planner_output": [],
+            "Reasoner_response": None,
+            "Reasoner_output": [],
             "tool_calls": [],
             "tool_results": [],
             "final_response": None,
@@ -64,18 +64,18 @@ class AlOstaAgent:
             "token_usage": {},
         }
 
-        plan_context = self._build_planner_context(user_query)
-        print("\n[Planner] starting")
-        plan_response = self.planner_llm.generate(plan_context)
-        print(f"[Planner] response: {plan_response}")
-        trace["planner_response"] = plan_response
-        trace["token_usage"]["planner"] = self.planner_llm.last_usage or {}
+        plan_context = self._build_Reasoner_context(user_query)
+        print("\n[Reasoner] starting")
+        plan_response = self.Reasoner_llm.generate(plan_context)
+        print(f"[Reasoner] response: {plan_response}")
+        trace["Reasoner_response"] = plan_response
+        trace["token_usage"]["Reasoner"] = self.Reasoner_llm.last_usage or {}
         if not plan_response:
             trace["final_response"] = "عذرا، في مشكلة في الاتصال حاليا."
             return trace
 
         plan = self._parse_plan(plan_response)
-        trace["planner_output"] = plan
+        trace["Reasoner_output"] = plan
 
         print(f"[Executor] running {len(plan)} step(s)")
         self.trip_state.last_intent = self.trip_state.infer_intent(plan)
@@ -128,15 +128,15 @@ class AlOstaAgent:
                     break
         return total_tokens
 
-    def _build_planner_context(self, user_query):
-        planner_state = {
+    def _build_Reasoner_context(self, user_query):
+        Reasoner_state = {
             "trip_state": self.trip_state.snapshot(),
             "recent_conversation": self.memory.get_recent_messages(6),
             "recent_tool_cache": self._last_tool_output or [],
         }
         return (
-            f"{self.planner_prompt}\n\n"
-            f"Current Short-Term State:\n{json.dumps(planner_state, ensure_ascii=False, indent=2)}\n\n"
+            f"{self.Reasoner_prompt}\n\n"
+            f"Current Short-Term State:\n{json.dumps(Reasoner_state, ensure_ascii=False, indent=2)}\n\n"
             f"User Request: {user_query}\n"
             "Output:"
         )
@@ -364,7 +364,7 @@ class AlOstaAgent:
         if mode_filter:
             return {
                 **mode_filter,
-                "source": "planner",
+                "source": "Reasoner",
                 "confidence": 1.0,
             }
 
@@ -458,7 +458,7 @@ class AlOstaAgent:
         if tool_name == "geocode_location":
             place_name = args.get("place_name")
             if not isinstance(place_name, str) or not place_name.strip():
-                return "Geocoding needs a valid place_name, but the planner reference was unresolved."
+                return "Geocoding needs a valid place_name, but the Reasoner reference was unresolved."
 
             for coord_key in ("user_lat", "user_lng"):
                 coord_value = args.get(coord_key)
@@ -479,7 +479,7 @@ class AlOstaAgent:
 
         if tool_name == "db_tools":
             if not isinstance(args.get("lat"), (int, float)) or not isinstance(args.get("lon"), (int, float)):
-                return "Nearby-trip lookup needs valid numeric lat/lon, but the planner reference was unresolved."
+                return "Nearby-trip lookup needs valid numeric lat/lon, but the Reasoner reference was unresolved."
             return None
 
         if tool_name == "check_traffic":

@@ -17,7 +17,7 @@
       "ambiguity_handling": 1.0,
       "hallucination_free": 0.0,
       "tokens": 8171,
-      "planner_output": [
+      "Reasoner_output": [
         {
           "tool": "geocode_location",
           "save_as": "destination",
@@ -212,7 +212,7 @@
       "ambiguity_handling": 1.0,
       "hallucination_free": 1.0,
       "tokens": 8376,
-      "planner_output": [
+      "Reasoner_output": [
         {
           "tool": "geocode_location",
           "save_as": "destination",
@@ -418,7 +418,7 @@
       "ambiguity_handling": 1.0,
       "hallucination_free": 0.0,
       "tokens": 8388,
-      "planner_output": [
+      "Reasoner_output": [
         {
           "tool": "geocode_location",
           "save_as": "destination",
@@ -613,7 +613,7 @@
       "ambiguity_handling": 1.0,
       "hallucination_free": 1.0,
       "tokens": 4885,
-      "planner_output": [],
+      "Reasoner_output": [],
       "tool_results": [],
       "final_response": "آسف، لم أستطع العثور على أي معلومات عن مسارات بناءً على الموقع الذي قدمته. هل يمكنك تزويدي بالاسم أو العنوان الكامل للمكان الذي تود الذهاب إليه؟",
       "category": "ambiguity handling",
@@ -648,7 +648,7 @@
       "ambiguity_handling": 1.0,
       "hallucination_free": 0.0,
       "tokens": 11442,
-      "planner_output": [
+      "Reasoner_output": [
         {
           "tool": "geocode_location",
           "save_as": "city_center",
@@ -976,7 +976,7 @@
       "ambiguity_handling": 1.0,
       "hallucination_free": 1.0,
       "tokens": 5705,
-      "planner_output": [],
+      "Reasoner_output": [],
       "tool_results": [],
       "final_response": "يا فندم، معنديش معلومات كافية عشان أحددلك أسرع طريقة. ممكن تقولي إيه نقطة البداية بتاعتك بالظبط؟",
       "category": "ambiguity handling",
@@ -1011,7 +1011,7 @@
       "ambiguity_handling": 1.0,
       "hallucination_free": 1.0,
       "tokens": 4463,
-      "planner_output": [
+      "Reasoner_output": [
         {
           "tool": "geocode_location",
           "save_as": "origin_muharram",
@@ -1110,7 +1110,7 @@
       "ambiguity_handling": 1.0,
       "hallucination_free": 0.0,
       "tokens": 8919,
-      "planner_output": [
+      "Reasoner_output": [
         {
           "tool": "geocode_location",
           "save_as": "origin",
@@ -1336,7 +1336,7 @@
       "ambiguity_handling": 0.0,
       "hallucination_free": 1.0,
       "tokens": 5494,
-      "planner_output": [
+      "Reasoner_output": [
         {
           "tool": "check_traffic",
           "args": {
@@ -1449,7 +1449,7 @@
       "ambiguity_handling": 1.0,
       "hallucination_free": 1.0,
       "tokens": 5147,
-      "planner_output": [
+      "Reasoner_output": [
         {
           "tool": "db_tools",
           "args": {
@@ -1524,7 +1524,7 @@
       "ambiguity_handling": 0.0,
       "hallucination_free": 1.0,
       "tokens": 4546,
-      "planner_output": [],
+      "Reasoner_output": [],
       "tool_results": [],
       "final_response": "أنا آسف، لا أقدر على تقديم معلومات عن نوعية الحوادث المرورية. تركيزي هو على مساعدتك في التنقل باستخدام وسائل النقل العام.",
       "category": "ambiguity handling",
@@ -1559,7 +1559,7 @@
       "ambiguity_handling": 1.0,
       "hallucination_free": 0.0,
       "tokens": 12821,
-      "planner_output": [
+      "Reasoner_output": [
         {
           "tool": "geocode_location",
           "save_as": "origin",
@@ -1977,7 +1977,7 @@
       "ambiguity_handling": 1.0,
       "hallucination_free": 1.0,
       "tokens": 8419,
-      "planner_output": [
+      "Reasoner_output": [
         {
           "tool": "check_traffic",
           "args": {
@@ -2071,7 +2071,7 @@
       "ambiguity_handling": 1.0,
       "hallucination_free": 1.0,
       "tokens": 8107,
-      "planner_output": [
+      "Reasoner_output": [
         {
           "tool": "geocode_location",
           "save_as": "origin",
@@ -2254,7 +2254,7 @@
       "ambiguity_handling": 1.0,
       "hallucination_free": 1.0,
       "tokens": 7961,
-      "planner_output": [
+      "Reasoner_output": [
         {
           "tool": "geocode_location",
           "save_as": "destination",
@@ -2444,7 +2444,7 @@
       "ambiguity_handling": 1.0,
       "hallucination_free": 0.0,
       "tokens": 8633,
-      "planner_output": [
+      "Reasoner_output": [
         {
           "tool": "geocode_location",
           "save_as": "destination",
@@ -2648,7 +2648,7 @@
       "ambiguity_handling": 1.0,
       "hallucination_free": 0.0,
       "tokens": 8149,
-      "planner_output": [
+      "Reasoner_output": [
         {
           "tool": "geocode_location",
           "save_as": "destination",
@@ -2843,7 +2843,7 @@
       "ambiguity_handling": 1.0,
       "hallucination_free": 1.0,
       "tokens": 0,
-      "planner_output": [],
+      "Reasoner_output": [],
       "tool_results": [],
       "final_response": "عذرا، في مشكلة في الاتصال حاليا.",
       "category": "tool calling",
@@ -2878,7 +2878,7 @@
       "ambiguity_handling": 1.0,
       "hallucination_free": 1.0,
       "tokens": 0,
-      "planner_output": [],
+      "Reasoner_output": [],
       "tool_results": [],
       "final_response": "عذرا، في مشكلة في الاتصال حاليا.",
       "category": "response quality",
@@ -2914,7 +2914,7 @@
       "ambiguity_handling": 1.0,
       "hallucination_free": 1.0,
       "tokens": 5886,
-      "planner_output": [
+      "Reasoner_output": [
         {
           "tool": "geocode_location",
           "save_as": "station",
@@ -3020,7 +3020,7 @@
       "ambiguity_handling": 1.0,
       "hallucination_free": 0.0,
       "tokens": 8538,
-      "planner_output": [
+      "Reasoner_output": [
         {
           "tool": "check_traffic",
           "args": {
@@ -3252,7 +3252,7 @@
       "ambiguity_handling": 1.0,
       "hallucination_free": 1.0,
       "tokens": 0,
-      "planner_output": [],
+      "Reasoner_output": [],
       "tool_results": [],
       "final_response": "عذرا، في مشكلة في الاتصال حاليا.",
       "category": "response quality",
@@ -3288,7 +3288,7 @@
       "ambiguity_handling": 1.0,
       "hallucination_free": 1.0,
       "tokens": 5224,
-      "planner_output": [
+      "Reasoner_output": [
         {
           "tool": "check_traffic",
           "args": {
@@ -3363,7 +3363,7 @@
       "ambiguity_handling": 1.0,
       "hallucination_free": 1.0,
       "tokens": 0,
-      "planner_output": [],
+      "Reasoner_output": [],
       "tool_results": [],
       "final_response": "عذرا، في مشكلة في الاتصال حاليا.",
       "category": "response quality",
@@ -3399,7 +3399,7 @@
       "ambiguity_handling": 1.0,
       "hallucination_free": 1.0,
       "tokens": 0,
-      "planner_output": [],
+      "Reasoner_output": [],
       "tool_results": [],
       "final_response": "عذرا، في مشكلة في الاتصال حاليا.",
       "category": "response quality",
@@ -3435,7 +3435,7 @@
       "ambiguity_handling": 1.0,
       "hallucination_free": 1.0,
       "tokens": 0,
-      "planner_output": [],
+      "Reasoner_output": [],
       "tool_results": [],
       "final_response": "عذرا، في مشكلة في الاتصال حاليا.",
       "category": "response quality",
@@ -3471,7 +3471,7 @@
       "ambiguity_handling": 1.0,
       "hallucination_free": 1.0,
       "tokens": 0,
-      "planner_output": [],
+      "Reasoner_output": [],
       "tool_results": [],
       "final_response": "عذرا، في مشكلة في الاتصال حاليا.",
       "category": "tool calling",
@@ -3506,7 +3506,7 @@
       "ambiguity_handling": 1.0,
       "hallucination_free": 1.0,
       "tokens": 0,
-      "planner_output": [],
+      "Reasoner_output": [],
       "tool_results": [],
       "final_response": "عذرا، في مشكلة في الاتصال حاليا.",
       "category": "correct args",
@@ -3541,7 +3541,7 @@
       "ambiguity_handling": 1.0,
       "hallucination_free": 1.0,
       "tokens": 0,
-      "planner_output": [],
+      "Reasoner_output": [],
       "tool_results": [],
       "final_response": "عذرا، في مشكلة في الاتصال حاليا.",
       "category": "correct args",
@@ -3576,7 +3576,7 @@
       "ambiguity_handling": 1.0,
       "hallucination_free": 1.0,
       "tokens": 0,
-      "planner_output": [],
+      "Reasoner_output": [],
       "tool_results": [],
       "final_response": "عذرا، في مشكلة في الاتصال حاليا.",
       "category": "correct args",

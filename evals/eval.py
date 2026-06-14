@@ -200,8 +200,8 @@ with open(DATASET_PATH, "r", encoding="utf-8") as f:
 # HELPER FUNCTIONS
 # =========================
 
-def extract_tool_names(planner_output: list[dict[str, Any]]) -> list[str]:
-	return [step["tool"] for step in planner_output if isinstance(step, dict) and "tool" in step]
+def extract_tool_names(Reasoner_output: list[dict[str, Any]]) -> list[str]:
+	return [step["tool"] for step in Reasoner_output if isinstance(step, dict) and "tool" in step]
 
 
 def compare_tools(expected_tools: list[dict[str, Any]], actual_tools: list[str]) -> bool:
@@ -265,10 +265,10 @@ def evaluate_response_quality_local(final_response: str, expected_behavior: dict
 	}
 
 
-def evaluate_ambiguity_local(expected_behavior: dict[str, Any], planner_output: list[dict[str, Any]], final_response: str) -> dict[str, Any]:
+def evaluate_ambiguity_local(expected_behavior: dict[str, Any], Reasoner_output: list[dict[str, Any]], final_response: str) -> dict[str, Any]:
 	should_ask = expected_behavior.get("should_ask_clarification", False)
 	asked_question = _asked_for_clarification(final_response)
-	no_tools_called = len(planner_output) == 0
+	no_tools_called = len(Reasoner_output) == 0
 	passed = (asked_question and no_tools_called) if should_ask else True
 	return {
 		"ambiguity_score": 1.0 if passed else 0.0,
@@ -278,10 +278,10 @@ def evaluate_ambiguity_local(expected_behavior: dict[str, Any], planner_output: 
 	}
 
 
-def evaluate_hallucination_local(planner_output: list[dict[str, Any]], final_response: str) -> dict[str, Any]:
-	planner_text = json.dumps(planner_output, ensure_ascii=False)
+def evaluate_hallucination_local(Reasoner_output: list[dict[str, Any]], final_response: str) -> dict[str, Any]:
+	Reasoner_text = json.dumps(Reasoner_output, ensure_ascii=False)
 	hallucinated_words = ["ترام", "مترو", "اتوبيس"]
-	hallucinations = [word for word in hallucinated_words if word in final_response and word not in planner_text]
+	hallucinations = [word for word in hallucinated_words if word in final_response and word not in Reasoner_text]
 	passed = len(hallucinations) == 0
 	return {
 		"hallucination_score": 1.0 if passed else 0.0,
@@ -338,7 +338,7 @@ def _call_grok_judge(system_prompt: str, user_prompt: str, api_key: str, model: 
 def evaluate_response_quality(
 	query: str,
 	expected_behavior: dict[str, Any],
-	planner_output: list[dict[str, Any]],
+	Reasoner_output: list[dict[str, Any]],
 	tool_results: list[dict[str, Any]],
 	final_response: str,
 	judge_api_key: str,
@@ -352,7 +352,7 @@ def evaluate_response_quality(
 		{
 			"query": query,
 			"expected_behavior": expected_behavior,
-			"planner_output": planner_output,
+			"Reasoner_output": Reasoner_output,
 			"tool_outputs": tool_results,
 			"final_response": final_response,
 		},
@@ -370,20 +370,20 @@ def evaluate_response_quality(
 def evaluate_ambiguity(
 	query: str,
 	expected_behavior: dict[str, Any],
-	planner_output: list[dict[str, Any]],
+	Reasoner_output: list[dict[str, Any]],
 	final_response: str,
 	judge_api_key: str,
 	judge_model: str | None = None,
 	use_grok_judge: bool = False,
 ) -> dict[str, Any]:
 	if not use_grok_judge:
-		return evaluate_ambiguity_local(expected_behavior, planner_output, final_response)
+		return evaluate_ambiguity_local(expected_behavior, Reasoner_output, final_response)
 
 	user_prompt = json.dumps(
 		{
 			"query": query,
 			"expected_behavior": expected_behavior,
-			"planner_output": planner_output,
+			"Reasoner_output": Reasoner_output,
 			"final_response": final_response,
 		},
 		ensure_ascii=False,
@@ -392,7 +392,7 @@ def evaluate_ambiguity(
 	try:
 		return _call_grok_judge(AMIBGUITY_JUDGE_SYSTEM_PROMPT, user_prompt, judge_api_key, judge_model)
 	except Exception as exc:
-		fallback = evaluate_ambiguity_local(expected_behavior, planner_output, final_response)
+		fallback = evaluate_ambiguity_local(expected_behavior, Reasoner_output, final_response)
 		fallback["judge_error"] = str(exc)
 		return fallback
 
@@ -421,10 +421,10 @@ def summarize_token_usage(token_usage: dict[str, Any]) -> int:
 # AGENT RUNNER
 # =========================
 
-def run_agent(query: str, api_key: str, planner_model: str | None = None, synthesizer_model: str | None = None) -> dict[str, Any]:
+def run_agent(query: str, api_key: str, Reasoner_model: str | None = None, synthesizer_model: str | None = None) -> dict[str, Any]:
 	agent = AlOstaAgent(
 		api_key,
-		planner_model=planner_model,
+		Reasoner_model=Reasoner_model,
 		synthesizer_model=synthesizer_model,
 	)
 	return agent.process_query_with_trace(query)
@@ -434,7 +434,7 @@ def run_agent(query: str, api_key: str, planner_model: str | None = None, synthe
 # EVALUATION LOOP
 # =========================
 
-def evaluate_dataset(api_key: str, judge_api_key: str, planner_model: str | None = None, synthesizer_model: str | None = None, judge_model: str | None = None, batch_size: int = DEFAULT_BATCH_SIZE, pause_seconds: int = DEFAULT_PAUSE_SECONDS) -> tuple[list[dict[str, Any]], dict[str, float], int]:
+def evaluate_dataset(api_key: str, judge_api_key: str, Reasoner_model: str | None = None, synthesizer_model: str | None = None, judge_model: str | None = None, batch_size: int = DEFAULT_BATCH_SIZE, pause_seconds: int = DEFAULT_PAUSE_SECONDS) -> tuple[list[dict[str, Any]], dict[str, float], int]:
 	results: list[dict[str, Any]] = []
 	summary = defaultdict(float)
 	total_tokens = 0
@@ -455,18 +455,18 @@ def evaluate_dataset(api_key: str, judge_api_key: str, planner_model: str | None
 		agent_result = run_agent(
 			query,
 			api_key=api_key,
-			planner_model=planner_model,
+			Reasoner_model=Reasoner_model,
 			synthesizer_model=synthesizer_model,
 		)
 
-		planner_output = agent_result.get("planner_output", [])
+		Reasoner_output = agent_result.get("Reasoner_output", [])
 		tool_results = agent_result.get("tool_results", [])
 		final_response = agent_result.get("final_response", "")
 		token_usage = agent_result.get("token_usage", {})
 		tokens = summarize_token_usage(token_usage)
 		total_tokens += tokens
 
-		actual_tools = extract_tool_names(planner_output)
+		actual_tools = extract_tool_names(Reasoner_output)
 		tool_calling_score = compare_tools(
 			expected_behavior.get("expected_tools", []),
 			actual_tools,
@@ -474,7 +474,7 @@ def evaluate_dataset(api_key: str, judge_api_key: str, planner_model: str | None
 
 		args_score = compare_args(
 			expected_behavior.get("expected_tools", []),
-			planner_output,
+			Reasoner_output,
 		)
 
 		use_response_quality_judge = category in JUDGE_CATEGORIES and category == "response quality"
@@ -483,7 +483,7 @@ def evaluate_dataset(api_key: str, judge_api_key: str, planner_model: str | None
 		response_quality_judgment = evaluate_response_quality(
 			query,
 			expected_behavior,
-			planner_output,
+			Reasoner_output,
 			tool_results,
 			final_response,
 			judge_api_key,
@@ -495,7 +495,7 @@ def evaluate_dataset(api_key: str, judge_api_key: str, planner_model: str | None
 		ambiguity_judgment = evaluate_ambiguity(
 			query,
 			expected_behavior,
-			planner_output,
+			Reasoner_output,
 			final_response,
 			judge_api_key,
 			judge_model,
@@ -503,7 +503,7 @@ def evaluate_dataset(api_key: str, judge_api_key: str, planner_model: str | None
 		)
 		ambiguity_score = float(ambiguity_judgment.get("ambiguity_score", 0.0))
 
-		hallucination_judgment = evaluate_hallucination_local(planner_output, final_response)
+		hallucination_judgment = evaluate_hallucination_local(Reasoner_output, final_response)
 		hallucination_score = float(hallucination_judgment.get("hallucination_score", 0.0))
 
 		test_result = {
@@ -514,7 +514,7 @@ def evaluate_dataset(api_key: str, judge_api_key: str, planner_model: str | None
 			"ambiguity_handling": ambiguity_score,
 			"hallucination_free": hallucination_score,
 			"tokens": tokens,
-			"planner_output": planner_output,
+			"Reasoner_output": Reasoner_output,
 			"tool_results": tool_results,
 			"final_response": final_response,
 			"category": category,
@@ -555,7 +555,7 @@ def parse_args() -> argparse.Namespace:
 	parser.add_argument("--batch-size", type=int, default=DEFAULT_BATCH_SIZE, help="Number of queries to run before pausing")
 	parser.add_argument("--pause-seconds", type=int, default=DEFAULT_PAUSE_SECONDS, help="How long to sleep between batches")
 	parser.add_argument("--output", default=str(RESULTS_PATH), help="Path to save detailed JSON results")
-	parser.add_argument("--planner-model", default=os.getenv("PLANNER_MODEL"), help="Override the planner model name")
+	parser.add_argument("--Reasoner-model", default=os.getenv("Reasoner_MODEL"), help="Override the Reasoner model name")
 	parser.add_argument("--synthesizer-model", default=os.getenv("SLM_MODEL"), help="Override the synthesizer model name")
 	parser.add_argument("--judge-model", default=os.getenv("GROK_MODEL", DEFAULT_GROK_MODEL), help="Override the Grok judge model name")
 	return parser.parse_args()
@@ -575,7 +575,7 @@ def main() -> None:
 	results, summary, total_tokens = evaluate_dataset(
 		api_key=api_key,
 		judge_api_key=judge_api_key,
-		planner_model=args.planner_model,
+		Reasoner_model=args.Reasoner_model,
 		synthesizer_model=args.synthesizer_model,
 		judge_model=args.judge_model,
 		batch_size=args.batch_size,

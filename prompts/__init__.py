@@ -3,8 +3,8 @@ Prompt loader — reads .txt prompt files relative to this package directory.
 
 Usage:
     from prompts import load_prompt
-    text = load_prompt("planner")          # loads prompts/planner.txt
-    text = load_prompt("planner", tools_schema="...")  # fills {tools_schema}
+    text = load_prompt("Reasoner")          # loads prompts/Reasoner.txt
+    text = load_prompt("Reasoner", tools_schema="...")  # fills {tools_schema}
 """
 from __future__ import annotations
 
@@ -21,7 +21,7 @@ def load_prompt(name: str, **kwargs: str) -> str:
     Parameters
     ----------
     name : str
-        Filename without extension, e.g. "planner" or "synthesizer".
+        Filename without extension, e.g. "Reasoner" or "synthesizer".
     **kwargs : str
         Optional format values to substitute into the prompt text.
         Uses str.format_map so only named placeholders are replaced;
