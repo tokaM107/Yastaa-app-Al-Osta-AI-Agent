@@ -1,0 +1,3607 @@
+{
+  "summary": {
+    "tool_calling_accuracy": 0.5666666666666667,
+    "correct_args_accuracy": 0.6666666666666666,
+    "response_quality_score": 0.36666666666666664,
+    "ambiguity_handling_score": 0.9333333333333333,
+    "hallucination_free_rate": 0.7333333333333333,
+    "average_tokens": 4975.8,
+    "total_tests": 30
+  },
+  "results": [
+    {
+      "query": "ازاي اروح فتح الله ستانلي فأسرع وقت وبأقل تكاليف 31.191377411119817, 29.919049014808774",
+      "tool_calling": true,
+      "correct_args": true,
+      "response_quality": 1.0,
+      "ambiguity_handling": 1.0,
+      "hallucination_free": 0.0,
+      "tokens": 8171,
+      "planner_output": [
+        {
+          "tool": "geocode_location",
+          "save_as": "destination",
+          "args": {
+            "place_name": "فتح الله ستانلي"
+          }
+        },
+        {
+          "tool": "get_routes",
+          "args": {
+            "start_lat": 31.191377411119817,
+            "start_lon": 29.919049014808774,
+            "end_lat": "$destination.lat",
+            "end_lon": "$destination.lon",
+            "max_transfers": 2,
+            "walking_cutoff": 2500,
+            "priority": "balanced",
+            "top_k": 5
+          }
+        }
+      ],
+      "tool_results": [
+        {
+          "step": "destination",
+          "tool": "geocode_location",
+          "raw_args": {
+            "place_name": "فتح الله ستانلي"
+          },
+          "resolved_args": {
+            "place_name": "فتح الله ستانلي"
+          },
+          "result": {
+            "lat": 31.2322524,
+            "lon": 29.9541628,
+            "formatted_address": "أسواق فتح الله جملة - فرع ستانلي، Abd El-Rahman Shokry, Fleming, El Raml 1, Alexandria, Egypt"
+          }
+        },
+        {
+          "step": "step_2",
+          "tool": "get_routes",
+          "raw_args": {
+            "start_lat": 31.191377411119817,
+            "start_lon": 29.919049014808774,
+            "end_lat": "$destination.lat",
+            "end_lon": "$destination.lon",
+            "max_transfers": 2,
+            "walking_cutoff": 2500,
+            "priority": "balanced",
+            "top_k": 5
+          },
+          "resolved_args": {
+            "start_lat": 31.191377411119817,
+            "start_lon": 29.919049014808774,
+            "end_lat": 31.2322524,
+            "end_lon": 29.9541628,
+            "max_transfers": 2,
+            "walking_cutoff": 2500,
+            "priority": "balanced",
+            "top_k": 5
+          },
+          "result": {
+            "journeys": [
+              {
+                "route_number": 1,
+                "text_summary": "امشي لغايه كوبري محرم بك وتركب ميكروباص المندرة لغايه كوبري ستانلي وتمشي لغايه وجهتك",
+                "summary": {
+                  "total_time_minutes": 32,
+                  "walking_distance_meters": 1553,
+                  "transit_distance_meters": 7178,
+                  "total_distance_meters": 8731,
+                  "transfers": 0,
+                  "cost": 6,
+                  "modes_ar": [
+                    "ميكروباص"
+                  ],
+                  "main_streets_ar": [
+                    "بحر"
+                  ]
+                }
+              },
+              {
+                "route_number": 2,
+                "text_summary": "امشي لغايه باب شرق وتركب ميكروباص سيدي بشر لغايه محطة ترام الوزارة وتمشي لغايه وجهتك",
+                "summary": {
+                  "total_time_minutes": 35,
+                  "walking_distance_meters": 1630,
+                  "transit_distance_meters": 5077,
+                  "total_distance_meters": 6707,
+                  "transfers": 0,
+                  "cost": 6,
+                  "modes_ar": [
+                    "ميكروباص"
+                  ],
+                  "main_streets_ar": [
+                    "شارع ابوقير"
+                  ]
+                }
+              },
+              {
+                "route_number": 3,
+                "text_summary": "امشي لغايه استاد الإسكندرية وتركب ميني باص 20 الملاحة لغايه كوبري ستانلي وتمشي لغايه وجهتك",
+                "summary": {
+                  "total_time_minutes": 40,
+                  "walking_distance_meters": 1819,
+                  "transit_distance_meters": 6919,
+                  "total_distance_meters": 8738,
+                  "transfers": 0,
+                  "cost": 6,
+                  "modes_ar": [
+                    "ميني باص"
+                  ],
+                  "main_streets_ar": [
+                    "بحر",
+                    "مصطفى كامل"
+                  ]
+                }
+              },
+              {
+                "route_number": 4,
+                "text_summary": "امشي لغايه استاد الإسكندرية وتركب (اتوبيس 739 أو اتوبيس 735) لغايه كوبري ستانلي وتمشي لغايه وجهتك",
+                "summary": {
+                  "total_time_minutes": 40,
+                  "walking_distance_meters": 1819,
+                  "transit_distance_meters": 6920,
+                  "total_distance_meters": 8739,
+                  "transfers": 0,
+                  "cost": 6,
+                  "modes_ar": [
+                    "اتوبيس"
+                  ],
+                  "main_streets_ar": [
+                    "بحر",
+                    "مصطفى كامل"
+                  ]
+                }
+              },
+              {
+                "route_number": 5,
+                "text_summary": "امشي لغايه كوبري محرم بك وتركب ميكروباص سيدي جابر لغايه ذا ووك - سيدى جابر وتمشي لغايه وجهتك",
+                "summary": {
+                  "total_time_minutes": 44,
+                  "walking_distance_meters": 2766,
+                  "transit_distance_meters": 5475,
+                  "total_distance_meters": 8241,
+                  "transfers": 0,
+                  "cost": 6,
+                  "modes_ar": [
+                    "ميكروباص"
+                  ],
+                  "main_streets_ar": [
+                    "بحر"
+                  ]
+                }
+              }
+            ],
+            "selected_priority": "balanced",
+            "num_journeys": 5,
+            "raw_summary": null
+          }
+        }
+      ],
+      "final_response": "أهلاً بيك! عشان تروح فتح الله ستانلي من موقعك الحالي، فيه أكتر من طريق مناسب ليك. دي التفاصيل:\n\nرحلة 1:\n  امشي لغاية كوبري محرم بك وتركب ميكروباص المندرة لغاية كوبري ستانلي وتمشي لغاية وجهتك\n  الوقت: 32 دقيقة | التكلفة: 6 جنيه | مشي: 1553 متر | وسيلة: ميكروباص | الشارع الرئيسي: بحر\n\nرحلة 2:\n  امشي لغاية باب شرق وتركب ميكروباص سيدي بشر لغاية محطة ترام الوزارة وتمشي لغاية وجهتك\n  الوقت: 35 دقيقة | التكلفة: 6 جنيه | مشي: 1630 متر | وسيلة: ميكروباص | الشارع الرئيسي: شارع ابوقير\n\nرحلة 3:\n  امشي لغاية استاد الإسكندرية وتركب ميني باص 20 الملاحة لغاية كوبري ستانلي وتمشي لغاية وجهتك\n  الوقت: 40 دقيقة | التكلفة: 6 جنيه | مشي: 1819 متر | وسيلة: ميني باص | الشارع الرئيسي: بحر، مصطفى كامل\n\nرحلة 4:\n  امشي لغاية استاد الإسكندرية وتركب (اتوبيس 739 أو اتوبيس 735) لغاية كوبري ستانلي وتمشي لغاية وجهتك\n  الوقت: 40 دقيقة | التكلفة: 6 جنيه | مشي: 1819 متر | وسيلة: اتوبيس | الشارع الرئيسي: بحر، مصطفى كامل\n\nرحلة 5:\n  امشي لغاية كوبري محرم بك وتركب ميكروباص سيدي جابر لغاية ذا ووك - سيدى جابر وتمشي لغاية وجهتك\n  الوقت: 44 دقيقة | التكلفة: 6 جنيه | مشي: 2766 متر | وسيلة: ميكروباص | الشارع الرئيسي: بحر",
+      "category": "correct args",
+      "response_quality_judgment": {
+        "response_quality_score": 1.0,
+        "passed": true,
+        "reasoning": {
+          "response_quality": "Used local keyword fallback because Grok judge was unavailable or disabled.",
+          "hallucination": "Not evaluated by the Grok judge in this category."
+        },
+        "source": "local_fallback"
+      },
+      "ambiguity_judgment": {
+        "ambiguity_score": 1.0,
+        "passed": true,
+        "reasoning": "Used local clarification check fallback because Grok judge was unavailable or disabled.",
+        "source": "local_fallback",
+        "judge_error": "Grok judge request failed with HTTP 403"
+      },
+      "hallucination_judgment": {
+        "hallucination_score": 0.0,
+        "passed": false,
+        "reasoning": "Used local hallucination check fallback because the Grok judge is reserved for response quality and ambiguity only.",
+        "source": "local_fallback"
+      }
+    },
+    {
+      "query": "لو عايز اروح قسم سيدي جابر ايه المواصلات المتاحة ليا اركبها وتكون مواصلة واحدة بس 31.191377411119817, 29.919049014808774",
+      "tool_calling": true,
+      "correct_args": true,
+      "response_quality": 1.0,
+      "ambiguity_handling": 1.0,
+      "hallucination_free": 1.0,
+      "tokens": 8376,
+      "planner_output": [
+        {
+          "tool": "geocode_location",
+          "save_as": "destination",
+          "args": {
+            "place_name": "قسم سيدي جابر",
+            "user_lat": 31.191377411119817,
+            "user_lng": 29.919049014808774,
+            "bias": true
+          }
+        },
+        {
+          "tool": "get_routes",
+          "args": {
+            "start_lat": 31.191377411119817,
+            "start_lon": 29.919049014808774,
+            "end_lat": "$destination.lat",
+            "end_lon": "$destination.lon",
+            "max_transfers": 1,
+            "walking_cutoff": 2500,
+            "priority": "balanced",
+            "top_k": 5
+          }
+        }
+      ],
+      "tool_results": [
+        {
+          "step": "destination",
+          "tool": "geocode_location",
+          "raw_args": {
+            "place_name": "قسم سيدي جابر",
+            "user_lat": 31.191377411119817,
+            "user_lng": 29.919049014808774,
+            "bias": true
+          },
+          "resolved_args": {
+            "place_name": "قسم سيدي جابر",
+            "user_lat": 31.191377411119817,
+            "user_lng": 29.919049014808774,
+            "bias": true
+          },
+          "result": {
+            "lat": 31.2126348,
+            "lon": 29.956708199999998,
+            "formatted_address": "قسم سيدى جابر، Alexandria, Egypt"
+          }
+        },
+        {
+          "step": "step_2",
+          "tool": "get_routes",
+          "raw_args": {
+            "start_lat": 31.191377411119817,
+            "start_lon": 29.919049014808774,
+            "end_lat": "$destination.lat",
+            "end_lon": "$destination.lon",
+            "max_transfers": 1,
+            "walking_cutoff": 2500,
+            "priority": "balanced",
+            "top_k": 5
+          },
+          "resolved_args": {
+            "start_lat": 31.191377411119817,
+            "start_lon": 29.919049014808774,
+            "end_lat": 31.2126348,
+            "end_lon": 29.956708199999998,
+            "max_transfers": 1,
+            "walking_cutoff": 2500,
+            "priority": "balanced",
+            "top_k": 5
+          },
+          "result": {
+            "journeys": [
+              {
+                "route_number": 1,
+                "text_summary": "امشي لغايه باب شرق وتركب ميكروباص (حجر الناوتية (كوبري ناموس) أو أبو سليمان) لغايه ميدان فيكتور عمانويل وتمشي لغايه وجهتك",
+                "summary": {
+                  "total_time_minutes": 40,
+                  "walking_distance_meters": 2541,
+                  "transit_distance_meters": 3220,
+                  "total_distance_meters": 5761,
+                  "transfers": 0,
+                  "cost": 5,
+                  "modes_ar": [
+                    "ميكروباص"
+                  ],
+                  "main_streets_ar": [
+                    "محمودية",
+                    "شارع ابوقير",
+                    "بحر"
+                  ]
+                }
+              },
+              {
+                "route_number": 2,
+                "text_summary": "امشي لغايه باب شرق وتركب ميكروباص سموحة لغايه ميدان فيكتور عمانويل وتمشي لغايه وجهتك",
+                "summary": {
+                  "total_time_minutes": 41,
+                  "walking_distance_meters": 2637,
+                  "transit_distance_meters": 3103,
+                  "total_distance_meters": 5740,
+                  "transfers": 0,
+                  "cost": 5,
+                  "modes_ar": [
+                    "ميكروباص"
+                  ],
+                  "main_streets_ar": [
+                    "شارع ابوقير",
+                    "بحر"
+                  ]
+                }
+              },
+              {
+                "route_number": 3,
+                "text_summary": "امشي لغايه كوبري محرم بك وتركب ميكروباص سيدي جابر لغايه محطة سيدى جابر وتمشي لغايه وجهتك",
+                "summary": {
+                  "total_time_minutes": 50,
+                  "walking_distance_meters": 2674,
+                  "transit_distance_meters": 7852,
+                  "total_distance_meters": 10526,
+                  "transfers": 0,
+                  "cost": 6,
+                  "modes_ar": [
+                    "ميكروباص"
+                  ],
+                  "main_streets_ar": [
+                    "بحر"
+                  ]
+                }
+              },
+              {
+                "route_number": 4,
+                "text_summary": "امشي لغايه كوبري للمشاة قناة السويس وتركب ميكروباص (السيوف (فلكي) أو العوايد أو الساعة (ميدان الساعة) أو شارع 45 أو أبو قير) لغايه نادي الاتحاد وتمشي لغايه وجهتك",
+                "summary": {
+                  "total_time_minutes": 47,
+                  "walking_distance_meters": 3145,
+                  "transit_distance_meters": 7285,
+                  "total_distance_meters": 10430,
+                  "transfers": 0,
+                  "cost": 6,
+                  "modes_ar": [
+                    "ميكروباص"
+                  ],
+                  "main_streets_ar": [
+                    "بحر",
+                    "مصطفى كامل"
+                  ]
+                }
+              },
+              {
+                "route_number": 5,
+                "text_summary": "امشي لغايه باب شرق وتركب ميكروباص سيدي بشر لغايه محطة سيدى جابر وتمشي لغايه وجهتك",
+                "summary": {
+                  "total_time_minutes": 49,
+                  "walking_distance_meters": 3371,
+                  "transit_distance_meters": 3332,
+                  "total_distance_meters": 6703,
+                  "transfers": 0,
+                  "cost": 5,
+                  "modes_ar": [
+                    "ميكروباص"
+                  ],
+                  "main_streets_ar": [
+                    "شارع ابوقير"
+                  ]
+                }
+              }
+            ],
+            "selected_priority": "balanced",
+            "num_journeys": 5,
+            "raw_summary": null
+          }
+        }
+      ],
+      "final_response": "تمام، عشان تروح قسم سيدي جابر من مكانك الحالي، فيه كذا اختيار ليك، كلهم مواصلة واحدة:\n\nرحلة 1:\n  امشي لغايه باب شرق وتركب ميكروباص (حجر الناوتية (كوبري ناموس) أو أبو سليمان) لغايه ميدان فيكتور عمانويل وتمشي لغايه وجهتك\n  الوقت: 40 دقيقة | التكلفة: 5 جنيه | مشي: 2541 متر | وسيلة: ميكروباص\n\nرحلة 2:\n  امشي لغايه باب شرق وتركب ميكروباص سموحة لغايه ميدان فيكتور عمانويل وتمشي لغايه وجهتك\n  الوقت: 41 دقيقة | التكلفة: 5 جنيه | مشي: 2637 متر | وسيلة: ميكروباص\n\nرحلة 3:\n  امشي لغايه كوبري محرم بك وتركب ميكروباص سيدي جابر لغايه محطة سيدى جابر وتمشي لغايه وجهتك\n  الوقت: 50 دقيقة | التكلفة: 6 جنيه | مشي: 2674 متر | وسيلة: ميكروباص\n\nرحلة 4:\n  امشي لغايه كوبري للمشاة قناة السويس وتركب ميكروباص (السيوف (فلكي) أو العوايد أو الساعة (ميدان الساعة) أو شارع 45 أو أبو قير) لغايه نادي الاتحاد وتمشي لغايه وجهتك\n  الوقت: 47 دقيقة | التكلفة: 6 جنيه | مشي: 3145 متر | وسيلة: ميكروباص\n\nرحلة 5:\n  امشي لغايه باب شرق وتركب ميكروباص سيدي بشر لغايه محطة سيدى جابر وتمشي لغايه وجهتك\n  الوقت: 49 دقيقة | التكلفة: 5 جنيه | مشي: 3371 متر | وسيلة: ميكروباص",
+      "category": "correct args",
+      "response_quality_judgment": {
+        "response_quality_score": 1.0,
+        "passed": true,
+        "reasoning": {
+          "response_quality": "Used local keyword fallback because Grok judge was unavailable or disabled.",
+          "hallucination": "Not evaluated by the Grok judge in this category."
+        },
+        "source": "local_fallback"
+      },
+      "ambiguity_judgment": {
+        "ambiguity_score": 1.0,
+        "passed": true,
+        "reasoning": "Used local clarification check fallback because Grok judge was unavailable or disabled.",
+        "source": "local_fallback",
+        "judge_error": "Grok judge request failed with HTTP 403"
+      },
+      "hallucination_judgment": {
+        "hallucination_score": 1.0,
+        "passed": true,
+        "reasoning": "Used local hallucination check fallback because the Grok judge is reserved for response quality and ambiguity only.",
+        "source": "local_fallback"
+      }
+    },
+    {
+      "query": "انا رايح من محطة مصر لزيزينيا قلي ارخص طريقة 31.191377411119817, 29.919049014808774",
+      "tool_calling": true,
+      "correct_args": false,
+      "response_quality": 1.0,
+      "ambiguity_handling": 1.0,
+      "hallucination_free": 0.0,
+      "tokens": 8388,
+      "planner_output": [
+        {
+          "tool": "geocode_location",
+          "save_as": "destination",
+          "args": {
+            "place_name": "زيزينيا"
+          }
+        },
+        {
+          "tool": "get_routes",
+          "args": {
+            "start_lat": 31.191377411119817,
+            "start_lon": 29.919049014808774,
+            "end_lat": "$destination.lat",
+            "end_lon": "$destination.lon",
+            "max_transfers": 2,
+            "walking_cutoff": 1500,
+            "priority": "cost",
+            "top_k": 5
+          }
+        }
+      ],
+      "tool_results": [
+        {
+          "step": "destination",
+          "tool": "geocode_location",
+          "raw_args": {
+            "place_name": "زيزينيا"
+          },
+          "resolved_args": {
+            "place_name": "زيزينيا"
+          },
+          "result": {
+            "lat": 31.2380721,
+            "lon": 29.967852099999998,
+            "formatted_address": "زيزينيا، Al Aqesa WA Baqos, El Raml 1, Alexandria, Egypt"
+          }
+        },
+        {
+          "step": "step_2",
+          "tool": "get_routes",
+          "raw_args": {
+            "start_lat": 31.191377411119817,
+            "start_lon": 29.919049014808774,
+            "end_lat": "$destination.lat",
+            "end_lon": "$destination.lon",
+            "max_transfers": 2,
+            "walking_cutoff": 1500,
+            "priority": "cost",
+            "top_k": 5
+          },
+          "resolved_args": {
+            "start_lat": 31.191377411119817,
+            "start_lon": 29.919049014808774,
+            "end_lat": 31.2380721,
+            "end_lon": 29.967852099999998,
+            "max_transfers": 2,
+            "walking_cutoff": 1500,
+            "priority": "cost",
+            "top_k": 5
+          },
+          "result": {
+            "journeys": [
+              {
+                "route_number": 1,
+                "text_summary": "امشي لغايه باب شرق وتركب ميكروباص سيدي بشر لغايه متحف المجوهرات وتمشي لغايه وجهتك",
+                "summary": {
+                  "total_time_minutes": 41,
+                  "walking_distance_meters": 1836,
+                  "transit_distance_meters": 6313,
+                  "total_distance_meters": 8149,
+                  "transfers": 0,
+                  "cost": 6,
+                  "modes_ar": [
+                    "ميكروباص"
+                  ],
+                  "main_streets_ar": [
+                    "شارع ابوقير"
+                  ]
+                }
+              },
+              {
+                "route_number": 2,
+                "text_summary": "امشي لغايه كوبري محرم بك وتركب ميكروباص المندرة لغايه نفق مشاة جليم وتمشي لغايه وجهتك",
+                "summary": {
+                  "total_time_minutes": 39,
+                  "walking_distance_meters": 1913,
+                  "transit_distance_meters": 8358,
+                  "total_distance_meters": 10271,
+                  "transfers": 0,
+                  "cost": 7,
+                  "modes_ar": [
+                    "ميكروباص"
+                  ],
+                  "main_streets_ar": [
+                    "بحر"
+                  ]
+                }
+              },
+              {
+                "route_number": 3,
+                "text_summary": "امشي لغايه استاد الإسكندرية وتركب ميني باص 20 الملاحة لغايه نفق مشاة جليم وتمشي لغايه وجهتك",
+                "summary": {
+                  "total_time_minutes": 46,
+                  "walking_distance_meters": 2180,
+                  "transit_distance_meters": 8100,
+                  "total_distance_meters": 10280,
+                  "transfers": 0,
+                  "cost": 6,
+                  "modes_ar": [
+                    "ميني باص"
+                  ],
+                  "main_streets_ar": [
+                    "بحر",
+                    "مصطفى كامل"
+                  ]
+                }
+              },
+              {
+                "route_number": 4,
+                "text_summary": "امشي لغايه استاد الإسكندرية وتركب (اتوبيس 739 أو اتوبيس 735) لغايه نفق مشاة جليم وتمشي لغايه وجهتك",
+                "summary": {
+                  "total_time_minutes": 46,
+                  "walking_distance_meters": 2180,
+                  "transit_distance_meters": 8100,
+                  "total_distance_meters": 10280,
+                  "transfers": 0,
+                  "cost": 6,
+                  "modes_ar": [
+                    "اتوبيس"
+                  ],
+                  "main_streets_ar": [
+                    "بحر",
+                    "مصطفى كامل"
+                  ]
+                }
+              },
+              {
+                "route_number": 5,
+                "text_summary": "امشي لغايه كوبري محرم بك وتركب ميكروباص الشاطبي لغايه نفق مشاة شاطبي وبعدين تمشي لغايه نفق مشاة شاطبي وتركب ميكروباص باكوس لغايه باكوس وتمشي لغايه وجهتك",
+                "summary": {
+                  "total_time_minutes": 36,
+                  "walking_distance_meters": 1187,
+                  "transit_distance_meters": 9744,
+                  "total_distance_meters": 10931,
+                  "transfers": 1,
+                  "cost": 11,
+                  "modes_ar": [
+                    "ميكروباص"
+                  ],
+                  "main_streets_ar": [
+                    "بحر"
+                  ]
+                }
+              }
+            ],
+            "selected_priority": "cost",
+            "num_journeys": 5,
+            "raw_summary": null
+          }
+        }
+      ],
+      "final_response": "رحلة 1:\n  امشي لغاية باب شرق وتركب ميكروباص سيدي بشر لغاية متحف المجوهرات وتمشي لغاية وجهتك\n  الوقت: 41 دقيقة | التكلفة: 6 جنيه | مشي: 1836 متر | المسافة الإجمالية: 8149 متر | وسيلة: ميكروباص | الشارع الرئيسي: شارع ابوقير\n\nرحلة 2:\n  امشي لغاية كوبري محرم بك وتركب ميكروباص المندرة لغاية نفق مشاة جليم وتمشي لغاية وجهتك\n  الوقت: 39 دقيقة | التكلفة: 7 جنيه | مشي: 1913 متر | المسافة الإجمالية: 10271 متر | وسيلة: ميكروباص | الشارع الرئيسي: بحر\n\nرحلة 3:\n  امشي لغاية استاد الإسكندرية وتركب ميني باص 20 الملاحة لغاية نفق مشاة جليم وتمشي لغاية وجهتك\n  الوقت: 46 دقيقة | التكلفة: 6 جنيه | مشي: 2180 متر | المسافة الإجمالية: 10280 متر | وسيلة: ميني باص | الشارع الرئيسي: بحر، مصطفى كامل\n\nرحلة 4:\n  امشي لغاية استاد الإسكندرية وتركب (اتوبيس 739 أو اتوبيس 735) لغاية نفق مشاة جليم وتمشي لغاية وجهتك\n  الوقت: 46 دقيقة | التكلفة: 6 جنيه | مشي: 2180 متر | المسافة الإجمالية: 10280 متر | وسيلة: اتوبيس | الشارع الرئيسي: بحر، مصطفى كامل\n\nرحلة 5:\n  امشي لغاية كوبري محرم بك وتركب ميكروباص الشاطبي لغاية نفق مشاة شاطبي وبعدين تمشي لغاية نفق مشاة شاطبي وتركب ميكروباص باكوس لغاية باكوس وتمشي لغاية وجهتك\n  الوقت: 36 دقيقة | التكلفة: 11 جنيه | مشي: 1187 متر | المسافة الإجمالية: 10931 متر | وسيلة: ميكروباص | الشارع الرئيسي: بحر | التحويلات: 1",
+      "category": "correct args",
+      "response_quality_judgment": {
+        "response_quality_score": 1.0,
+        "passed": true,
+        "reasoning": {
+          "response_quality": "Used local keyword fallback because Grok judge was unavailable or disabled.",
+          "hallucination": "Not evaluated by the Grok judge in this category."
+        },
+        "source": "local_fallback"
+      },
+      "ambiguity_judgment": {
+        "ambiguity_score": 1.0,
+        "passed": true,
+        "reasoning": "Used local clarification check fallback because Grok judge was unavailable or disabled.",
+        "source": "local_fallback",
+        "judge_error": "Grok judge request failed with HTTP 403"
+      },
+      "hallucination_judgment": {
+        "hallucination_score": 0.0,
+        "passed": false,
+        "reasoning": "Used local hallucination check fallback because the Grok judge is reserved for response quality and ambiguity only.",
+        "source": "local_fallback"
+      }
+    },
+    {
+      "query": "لو عايز اروح من مكان لآخر ايه افضل طريقة 31.191377411119817, 29.919049014808774",
+      "tool_calling": true,
+      "correct_args": true,
+      "response_quality": 0.0,
+      "ambiguity_handling": 1.0,
+      "hallucination_free": 1.0,
+      "tokens": 4885,
+      "planner_output": [],
+      "tool_results": [],
+      "final_response": "آسف، لم أستطع العثور على أي معلومات عن مسارات بناءً على الموقع الذي قدمته. هل يمكنك تزويدي بالاسم أو العنوان الكامل للمكان الذي تود الذهاب إليه؟",
+      "category": "ambiguity handling",
+      "response_quality_judgment": {
+        "response_quality_score": 0.0,
+        "passed": false,
+        "reasoning": {
+          "response_quality": "Used local keyword fallback because Grok judge was unavailable or disabled.",
+          "hallucination": "Not evaluated by the Grok judge in this category."
+        },
+        "source": "local_fallback"
+      },
+      "ambiguity_judgment": {
+        "ambiguity_score": 1.0,
+        "passed": true,
+        "reasoning": "Used local clarification check fallback because Grok judge was unavailable or disabled.",
+        "source": "local_fallback",
+        "judge_error": "Grok judge request failed with HTTP 403"
+      },
+      "hallucination_judgment": {
+        "hallucination_score": 1.0,
+        "passed": true,
+        "reasoning": "Used local hallucination check fallback because the Grok judge is reserved for response quality and ambiguity only.",
+        "source": "local_fallback"
+      }
+    },
+    {
+      "query": "ازاى اقدر اوصل لسيتي سنتر وانا مروحتوش قبل كده وايه احسن طريق اقدر ارجع بيه 31.191377411119817, 29.919049014808774",
+      "tool_calling": true,
+      "correct_args": true,
+      "response_quality": 1.0,
+      "ambiguity_handling": 1.0,
+      "hallucination_free": 0.0,
+      "tokens": 11442,
+      "planner_output": [
+        {
+          "tool": "geocode_location",
+          "save_as": "city_center",
+          "args": {
+            "place_name": "سيتي سنتر",
+            "user_lat": 31.191377411119817,
+            "user_lng": 29.919049014808774
+          }
+        },
+        {
+          "tool": "get_routes",
+          "args": {
+            "start_lat": 31.191377411119817,
+            "start_lon": 29.919049014808774,
+            "end_lat": "$city_center.lat",
+            "end_lon": "$city_center.lon",
+            "max_transfers": 2,
+            "walking_cutoff": 2500,
+            "priority": "balanced",
+            "top_k": 5
+          }
+        },
+        {
+          "tool": "get_routes",
+          "args": {
+            "start_lat": "$city_center.lat",
+            "start_lon": "$city_center.lon",
+            "end_lat": 31.191377411119817,
+            "end_lon": 29.919049014808774,
+            "max_transfers": 2,
+            "walking_cutoff": 2500,
+            "priority": "balanced",
+            "top_k": 5
+          }
+        }
+      ],
+      "tool_results": [
+        {
+          "step": "city_center",
+          "tool": "geocode_location",
+          "raw_args": {
+            "place_name": "سيتي سنتر",
+            "user_lat": 31.191377411119817,
+            "user_lng": 29.919049014808774
+          },
+          "resolved_args": {
+            "place_name": "سيتي سنتر",
+            "user_lat": 31.191377411119817,
+            "user_lng": 29.919049014808774
+          },
+          "result": {
+            "lat": 31.166617499999997,
+            "lon": 29.933398999999998,
+            "formatted_address": "سيتي سنتر إسكندرية، Cairo Alex Desert Road, Qetaa at Tarik as Sahrawi, Moharam Bek, Alexandria, Egypt"
+          }
+        },
+        {
+          "step": "step_2",
+          "tool": "get_routes",
+          "raw_args": {
+            "start_lat": 31.191377411119817,
+            "start_lon": 29.919049014808774,
+            "end_lat": "$city_center.lat",
+            "end_lon": "$city_center.lon",
+            "max_transfers": 2,
+            "walking_cutoff": 2500,
+            "priority": "balanced",
+            "top_k": 5
+          },
+          "resolved_args": {
+            "start_lat": 31.191377411119817,
+            "start_lon": 29.919049014808774,
+            "end_lat": 31.166617499999997,
+            "end_lon": 29.933398999999998,
+            "max_transfers": 2,
+            "walking_cutoff": 2500,
+            "priority": "balanced",
+            "top_k": 5
+          },
+          "result": {
+            "journeys": [
+              {
+                "route_number": 1,
+                "text_summary": "امشي لغايه كوبري للمشاة قناة السويس وتركب (اتوبيس 480 أو اتوبيس 10 أو اتوبيس 759 أو اتوبيس 409) لغايه محرم بك وتمشي لغايه وجهتك",
+                "summary": {
+                  "total_time_minutes": 36,
+                  "walking_distance_meters": 2813,
+                  "transit_distance_meters": 1550,
+                  "total_distance_meters": 4363,
+                  "transfers": 0,
+                  "cost": 5,
+                  "modes_ar": [
+                    "اتوبيس"
+                  ],
+                  "main_streets_ar": [
+                    "بحر"
+                  ]
+                }
+              },
+              {
+                "route_number": 2,
+                "text_summary": "امشي لغايه كوبري للمشاة قناة السويس وتركب ميكروباص (الموقف الجديد أو السيوف (فلكي) أو مول غرين بلازا أو المطار أو العوايد أو العامرية أو الساعة (ميدان الساعة) أو هانوفيل الجمعية أو كيلو 21 أو شارع 45 أو ابيس 8 أو أبو قير) لغايه محرم بك وتمشي لغايه وجهتك",
+                "summary": {
+                  "total_time_minutes": 36,
+                  "walking_distance_meters": 2813,
+                  "transit_distance_meters": 1607,
+                  "total_distance_meters": 4420,
+                  "transfers": 0,
+                  "cost": 5,
+                  "modes_ar": [
+                    "ميكروباص"
+                  ],
+                  "main_streets_ar": [
+                    "بحر",
+                    "مصطفى كامل"
+                  ]
+                }
+              },
+              {
+                "route_number": 3,
+                "text_summary": "امشي لغايه كوبري للمشاة قناة السويس وتركب ميكروباص ابيس 8 لغايه أبيس ٨ وبعدين تمشي لغايه أبيس ٨ وتركب ميكروباص محطة مصر لغايه محرم بك وتمشي لغايه وجهتك",
+                "summary": {
+                  "total_time_minutes": 67,
+                  "walking_distance_meters": 2813,
+                  "transit_distance_meters": 19540,
+                  "total_distance_meters": 22353,
+                  "transfers": 1,
+                  "cost": 14,
+                  "modes_ar": [
+                    "ميكروباص"
+                  ],
+                  "main_streets_ar": []
+                }
+              },
+              {
+                "route_number": 4,
+                "text_summary": "امشي لغايه كوبري للمشاة قناة السويس وتركب ميكروباص العوايد لغايه العوايد وبعدين تمشي لغايه العوايد وتركب ميكروباص محطة مصر لغايه محرم بك وتمشي لغايه وجهتك",
+                "summary": {
+                  "total_time_minutes": 66,
+                  "walking_distance_meters": 2813,
+                  "transit_distance_meters": 27492,
+                  "total_distance_meters": 30305,
+                  "transfers": 1,
+                  "cost": 16,
+                  "modes_ar": [
+                    "ميكروباص"
+                  ],
+                  "main_streets_ar": []
+                }
+              },
+              {
+                "route_number": 5,
+                "text_summary": "امشي لغايه كوبري للمشاة قناة السويس وتركب (اتوبيس 409 أو اتوبيس 480) لغايه مدخل عبد القادر وبعدين تمشي لغايه محطة عبد القادر وتركب اتوبيس 480 محطة مصر لغايه محرم بك وتمشي لغايه وجهتك",
+                "summary": {
+                  "total_time_minutes": 68,
+                  "walking_distance_meters": 2813,
+                  "transit_distance_meters": 33778,
+                  "total_distance_meters": 36591,
+                  "transfers": 1,
+                  "cost": 18,
+                  "modes_ar": [
+                    "اتوبيس"
+                  ],
+                  "main_streets_ar": []
+                }
+              }
+            ],
+            "selected_priority": "balanced",
+            "num_journeys": 5,
+            "raw_summary": null
+          }
+        },
+        {
+          "step": "step_3",
+          "tool": "get_routes",
+          "raw_args": {
+            "start_lat": "$city_center.lat",
+            "start_lon": "$city_center.lon",
+            "end_lat": 31.191377411119817,
+            "end_lon": 29.919049014808774,
+            "max_transfers": 2,
+            "walking_cutoff": 2500,
+            "priority": "balanced",
+            "top_k": 5
+          },
+          "resolved_args": {
+            "start_lat": 31.166617499999997,
+            "start_lon": 29.933398999999998,
+            "end_lat": 31.191377411119817,
+            "end_lon": 29.919049014808774,
+            "max_transfers": 2,
+            "walking_cutoff": 2500,
+            "priority": "balanced",
+            "top_k": 5
+          },
+          "result": {
+            "journeys": [
+              {
+                "route_number": 1,
+                "text_summary": "امشي لغايه محرم بك وتركب ميكروباص (محطة مصر أو الشاطبي أو المنشية أو المندرة أو سيدي جابر أو محطة الرمل) لغايه كوبري محرم بك وتمشي لغايه وجهتك",
+                "summary": {
+                  "total_time_minutes": 38,
+                  "walking_distance_meters": 3029,
+                  "transit_distance_meters": 1074,
+                  "total_distance_meters": 4103,
+                  "transfers": 0,
+                  "cost": 4,
+                  "modes_ar": [
+                    "ميكروباص"
+                  ],
+                  "main_streets_ar": [
+                    "بحر",
+                    "شارع ابوقير"
+                  ]
+                }
+              },
+              {
+                "route_number": 2,
+                "text_summary": "امشي لغايه محرم بك وتركب (اتوبيس 10 أو اتوبيس 480 أو اتوبيس 759 أو اتوبيس 409) لغايه كوبري محرم بك وتمشي لغايه وجهتك",
+                "summary": {
+                  "total_time_minutes": 38,
+                  "walking_distance_meters": 3029,
+                  "transit_distance_meters": 1074,
+                  "total_distance_meters": 4103,
+                  "transfers": 0,
+                  "cost": 4,
+                  "modes_ar": [
+                    "اتوبيس"
+                  ],
+                  "main_streets_ar": [
+                    "شارع ابوقير"
+                  ]
+                }
+              },
+              {
+                "route_number": 3,
+                "text_summary": "امشي لغايه محرم بك وتركب ميكروباص محطة مصر لغايه محطة مصر وبعدين تمشي لغايه محطة مصر وتركب ميكروباص الرصافة لغايه الرصافة",
+                "summary": {
+                  "total_time_minutes": 42,
+                  "walking_distance_meters": 2340,
+                  "transit_distance_meters": 5362,
+                  "total_distance_meters": 7702,
+                  "transfers": 1,
+                  "cost": 10,
+                  "modes_ar": [
+                    "ميكروباص"
+                  ],
+                  "main_streets_ar": []
+                }
+              },
+              {
+                "route_number": 4,
+                "text_summary": "امشي لغايه محرم بك وتركب اتوبيس 409 محطة مصر لغايه محطة مصر وبعدين تمشي لغايه محطة مصر وتركب ميكروباص الرصافة لغايه الرصافة",
+                "summary": {
+                  "total_time_minutes": 42,
+                  "walking_distance_meters": 2340,
+                  "transit_distance_meters": 5320,
+                  "total_distance_meters": 7660,
+                  "transfers": 1,
+                  "cost": 10,
+                  "modes_ar": [
+                    "اتوبيس",
+                    "ميكروباص"
+                  ],
+                  "main_streets_ar": []
+                }
+              },
+              {
+                "route_number": 5,
+                "text_summary": "امشي لغايه محرم بك وتركب ميكروباص محطة مصر لغايه محطة مصر وبعدين تمشي لغايه محطة مصر وتركب اتوبيس 739 العصافرة لغايه استاد الإسكندرية وتمشي لغايه وجهتك",
+                "summary": {
+                  "total_time_minutes": 52,
+                  "walking_distance_meters": 3473,
+                  "transit_distance_meters": 5073,
+                  "total_distance_meters": 8546,
+                  "transfers": 1,
+                  "cost": 9,
+                  "modes_ar": [
+                    "ميكروباص",
+                    "اتوبيس"
+                  ],
+                  "main_streets_ar": [
+                    "بحر",
+                    "مصطفى كامل"
+                  ]
+                }
+              }
+            ],
+            "selected_priority": "balanced",
+            "num_journeys": 5,
+            "raw_summary": null
+          }
+        }
+      ],
+      "final_response": "رحلات لسيتي سنتر:\nرحلة 1:\n  امشي لغايه كوبري للمشاة قناة السويس وتركب اتوبيس (480 أو 10 أو 759 أو 409) لغايه محرم بك وتمشي لغايه وجهتك\n  الوقت: 36 دقيقة | التكلفة: 5 جنيه | مشي: 2813 متر | وسيلة: اتوبيس\nرحلة 2:\n  امشي لغايه كوبري للمشاة قناة السويس وتركب ميكروباص (الموقف الجديد أو السيوف (فلكي) أو مول غرين بلازا أو المطار أو العوايد أو العامرية أو الساعة (ميدان الساعة) أو هانوفيل الجمعية أو كيلو 21 أو شارع 45 أو ابيس 8 أو أبو قير) لغايه محرم بك وتمشي لغايه وجهتك\n  الوقت: 36 دقيقة | التكلفة: 5 جنيه | مشي: 2813 متر | وسيلة: ميكروباص\n\nرحلات للعودة من سيتي سنتر:\nرحلة 1:\n  امشي لغايه محرم بك وتركب ميكروباص (محطة مصر أو الشاطبي أو المنشية أو المندرة أو سيدي جابر أو محطة الرمل) لغايه كوبري محرم بك وتمشي لغايه وجهتك\n  الوقت: 38 دقيقة | التكلفة: 4 جنيه | مشي: 3029 متر | وسيلة: ميكروباص\nرحلة 2:\n  امشي لغايه محرم بك وتركب اتوبيس (10 أو 480 أو 759 أو 409) لغايه كوبري محرم بك وتمشي لغايه وجهتك\n  الوقت: 38 دقيقة | التكلفة: 4 جنيه | مشي: 3029 متر | وسيلة: اتوبيس",
+      "category": "tool calling",
+      "response_quality_judgment": {
+        "response_quality_score": 1.0,
+        "passed": true,
+        "reasoning": {
+          "response_quality": "Used local keyword fallback because Grok judge was unavailable or disabled.",
+          "hallucination": "Not evaluated by the Grok judge in this category."
+        },
+        "source": "local_fallback"
+      },
+      "ambiguity_judgment": {
+        "ambiguity_score": 1.0,
+        "passed": true,
+        "reasoning": "Used local clarification check fallback because Grok judge was unavailable or disabled.",
+        "source": "local_fallback",
+        "judge_error": "Grok judge request failed with HTTP 403"
+      },
+      "hallucination_judgment": {
+        "hallucination_score": 0.0,
+        "passed": false,
+        "reasoning": "Used local hallucination check fallback because the Grok judge is reserved for response quality and ambiguity only.",
+        "source": "local_fallback"
+      }
+    },
+    {
+      "query": "اسرع طريقه اقدر اروح بيها كلية حاسبات 31.191377411119817, 29.919049014808774",
+      "tool_calling": true,
+      "correct_args": true,
+      "response_quality": 0.0,
+      "ambiguity_handling": 1.0,
+      "hallucination_free": 1.0,
+      "tokens": 5705,
+      "planner_output": [],
+      "tool_results": [],
+      "final_response": "يا فندم، معنديش معلومات كافية عشان أحددلك أسرع طريقة. ممكن تقولي إيه نقطة البداية بتاعتك بالظبط؟",
+      "category": "ambiguity handling",
+      "response_quality_judgment": {
+        "response_quality_score": 0.0,
+        "passed": false,
+        "reasoning": {
+          "response_quality": "Used local keyword fallback because Grok judge was unavailable or disabled.",
+          "hallucination": "Not evaluated by the Grok judge in this category."
+        },
+        "source": "local_fallback"
+      },
+      "ambiguity_judgment": {
+        "ambiguity_score": 1.0,
+        "passed": true,
+        "reasoning": "Used local clarification check fallback because Grok judge was unavailable or disabled.",
+        "source": "local_fallback",
+        "judge_error": "Grok judge request failed with HTTP 403"
+      },
+      "hallucination_judgment": {
+        "hallucination_score": 1.0,
+        "passed": true,
+        "reasoning": "Used local hallucination check fallback because the Grok judge is reserved for response quality and ambiguity only.",
+        "source": "local_fallback"
+      }
+    },
+    {
+      "query": "لو انا رايح مناسبة وعايز اجيب حلويات من شهد الملكة ايه احسن طريقة اقدر اروح بيها وانا ساكن في محرم بك والمناسبة هتبقي في الحضرة 31.191377411119817, 29.919049014808774",
+      "tool_calling": true,
+      "correct_args": false,
+      "response_quality": 0.0,
+      "ambiguity_handling": 1.0,
+      "hallucination_free": 1.0,
+      "tokens": 4463,
+      "planner_output": [
+        {
+          "tool": "geocode_location",
+          "save_as": "origin_muharram",
+          "args": {
+            "place_name": "محرم بك"
+          }
+        },
+        {
+          "tool": "geocode_location",
+          "save_as": "destination_shahd_el_maleka",
+          "args": {
+            "place_name": "شهد الملكة"
+          }
+        },
+        {
+          "tool": "get_routes",
+          "args": {
+            "start_lat": "$origin_muharram.lat",
+            "start_lon": "$origin_muharram.lon",
+            "end_lat": "$destination_shahd_el_maleka.lat",
+            "end_lon": "$destination_shahd_el_maleka.lon",
+            "max_transfers": 2,
+            "walking_cutoff": 2500,
+            "priority": "balanced",
+            "top_k": 5
+          }
+        },
+        {
+          "tool": "get_routes",
+          "args": {
+            "start_lat": "$destination_shahd_el_maleka.lat",
+            "start_lon": "$destination_shahd_el_maleka.lon",
+            "end_lat": 31.191377411119817,
+            "end_lon": 29.919049014808774,
+            "max_transfers": 2,
+            "walking_cutoff": 1500,
+            "priority": "balanced",
+            "top_k": 5
+          }
+        }
+      ],
+      "tool_results": [
+        {
+          "step": "origin_muharram",
+          "tool": "geocode_location",
+          "raw_args": {
+            "place_name": "محرم بك"
+          },
+          "resolved_args": {
+            "place_name": "محرم بك"
+          },
+          "result": {
+            "error": "Error connecting to Geocoding API: HTTPConnectionPool(host='localhost', port=8003): Read timed out. (read timeout=5)"
+          }
+        },
+        {
+          "step": "abort_after_origin_muharram",
+          "tool": "geocode_location",
+          "result": {
+            "error": "Error connecting to Geocoding API: HTTPConnectionPool(host='localhost', port=8003): Read timed out. (read timeout=5)",
+            "abort_message": "معلش، ماقدرتش أحدد المكان ده بدقة. ابعت الاسم الكامل أو علامة معروفة أقرب، وأنا أكمل لك الطريق."
+          },
+          "abort_message": "معلش، ماقدرتش أحدد المكان ده بدقة. ابعت الاسم الكامل أو علامة معروفة أقرب، وأنا أكمل لك الطريق."
+        }
+      ],
+      "final_response": "معلش، ماقدرتش أحدد المكان ده بدقة. ابعت الاسم الكامل أو علامة معروفة أقرب، وأنا أكمل لك الطريق.",
+      "category": "tool calling",
+      "response_quality_judgment": {
+        "response_quality_score": 0.0,
+        "passed": false,
+        "reasoning": {
+          "response_quality": "Used local keyword fallback because Grok judge was unavailable or disabled.",
+          "hallucination": "Not evaluated by the Grok judge in this category."
+        },
+        "source": "local_fallback"
+      },
+      "ambiguity_judgment": {
+        "ambiguity_score": 1.0,
+        "passed": true,
+        "reasoning": "Used local clarification check fallback because Grok judge was unavailable or disabled.",
+        "source": "local_fallback",
+        "judge_error": "Grok judge request failed with HTTP 403"
+      },
+      "hallucination_judgment": {
+        "hallucination_score": 1.0,
+        "passed": true,
+        "reasoning": "Used local hallucination check fallback because the Grok judge is reserved for response quality and ambiguity only.",
+        "source": "local_fallback"
+      }
+    },
+    {
+      "query": " ايه احسن طريقة اعرف اوصل بيها من عند هندسة لحد المندرة وادفع قليل 31.191377411119817, 29.919049014808774",
+      "tool_calling": true,
+      "correct_args": false,
+      "response_quality": 1.0,
+      "ambiguity_handling": 1.0,
+      "hallucination_free": 0.0,
+      "tokens": 8919,
+      "planner_output": [
+        {
+          "tool": "geocode_location",
+          "save_as": "origin",
+          "args": {
+            "place_name": "هندسة",
+            "user_lat": 31.191377411119817,
+            "user_lng": 29.919049014808774,
+            "bias": true
+          }
+        },
+        {
+          "tool": "geocode_location",
+          "save_as": "destination",
+          "args": {
+            "place_name": "المندرة"
+          }
+        },
+        {
+          "tool": "get_routes",
+          "args": {
+            "start_lat": "$origin.lat",
+            "start_lon": "$origin.lon",
+            "end_lat": "$destination.lat",
+            "end_lon": "$destination.lon",
+            "max_transfers": 2,
+            "walking_cutoff": 2500,
+            "priority": "cost",
+            "top_k": 5
+          }
+        }
+      ],
+      "tool_results": [
+        {
+          "step": "origin",
+          "tool": "geocode_location",
+          "raw_args": {
+            "place_name": "هندسة",
+            "user_lat": 31.191377411119817,
+            "user_lng": 29.919049014808774,
+            "bias": true
+          },
+          "resolved_args": {
+            "place_name": "هندسة",
+            "user_lat": 31.191377411119817,
+            "user_lng": 29.919049014808774,
+            "bias": true
+          },
+          "result": {
+            "lat": 31.2071662,
+            "lon": 29.919458199999998,
+            "formatted_address": "قسم الهندسة الزراعية والنظم الحيوية - كلية الزراعة - جامعة الاسكندرية، Al Azaritah WA Ash Shatebi, Bab Shar', Alexandria, Egypt"
+          }
+        },
+        {
+          "step": "destination",
+          "tool": "geocode_location",
+          "raw_args": {
+            "place_name": "المندرة"
+          },
+          "resolved_args": {
+            "place_name": "المندرة"
+          },
+          "result": {
+            "lat": 31.274828699999997,
+            "lon": 30.006156999999998,
+            "formatted_address": "المندرة، Al Mandarah Bahri, Montaza 2, Alexandria, Egypt"
+          }
+        },
+        {
+          "step": "step_3",
+          "tool": "get_routes",
+          "raw_args": {
+            "start_lat": "$origin.lat",
+            "start_lon": "$origin.lon",
+            "end_lat": "$destination.lat",
+            "end_lon": "$destination.lon",
+            "max_transfers": 2,
+            "walking_cutoff": 2500,
+            "priority": "cost",
+            "top_k": 5
+          },
+          "resolved_args": {
+            "start_lat": 31.2071662,
+            "start_lon": 29.919458199999998,
+            "end_lat": 31.274828699999997,
+            "end_lon": 30.006156999999998,
+            "max_transfers": 2,
+            "walking_cutoff": 2500,
+            "priority": "cost",
+            "top_k": 5
+          },
+          "result": {
+            "journeys": [
+              {
+                "route_number": 1,
+                "text_summary": "امشي لغايه نفق مشاة شاطبي وتركب اتوبيس المندرة لغايه مكرم آيس كريم المندرة وتمشي لغايه وجهتك",
+                "summary": {
+                  "total_time_minutes": 52,
+                  "walking_distance_meters": 1222,
+                  "transit_distance_meters": 12264,
+                  "total_distance_meters": 13486,
+                  "transfers": 0,
+                  "cost": 8,
+                  "modes_ar": [
+                    "اتوبيس"
+                  ],
+                  "main_streets_ar": [
+                    "بحر"
+                  ]
+                }
+              },
+              {
+                "route_number": 2,
+                "text_summary": "امشي لغايه نفق مشاة شاطبي وتركب ميكروباص (المندرة أو العصافرة) لغايه مكرم آيس كريم المندرة وتمشي لغايه وجهتك",
+                "summary": {
+                  "total_time_minutes": 52,
+                  "walking_distance_meters": 1222,
+                  "transit_distance_meters": 12264,
+                  "total_distance_meters": 13486,
+                  "transfers": 0,
+                  "cost": 8,
+                  "modes_ar": [
+                    "ميكروباص"
+                  ],
+                  "main_streets_ar": [
+                    "بحر"
+                  ]
+                }
+              },
+              {
+                "route_number": 3,
+                "text_summary": "امشي لغايه نفق مشاة شاطبي وتركب (ميني باص 25 أو ميني باص 4) لغايه مكرم آيس كريم المندرة وتمشي لغايه وجهتك",
+                "summary": {
+                  "total_time_minutes": 52,
+                  "walking_distance_meters": 1222,
+                  "transit_distance_meters": 12264,
+                  "total_distance_meters": 13486,
+                  "transfers": 0,
+                  "cost": 8,
+                  "modes_ar": [
+                    "ميني باص"
+                  ],
+                  "main_streets_ar": [
+                    "بحر"
+                  ]
+                }
+              },
+              {
+                "route_number": 4,
+                "text_summary": "امشي لغايه نفق مشاة شاطبي وتركب (ميني باص 20 أو ميني باص 5) لغايه شارع 45 - كوبري ميامي وتمشي لغايه وجهتك",
+                "summary": {
+                  "total_time_minutes": 62,
+                  "walking_distance_meters": 1900,
+                  "transit_distance_meters": 11407,
+                  "total_distance_meters": 13307,
+                  "transfers": 0,
+                  "cost": 7,
+                  "modes_ar": [
+                    "ميني باص"
+                  ],
+                  "main_streets_ar": [
+                    "بحر",
+                    "مصطفى كامل"
+                  ]
+                }
+              },
+              {
+                "route_number": 5,
+                "text_summary": "امشي لغايه نفق مشاة شاطبي وتركب (اتوبيس 739 أو اتوبيس 735 أو اتوبيس 25) لغايه شارع 45 - كوبري ميامي وتمشي لغايه وجهتك",
+                "summary": {
+                  "total_time_minutes": 62,
+                  "walking_distance_meters": 1900,
+                  "transit_distance_meters": 11407,
+                  "total_distance_meters": 13307,
+                  "transfers": 0,
+                  "cost": 7,
+                  "modes_ar": [
+                    "اتوبيس"
+                  ],
+                  "main_streets_ar": [
+                    "بحر",
+                    "مصطفى كامل"
+                  ]
+                }
+              }
+            ],
+            "selected_priority": "cost",
+            "num_journeys": 5,
+            "raw_summary": null
+          }
+        }
+      ],
+      "final_response": "رحلة 1:\n  امشي لغاية نفق مشاة شاطبي وتركب اتوبيس المندرة لغاية مكرم آيس كريم المندرة وتمشي لغاية وجهتك\n  الوقت: 52 دقيقة | التكلفة: 8 جنيه | مشي: 1222 متر | وسيلة: اتوبيس | الشوارع الرئيسية: بحر\n\nرحلة 2:\n  امشي لغاية نفق مشاة شاطبي وتركب ميكروباص (المندرة أو العصافرة) لغاية مكرم آيس كريم المندرة وتمشي لغاية وجهتك\n  الوقت: 52 دقيقة | التكلفة: 8 جنيه | مشي: 1222 متر | وسيلة: ميكروباص | الشوارع الرئيسية: بحر\n\nرحلة 3:\n  امشي لغاية نفق مشاة شاطبي وتركب (ميني باص 25 أو ميني باص 4) لغاية مكرم آيس كريم المندرة وتمشي لغاية وجهتك\n  الوقت: 52 دقيقة | التكلفة: 8 جنيه | مشي: 1222 متر | وسيلة: ميني باص | الشوارع الرئيسية: بحر\n\nرحلة 4:\n  امشي لغاية نفق مشاة شاطبي وتركب (ميني باص 20 أو ميني باص 5) لغاية شارع 45 - كوبري ميامي وتمشي لغاية وجهتك\n  الوقت: 62 دقيقة | التكلفة: 7 جنيه | مشي: 1900 متر | وسيلة: ميني باص | الشوارع الرئيسية: بحر، مصطفى كامل\n\nرحلة 5:\n  امشي لغاية نفق مشاة شاطبي وتركب (اتوبيس 739 أو اتوبيس 735 أو اتوبيس 25) لغاية شارع 45 - كوبري ميامي وتمشي لغاية وجهتك\n  الوقت: 62 دقيقة | التكلفة: 7 جنيه | مشي: 1900 متر | وسيلة: اتوبيس | الشوارع الرئيسية: بحر، مصطفى كامل",
+      "category": "correct args",
+      "response_quality_judgment": {
+        "response_quality_score": 1.0,
+        "passed": true,
+        "reasoning": {
+          "response_quality": "Used local keyword fallback because Grok judge was unavailable or disabled.",
+          "hallucination": "Not evaluated by the Grok judge in this category."
+        },
+        "source": "local_fallback"
+      },
+      "ambiguity_judgment": {
+        "ambiguity_score": 1.0,
+        "passed": true,
+        "reasoning": "Used local clarification check fallback because Grok judge was unavailable or disabled.",
+        "source": "local_fallback",
+        "judge_error": "Grok judge request failed with HTTP 403"
+      },
+      "hallucination_judgment": {
+        "hallucination_score": 0.0,
+        "passed": false,
+        "reasoning": "Used local hallucination check fallback because the Grok judge is reserved for response quality and ambiguity only.",
+        "source": "local_fallback"
+      }
+    },
+    {
+      "query": "ايه هي أحسن طرق فاضية دلوقتي و المواصلات فيها شغالة مش واقفة 31.191377411119817, 29.919049014808774",
+      "tool_calling": false,
+      "correct_args": true,
+      "response_quality": 0.0,
+      "ambiguity_handling": 0.0,
+      "hallucination_free": 1.0,
+      "tokens": 5494,
+      "planner_output": [
+        {
+          "tool": "check_traffic",
+          "args": {
+            "street_name": "Abou Qir"
+          }
+        },
+        {
+          "tool": "check_traffic",
+          "args": {
+            "street_name": "Coastal"
+          }
+        },
+        {
+          "tool": "check_traffic",
+          "args": {
+            "street_name": "Mahmoudia"
+          }
+        },
+        {
+          "tool": "check_traffic",
+          "args": {
+            "street_name": "Moustafa Kamel"
+          }
+        }
+      ],
+      "tool_results": [
+        {
+          "step": "step_1",
+          "tool": "check_traffic",
+          "raw_args": {
+            "street_name": "Abou Qir"
+          },
+          "resolved_args": {
+            "street_name": "Abou Qir"
+          },
+          "result": {
+            "overall_status": "moderate"
+          }
+        },
+        {
+          "step": "step_2",
+          "tool": "check_traffic",
+          "raw_args": {
+            "street_name": "Coastal"
+          },
+          "resolved_args": {
+            "street_name": "Coastal"
+          },
+          "result": {
+            "overall_status": "clear"
+          }
+        },
+        {
+          "step": "step_3",
+          "tool": "check_traffic",
+          "raw_args": {
+            "street_name": "Mahmoudia"
+          },
+          "resolved_args": {
+            "street_name": "Mahmoudia"
+          },
+          "result": {
+            "overall_status": "clear"
+          }
+        },
+        {
+          "step": "step_4",
+          "tool": "check_traffic",
+          "raw_args": {
+            "street_name": "Moustafa Kamel"
+          },
+          "resolved_args": {
+            "street_name": "Moustafa Kamel"
+          },
+          "result": {
+            "overall_status": "moderate"
+          }
+        }
+      ],
+      "final_response": "اللي قدامي دلوقتي إن طريق الكورنيش هو الطريق الفاضي الوحيد، حالته \"clear\". طريق أبو قير والمصطفى كامل حالتهم \"moderate\" يعني فيه شوية زحمة، وطريق المحمودية حالته \"clear\" برضه.",
+      "category": "ambiguity handling",
+      "response_quality_judgment": {
+        "response_quality_score": 0.0,
+        "passed": false,
+        "reasoning": {
+          "response_quality": "Used local keyword fallback because Grok judge was unavailable or disabled.",
+          "hallucination": "Not evaluated by the Grok judge in this category."
+        },
+        "source": "local_fallback"
+      },
+      "ambiguity_judgment": {
+        "ambiguity_score": 0.0,
+        "passed": false,
+        "reasoning": "Used local clarification check fallback because Grok judge was unavailable or disabled.",
+        "source": "local_fallback",
+        "judge_error": "Grok judge request failed with HTTP 403"
+      },
+      "hallucination_judgment": {
+        "hallucination_score": 1.0,
+        "passed": true,
+        "reasoning": "Used local hallucination check fallback because the Grok judge is reserved for response quality and ambiguity only.",
+        "source": "local_fallback"
+      }
+    },
+    {
+      "query": "ايه المواصلات المتاحة من محطة مصر 31.191377411119817, 29.919049014808774",
+      "tool_calling": false,
+      "correct_args": false,
+      "response_quality": 0.0,
+      "ambiguity_handling": 1.0,
+      "hallucination_free": 1.0,
+      "tokens": 5147,
+      "planner_output": [
+        {
+          "tool": "db_tools",
+          "args": {
+            "lat": 31.191377411119817,
+            "lon": 29.919049014808774
+          }
+        }
+      ],
+      "tool_results": [
+        {
+          "step": "step_1",
+          "tool": "db_tools",
+          "raw_args": {
+            "lat": 31.191377411119817,
+            "lon": 29.919049014808774
+          },
+          "resolved_args": {
+            "lat": 31.191377411119817,
+            "lon": 29.919049014808774
+          },
+          "result": {
+            "trips": [
+              {
+                "route_name_ar": "الرصافة - محطة مصر (ميدان الشهداء)"
+              },
+              {
+                "route_name_ar": "عبد القادر الجديدة - محطة مصر (ميدان الشهداء)"
+              },
+              {
+                "route_name_ar": "المندرة - الموقف الجديد"
+              },
+              {
+                "route_name_ar": "السيوف (فلكي) - محطة مصر (ميدان الشهداء)"
+              },
+              {
+                "route_name_ar": "المنشية - مول جرين بلازا"
+              }
+            ]
+          }
+        }
+      ],
+      "final_response": "تمام يا باشا، دي المواصلات المتاحة من محطة مصر:\n\n*   الرصافة - محطة مصر (ميدان الشهداء)\n*   عبد القادر الجديدة - محطة مصر (ميدان الشهداء)\n*   المندرة - الموقف الجديد\n*   السيوف (فلكي) - محطة مصر (ميدان الشهداء)\n*   المنشية - مول جرين بلازا",
+      "category": "tool calling",
+      "response_quality_judgment": {
+        "response_quality_score": 0.0,
+        "passed": false,
+        "reasoning": {
+          "response_quality": "Used local keyword fallback because Grok judge was unavailable or disabled.",
+          "hallucination": "Not evaluated by the Grok judge in this category."
+        },
+        "source": "local_fallback"
+      },
+      "ambiguity_judgment": {
+        "ambiguity_score": 1.0,
+        "passed": true,
+        "reasoning": "Used local clarification check fallback because Grok judge was unavailable or disabled.",
+        "source": "local_fallback",
+        "judge_error": "Grok judge request failed with HTTP 403"
+      },
+      "hallucination_judgment": {
+        "hallucination_score": 1.0,
+        "passed": true,
+        "reasoning": "Used local hallucination check fallback because the Grok judge is reserved for response quality and ambiguity only.",
+        "source": "local_fallback"
+      }
+    },
+    {
+      "query": "ايه نوعية الحوادث البتحصل علي طريق البحر 31.191377411119817, 29.919049014808774",
+      "tool_calling": true,
+      "correct_args": true,
+      "response_quality": 0.0,
+      "ambiguity_handling": 0.0,
+      "hallucination_free": 1.0,
+      "tokens": 4546,
+      "planner_output": [],
+      "tool_results": [],
+      "final_response": "أنا آسف، لا أقدر على تقديم معلومات عن نوعية الحوادث المرورية. تركيزي هو على مساعدتك في التنقل باستخدام وسائل النقل العام.",
+      "category": "ambiguity handling",
+      "response_quality_judgment": {
+        "response_quality_score": 0.0,
+        "passed": false,
+        "reasoning": {
+          "response_quality": "Used local keyword fallback because Grok judge was unavailable or disabled.",
+          "hallucination": "Not evaluated by the Grok judge in this category."
+        },
+        "source": "local_fallback"
+      },
+      "ambiguity_judgment": {
+        "ambiguity_score": 0.0,
+        "passed": false,
+        "reasoning": "Used local clarification check fallback because Grok judge was unavailable or disabled.",
+        "source": "local_fallback",
+        "judge_error": "Grok judge request failed with HTTP 403"
+      },
+      "hallucination_judgment": {
+        "hallucination_score": 1.0,
+        "passed": true,
+        "reasoning": "Used local hallucination check fallback because the Grok judge is reserved for response quality and ambiguity only.",
+        "source": "local_fallback"
+      }
+    },
+    {
+      "query": "قارن بين المحمودية وابو قير من حيث الوقت و السعر عشان الفلوس اللي معايا يادوب لو هروح من مصطفي كامل لفيكتوريا 31.191377411119817, 29.919049014808774",
+      "tool_calling": true,
+      "correct_args": false,
+      "response_quality": 1.0,
+      "ambiguity_handling": 1.0,
+      "hallucination_free": 0.0,
+      "tokens": 12821,
+      "planner_output": [
+        {
+          "tool": "geocode_location",
+          "save_as": "origin",
+          "args": {
+            "place_name": "مصطفي كامل"
+          }
+        },
+        {
+          "tool": "geocode_location",
+          "save_as": "destination",
+          "args": {
+            "place_name": "فيكتوريا",
+            "user_lat": 31.191377411119817,
+            "user_lng": 29.919049014808774
+          }
+        },
+        {
+          "tool": "get_routes",
+          "args": {
+            "start_lat": "$origin.lat",
+            "start_lon": "$origin.lon",
+            "end_lat": "$destination.lat",
+            "end_lon": "$destination.lon",
+            "max_transfers": 2,
+            "walking_cutoff": 2500,
+            "priority": "cost",
+            "top_k": 5,
+            "filters": {
+              "main_streets": {
+                "include": [
+                  "Mahmoudia"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "tool": "get_routes",
+          "args": {
+            "start_lat": "$origin.lat",
+            "start_lon": "$origin.lon",
+            "end_lat": "$destination.lat",
+            "end_lon": "$destination.lon",
+            "max_transfers": 2,
+            "walking_cutoff": 2500,
+            "priority": "cost",
+            "top_k": 5,
+            "filters": {
+              "main_streets": {
+                "include": [
+                  "Abou Qir"
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "tool_results": [
+        {
+          "step": "origin",
+          "tool": "geocode_location",
+          "raw_args": {
+            "place_name": "مصطفي كامل"
+          },
+          "resolved_args": {
+            "place_name": "مصطفي كامل"
+          },
+          "result": {
+            "lat": 31.2104736,
+            "lon": 29.943738699999997,
+            "formatted_address": "مصطفى كامل، Sidi Gabir, Sidi Gaber, Alexandria, Egypt"
+          }
+        },
+        {
+          "step": "destination",
+          "tool": "geocode_location",
+          "raw_args": {
+            "place_name": "فيكتوريا",
+            "user_lat": 31.191377411119817,
+            "user_lng": 29.919049014808774
+          },
+          "resolved_args": {
+            "place_name": "فيكتوريا",
+            "user_lat": 31.191377411119817,
+            "user_lng": 29.919049014808774
+          },
+          "result": {
+            "lat": 31.2526299,
+            "lon": 29.983472499999998,
+            "formatted_address": "فيكتوريا، Malek Hanafi، As Soyouf Qebli (Include Izbat Derbanah), Montaza 2, Alexandria, Egypt"
+          }
+        },
+        {
+          "step": "step_3",
+          "tool": "get_routes",
+          "raw_args": {
+            "start_lat": "$origin.lat",
+            "start_lon": "$origin.lon",
+            "end_lat": "$destination.lat",
+            "end_lon": "$destination.lon",
+            "max_transfers": 2,
+            "walking_cutoff": 2500,
+            "priority": "cost",
+            "top_k": 5,
+            "filters": {
+              "main_streets": {
+                "include": [
+                  "Mahmoudia"
+                ]
+              }
+            }
+          },
+          "resolved_args": {
+            "start_lat": 31.2104736,
+            "start_lon": 29.943738699999997,
+            "end_lat": 31.2526299,
+            "end_lon": 29.983472499999998,
+            "max_transfers": 2,
+            "walking_cutoff": 2500,
+            "priority": "cost",
+            "top_k": 5,
+            "filters": {
+              "main_streets": {
+                "include": [
+                  "Mahmoudia"
+                ]
+              }
+            }
+          },
+          "result": {
+            "journeys": [
+              {
+                "route_number": 1,
+                "text_summary": "امشي لغايه مسجد على ابن طالب - سموحة وتركب ميكروباص المنشية لغايه محطة الرمل وبعدين تمشي لغايه محطة الرمل - الكورنيش وتركب (اتوبيس 25 أو اتوبيس) لغايه مسجد الرحمن - الكورنيش وتمشي لغايه وجهتك",
+                "summary": {
+                  "total_time_minutes": 52,
+                  "walking_distance_meters": 1323,
+                  "transit_distance_meters": 15039,
+                  "total_distance_meters": 16362,
+                  "transfers": 1,
+                  "cost": 12,
+                  "modes_ar": [
+                    "ميكروباص",
+                    "اتوبيس"
+                  ],
+                  "main_streets_ar": [
+                    "محمودية",
+                    "شارع ابوقير",
+                    "بحر",
+                    "مصطفى كامل"
+                  ]
+                }
+              },
+              {
+                "route_number": 2,
+                "text_summary": "امشي لغايه مسجد على ابن طالب - سموحة وتركب ميكروباص المنشية لغايه محطة الرمل وبعدين تمشي لغايه محطة الرمل - الكورنيش وتركب ميكروباص (المندرة أو العصافرة أو سيدي بشر) لغايه مسجد الرحمن - الكورنيش وتمشي لغايه وجهتك",
+                "summary": {
+                  "total_time_minutes": 53,
+                  "walking_distance_meters": 1323,
+                  "transit_distance_meters": 15038,
+                  "total_distance_meters": 16361,
+                  "transfers": 1,
+                  "cost": 12,
+                  "modes_ar": [
+                    "ميكروباص"
+                  ],
+                  "main_streets_ar": [
+                    "محمودية",
+                    "شارع ابوقير",
+                    "بحر"
+                  ]
+                }
+              },
+              {
+                "route_number": 3,
+                "text_summary": "امشي لغايه مسجد على ابن طالب - سموحة وتركب ميكروباص المنشية لغايه محطة الرمل وبعدين تمشي لغايه محطة الرمل - الكورنيش وتركب (ميني باص 25 أو ميني باص 4 أو ميني باص 5) لغايه مسجد الرحمن - الكورنيش وتمشي لغايه وجهتك",
+                "summary": {
+                  "total_time_minutes": 53,
+                  "walking_distance_meters": 1323,
+                  "transit_distance_meters": 15038,
+                  "total_distance_meters": 16361,
+                  "transfers": 1,
+                  "cost": 12,
+                  "modes_ar": [
+                    "ميكروباص",
+                    "ميني باص"
+                  ],
+                  "main_streets_ar": [
+                    "محمودية",
+                    "شارع ابوقير",
+                    "بحر"
+                  ]
+                }
+              },
+              {
+                "route_number": 4,
+                "text_summary": "امشي لغايه مسجد على ابن طالب - سموحة وتركب ميكروباص المنشية لغايه محطة الرمل وبعدين تمشي لغايه محطة الرمل - الكورنيش وتركب ميكروباص الساعة (ميدان الساعة) لغايه كلية فيكتوريا وتمشي لغايه وجهتك",
+                "summary": {
+                  "total_time_minutes": 53,
+                  "walking_distance_meters": 1340,
+                  "transit_distance_meters": 14953,
+                  "total_distance_meters": 16293,
+                  "transfers": 1,
+                  "cost": 12,
+                  "modes_ar": [
+                    "ميكروباص"
+                  ],
+                  "main_streets_ar": [
+                    "محمودية",
+                    "شارع ابوقير",
+                    "بحر"
+                  ]
+                }
+              },
+              {
+                "route_number": 5,
+                "text_summary": "امشي لغايه مسجد على ابن طالب - سموحة وتركب ميكروباص المنشية لغايه محطة الرمل وبعدين تمشي لغايه محطة الرمل - الكورنيش وتركب اتوبيس 733 السيوف (فلكي) لغايه كلية فيكتوريا وتمشي لغايه وجهتك",
+                "summary": {
+                  "total_time_minutes": 53,
+                  "walking_distance_meters": 1340,
+                  "transit_distance_meters": 14935,
+                  "total_distance_meters": 16275,
+                  "transfers": 1,
+                  "cost": 12,
+                  "modes_ar": [
+                    "ميكروباص",
+                    "اتوبيس"
+                  ],
+                  "main_streets_ar": [
+                    "محمودية",
+                    "شارع ابوقير",
+                    "بحر"
+                  ]
+                }
+              }
+            ],
+            "selected_priority": "cost",
+            "num_journeys": 5,
+            "raw_summary": null
+          }
+        },
+        {
+          "step": "step_4",
+          "tool": "get_routes",
+          "raw_args": {
+            "start_lat": "$origin.lat",
+            "start_lon": "$origin.lon",
+            "end_lat": "$destination.lat",
+            "end_lon": "$destination.lon",
+            "max_transfers": 2,
+            "walking_cutoff": 2500,
+            "priority": "cost",
+            "top_k": 5,
+            "filters": {
+              "main_streets": {
+                "include": [
+                  "Abou Qir"
+                ]
+              }
+            }
+          },
+          "resolved_args": {
+            "start_lat": 31.2104736,
+            "start_lon": 29.943738699999997,
+            "end_lat": 31.2526299,
+            "end_lon": 29.983472499999998,
+            "max_transfers": 2,
+            "walking_cutoff": 2500,
+            "priority": "cost",
+            "top_k": 5,
+            "filters": {
+              "main_streets": {
+                "include": [
+                  "Abou Qir"
+                ]
+              }
+            }
+          },
+          "result": {
+            "journeys": [
+              {
+                "route_number": 1,
+                "text_summary": "امشي لغايه محطة سيدى جابر وتركب ميكروباص سيدي بشر لغايه مكتب بريد فيكتوريا وتمشي لغايه وجهتك",
+                "summary": {
+                  "total_time_minutes": 40,
+                  "walking_distance_meters": 1648,
+                  "transit_distance_meters": 5497,
+                  "total_distance_meters": 7145,
+                  "transfers": 0,
+                  "cost": 6,
+                  "modes_ar": [
+                    "ميكروباص"
+                  ],
+                  "main_streets_ar": [
+                    "شارع ابوقير"
+                  ]
+                }
+              },
+              {
+                "route_number": 2,
+                "text_summary": "امشي لغايه عزبة سعد وتركب تومناية سيدي جابر لغايه محطة سيدى جابر وبعدين تمشي لغايه محطة سيدى جابر وتركب ميكروباص سيدي بشر لغايه مكتب بريد فيكتوريا وتمشي لغايه وجهتك",
+                "summary": {
+                  "total_time_minutes": 36,
+                  "walking_distance_meters": 912,
+                  "transit_distance_meters": 6896,
+                  "total_distance_meters": 7808,
+                  "transfers": 1,
+                  "cost": 11,
+                  "modes_ar": [
+                    "تومناية",
+                    "ميكروباص"
+                  ],
+                  "main_streets_ar": [
+                    "شارع ابوقير"
+                  ]
+                }
+              },
+              {
+                "route_number": 3,
+                "text_summary": "امشي لغايه ميدان فيكتور عمانويل وتركب ميكروباص سيدي جابر لغايه محطة سيدى جابر وبعدين تمشي لغايه محطة سيدى جابر وتركب ميكروباص سيدي بشر لغايه مكتب بريد فيكتوريا وتمشي لغايه وجهتك",
+                "summary": {
+                  "total_time_minutes": 39,
+                  "walking_distance_meters": 1235,
+                  "transit_distance_meters": 6343,
+                  "total_distance_meters": 7578,
+                  "transfers": 1,
+                  "cost": 10,
+                  "modes_ar": [
+                    "ميكروباص"
+                  ],
+                  "main_streets_ar": [
+                    "شارع ابوقير"
+                  ]
+                }
+              },
+              {
+                "route_number": 4,
+                "text_summary": "امشي لغايه مسجد على ابن طالب - سموحة وتركب ميكروباص المنشية لغايه محطة الرمل - الكورنيش وبعدين تمشي لغايه محطة الرمل - الكورنيش وتركب (اتوبيس 25 أو اتوبيس) لغايه مسجد الرحمن - الكورنيش وتمشي لغايه وجهتك",
+                "summary": {
+                  "total_time_minutes": 53,
+                  "walking_distance_meters": 1206,
+                  "transit_distance_meters": 17186,
+                  "total_distance_meters": 18392,
+                  "transfers": 1,
+                  "cost": 13,
+                  "modes_ar": [
+                    "ميكروباص",
+                    "اتوبيس"
+                  ],
+                  "main_streets_ar": [
+                    "محمودية",
+                    "بحر",
+                    "شارع ابوقير",
+                    "مصطفى كامل"
+                  ]
+                }
+              },
+              {
+                "route_number": 5,
+                "text_summary": "امشي لغايه محطة سيدى جابر وتركب ميكروباص الساعة (ميدان الساعة) لغايه ميدان الساعة وتمشي لغايه وجهتك",
+                "summary": {
+                  "total_time_minutes": 57,
+                  "walking_distance_meters": 3135,
+                  "transit_distance_meters": 4679,
+                  "total_distance_meters": 7814,
+                  "transfers": 0,
+                  "cost": 5,
+                  "modes_ar": [
+                    "ميكروباص"
+                  ],
+                  "main_streets_ar": [
+                    "مصطفى كامل",
+                    "شارع ابوقير"
+                  ]
+                }
+              }
+            ],
+            "selected_priority": "cost",
+            "num_journeys": 5,
+            "raw_summary": null
+          }
+        }
+      ],
+      "final_response": "أهلاً بيك! دي مقارنة بين خط سير المحمودية وأبو قير من مصطفى كامل لفيكتوريا:\n\n**المحمودية:**\n\nرحلة 1:\n  امشي لغاية مسجد على ابن طالب - سموحة وتركب ميكروباص المنشية لغاية محطة الرمل وبعدين تمشي لغاية محطة الرمل - الكورنيش وتركب (اتوبيس 25 أو اتوبيس) لغاية مسجد الرحمن - الكورنيش وتمشي لغاية وجهتك\n  الوقت: 52 دقيقة | التكلفة: 12 جنيه | مشي: 1323 متر | وسيلة: ميكروباص، اتوبيس\n\nرحلة 2:\n  امشي لغاية مسجد على ابن طالب - سموحة وتركب ميكروباص المنشية لغاية محطة الرمل وبعدين تمشي لغاية محطة الرمل - الكورنيش وتركب ميكروباص (المندرة أو العصافرة أو سيدي بشر) لغاية مسجد الرحمن - الكورنيش وتمشي لغاية وجهتك\n  الوقت: 53 دقيقة | التكلفة: 12 جنيه | مشي: 1323 متر | وسيلة: ميكروباص\n\nرحلة 3:\n  امشي لغاية مسجد على ابن طالب - سموحة وتركب ميكروباص المنشية لغاية محطة الرمل وبعدين تمشي لغاية محطة الرمل - الكورنيش وتركب (ميني باص 25 أو ميني باص 4 أو ميني باص 5) لغاية مسجد الرحمن - الكورنيش وتمشي لغاية وجهتك\n  الوقت: 53 دقيقة | التكلفة: 12 جنيه | مشي: 1323 متر | وسيلة: ميكروباص، ميني باص\n\nرحلة 4:\n  امشي لغاية مسجد على ابن طالب - سموحة وتركب ميكروباص المنشية لغاية محطة الرمل وبعدين تمشي لغاية محطة الرمل - الكورنيش وتركب ميكروباص الساعة (ميدان الساعة) لغاية كلية فيكتوريا وتمشي لغاية وجهتك\n  الوقت: 53 دقيقة | التكلفة: 12 جنيه | مشي: 1340 متر | وسيلة: ميكروباص\n\nرحلة 5:\n  امشي لغاية مسجد على ابن طالب - سموحة وتركب ميكروباص المنشية لغاية محطة الرمل وبعدين تمشي لغاية محطة الرمل - الكورنيش وتركب اتوبيس 733 السيوف (فلكي) لغاية كلية فيكتوريا وتمشي لغاية وجهتك\n  الوقت: 53 دقيقة | التكلفة: 12 جنيه | مشي: 1340 متر | وسيلة: ميكروباص، اتوبيس\n\n**أبو قير:**\n\nرحلة 1:\n  امشي لغاية محطة سيدي جابر وتركب ميكروباص سيدي بشر لغاية مكتب بريد فيكتوريا وتمشي لغاية وجهتك\n  الوقت: 40 دقيقة | التكلفة: 6 جنيه | مشي: 1648 متر | وسيلة: ميكروباص\n\nرحلة 2:\n  امشي لغاية عزبة سعد وتركب تومناية سيدي جابر لغاية محطة سيدي جابر وبعدين تمشي لغاية محطة سيدي جابر وتركب ميكروباص سيدي بشر لغاية مكتب بريد فيكتوريا وتمشي لغاية وجهتك\n  الوقت: 36 دقيقة | التكلفة: 11 جنيه | مشي: 912 متر | وسيلة: تومناية، ميكروباص\n\nرحلة 3:\n  امشي لغاية ميدان فيكتور عمانويل وتركب ميكروباص سيدي جابر لغاية محطة سيدي جابر وبعدين تمشي لغاية محطة سيدي جابر وتركب ميكروباص سيدي بشر لغاية مكتب بريد فيكتوريا وتمشي لغاية وجهتك\n  الوقت: 39 دقيقة | التكلفة: 10 جنيه | مشي: 1235 متر | وسيلة: ميكروباص\n\nرحلة 4:\n  امشي لغاية مسجد على ابن طالب - سموحة وتركب ميكروباص المنشية لغاية محطة الرمل - الكورنيش وبعدين تمشي لغاية محطة الرمل - الكورنيش وتركب (اتوبيس 25 أو اتوبيس) لغاية مسجد الرحمن - الكورنيش وتمشي لغاية وجهتك\n  الوقت: 53 دقيقة | التكلفة: 13 جنيه | مشي: 1206 متر | وسيلة: ميكروباص، اتوبيس\n\nرحلة 5:\n  امشي لغاية محطة سيدي جابر وتركب ميكروباص الساعة (ميدان الساعة) لغاية ميدان الساعة وتمشي لغاية وجهتك\n  الوقت: 57 دقيقة | التكلفة: 5 جنيه | مشي: 3135 متر | وسيلة: ميكروباص\n\nبالنسبة للسعر، خط سير أبو قير أرخص بشكل عام. أما بالنسبة للوقت، فهو أسرع برضه في أغلب رحلاته.",
+      "category": "response quality",
+      "response_quality_judgment": {
+        "response_quality_score": 1.0,
+        "passed": true,
+        "reasoning": {
+          "response_quality": "Used local keyword fallback because Grok judge was unavailable or disabled.",
+          "hallucination": "Not evaluated by the Grok judge in this category."
+        },
+        "source": "local_fallback",
+        "judge_error": "Grok judge request failed with HTTP 403"
+      },
+      "ambiguity_judgment": {
+        "ambiguity_score": 1.0,
+        "passed": true,
+        "reasoning": "Used local clarification check fallback because Grok judge was unavailable or disabled.",
+        "source": "local_fallback",
+        "judge_error": "Grok judge request failed with HTTP 403"
+      },
+      "hallucination_judgment": {
+        "hallucination_score": 0.0,
+        "passed": false,
+        "reasoning": "Used local hallucination check fallback because the Grok judge is reserved for response quality and ambiguity only.",
+        "source": "local_fallback"
+      }
+    },
+    {
+      "query": "هل في مشاريع محموديه دلوقتي في موقف شارع 3031.191377411119817, 29.919049014808774",
+      "tool_calling": false,
+      "correct_args": false,
+      "response_quality": 0.0,
+      "ambiguity_handling": 1.0,
+      "hallucination_free": 1.0,
+      "tokens": 8419,
+      "planner_output": [
+        {
+          "tool": "check_traffic",
+          "args": {
+            "street_name": "Mahmoudia"
+          }
+        },
+        {
+          "tool": "db_tools",
+          "args": {
+            "lat": 31.191377411119817,
+            "lon": 29.919049014808774
+          }
+        }
+      ],
+      "tool_results": [
+        {
+          "step": "step_1",
+          "tool": "check_traffic",
+          "raw_args": {
+            "street_name": "Mahmoudia"
+          },
+          "resolved_args": {
+            "street_name": "Mahmoudia"
+          },
+          "result": {
+            "overall_status": "clear"
+          }
+        },
+        {
+          "step": "step_2",
+          "tool": "db_tools",
+          "raw_args": {
+            "lat": 31.191377411119817,
+            "lon": 29.919049014808774
+          },
+          "resolved_args": {
+            "lat": 31.191377411119817,
+            "lon": 29.919049014808774
+          },
+          "result": {
+            "trips": [
+              {
+                "route_name_ar": "الرصافة - محطة مصر (ميدان الشهداء)"
+              },
+              {
+                "route_name_ar": "عبد القادر الجديدة - محطة مصر (ميدان الشهداء)"
+              },
+              {
+                "route_name_ar": "المندرة - الموقف الجديد"
+              },
+              {
+                "route_name_ar": "السيوف (فلكي) - محطة مصر (ميدان الشهداء)"
+              },
+              {
+                "route_name_ar": "المنشية - مول جرين بلازا"
+              }
+            ]
+          }
+        }
+      ],
+      "final_response": "المنطقة دي حاليًا مفيهاش مشاريع ماشية على طريق المحمودية. بس فيه شوية خطوط تانية قريبة ممكن تفيدك:\n\n*   **الرصافة - محطة مصر (ميدان الشهداء)**\n*   **عبد القادر الجديدة - محطة مصر (ميدان الشهداء)**\n*   **المندرة - الموقف الجديد**\n*   **السيوف (فلكي) - محطة مصر (ميدان الشهداء)**\n*   **المنشية - مول جرين بلازا**",
+      "category": "correct args",
+      "response_quality_judgment": {
+        "response_quality_score": 0.0,
+        "passed": false,
+        "reasoning": {
+          "response_quality": "Used local keyword fallback because Grok judge was unavailable or disabled.",
+          "hallucination": "Not evaluated by the Grok judge in this category."
+        },
+        "source": "local_fallback"
+      },
+      "ambiguity_judgment": {
+        "ambiguity_score": 1.0,
+        "passed": true,
+        "reasoning": "Used local clarification check fallback because Grok judge was unavailable or disabled.",
+        "source": "local_fallback",
+        "judge_error": "Grok judge request failed with HTTP 403"
+      },
+      "hallucination_judgment": {
+        "hallucination_score": 1.0,
+        "passed": true,
+        "reasoning": "Used local hallucination check fallback because the Grok judge is reserved for response quality and ambiguity only.",
+        "source": "local_fallback"
+      }
+    },
+    {
+      "query": "ايه المواصلات المتاحة من العوايد للديب مول31.191377411119817, 29.919049014808774",
+      "tool_calling": true,
+      "correct_args": false,
+      "response_quality": 1.0,
+      "ambiguity_handling": 1.0,
+      "hallucination_free": 1.0,
+      "tokens": 8107,
+      "planner_output": [
+        {
+          "tool": "geocode_location",
+          "save_as": "origin",
+          "args": {
+            "place_name": "العوايد"
+          }
+        },
+        {
+          "tool": "get_routes",
+          "args": {
+            "start_lat": "$origin.lat",
+            "start_lon": "$origin.lon",
+            "end_lat": 31.191377411119817,
+            "end_lon": 29.919049014808774,
+            "max_transfers": 2,
+            "walking_cutoff": 2500,
+            "priority": "balanced",
+            "top_k": 5
+          }
+        }
+      ],
+      "tool_results": [
+        {
+          "step": "origin",
+          "tool": "geocode_location",
+          "raw_args": {
+            "place_name": "العوايد"
+          },
+          "resolved_args": {
+            "place_name": "العوايد"
+          },
+          "result": {
+            "lat": 31.218584,
+            "lon": 29.9939045,
+            "formatted_address": "العوايد، Khorshid Al Qebleyah, El Raml 2, Alexandria, Egypt"
+          }
+        },
+        {
+          "step": "step_2",
+          "tool": "get_routes",
+          "raw_args": {
+            "start_lat": "$origin.lat",
+            "start_lon": "$origin.lon",
+            "end_lat": 31.191377411119817,
+            "end_lon": 29.919049014808774,
+            "max_transfers": 2,
+            "walking_cutoff": 2500,
+            "priority": "balanced",
+            "top_k": 5
+          },
+          "resolved_args": {
+            "start_lat": 31.218584,
+            "start_lon": 29.9939045,
+            "end_lat": 31.191377411119817,
+            "end_lon": 29.919049014808774,
+            "max_transfers": 2,
+            "walking_cutoff": 2500,
+            "priority": "balanced",
+            "top_k": 5
+          },
+          "result": {
+            "journeys": [
+              {
+                "route_number": 1,
+                "text_summary": "وتركب ميكروباص محطة مصر لغايه كوبري محرم بك وتمشي لغايه وجهتك",
+                "summary": {
+                  "total_time_minutes": 26,
+                  "walking_distance_meters": 862,
+                  "transit_distance_meters": 13624,
+                  "total_distance_meters": 14486,
+                  "transfers": 0,
+                  "cost": 8,
+                  "modes_ar": [
+                    "ميكروباص"
+                  ],
+                  "main_streets_ar": []
+                }
+              },
+              {
+                "route_number": 2,
+                "text_summary": "امشي لغايه العوايد وتركب ميكروباص محطة مصر لغايه كوبري محرم بك وتمشي لغايه وجهتك",
+                "summary": {
+                  "total_time_minutes": 29,
+                  "walking_distance_meters": 1087,
+                  "transit_distance_meters": 13776,
+                  "total_distance_meters": 14863,
+                  "transfers": 0,
+                  "cost": 8,
+                  "modes_ar": [
+                    "ميكروباص"
+                  ],
+                  "main_streets_ar": []
+                }
+              },
+              {
+                "route_number": 3,
+                "text_summary": "امشي لغايه كوبري ابيس وتركب ميكروباص محطة مصر لغايه كوبري محرم بك وتمشي لغايه وجهتك",
+                "summary": {
+                  "total_time_minutes": 51,
+                  "walking_distance_meters": 3100,
+                  "transit_distance_meters": 8514,
+                  "total_distance_meters": 11614,
+                  "transfers": 0,
+                  "cost": 7,
+                  "modes_ar": [
+                    "ميكروباص"
+                  ],
+                  "main_streets_ar": []
+                }
+              },
+              {
+                "route_number": 4,
+                "text_summary": "وتركب ميكروباص هانوفيل لغايه كوبري السكة الحديد وبعدين تمشي لغايه كوبري السكة الحديد وتركب ميكروباص محطة مصر لغايه كوبري محرم بك وتمشي لغايه وجهتك",
+                "summary": {
+                  "total_time_minutes": 26,
+                  "walking_distance_meters": 862,
+                  "transit_distance_meters": 9903,
+                  "total_distance_meters": 10765,
+                  "transfers": 1,
+                  "cost": 11,
+                  "modes_ar": [
+                    "ميكروباص"
+                  ],
+                  "main_streets_ar": []
+                }
+              },
+              {
+                "route_number": 5,
+                "text_summary": "وتركب ميكروباص محطة مصر لغايه محطة مصر وبعدين تمشي لغايه محطة مصر وتركب ميكروباص الرصافة لغايه الرصافة",
+                "summary": {
+                  "total_time_minutes": 30,
+                  "walking_distance_meters": 174,
+                  "transit_distance_meters": 17913,
+                  "total_distance_meters": 18087,
+                  "transfers": 1,
+                  "cost": 14,
+                  "modes_ar": [
+                    "ميكروباص"
+                  ],
+                  "main_streets_ar": []
+                }
+              }
+            ],
+            "selected_priority": "balanced",
+            "num_journeys": 5,
+            "raw_summary": null
+          }
+        }
+      ],
+      "final_response": "ازيك! دي المواصلات المتاحة من العوايد للديب مول:\n\nرحلة 1:\n  امشي لغايه العوايد وتركب ميكروباص محطة مصر لغايه كوبري محرم بك وتمشي لغايه وجهتك\n  الوقت: 26 دقيقة | التكلفة: 8 جنيه | مشي: 862 متر | وسيلة: ميكروباص\n\nرحلة 2:\n  امشي لغايه العوايد وتركب ميكروباص محطة مصر لغايه كوبري محرم بك وتمشي لغايه وجهتك\n  الوقت: 29 دقيقة | التكلفة: 8 جنيه | مشي: 1087 متر | وسيلة: ميكروباص\n\nرحلة 3:\n  امشي لغايه كوبري ابيس وتركب ميكروباص محطة مصر لغايه كوبري محرم بك وتمشي لغايه وجهتك\n  الوقت: 51 دقيقة | التكلفة: 7 جنيه | مشي: 3100 متر | وسيلة: ميكروباص\n\nرحلة 4:\n  وتركب ميكروباص هانوفيل لغايه كوبري السكة الحديد وبعدين تمشي لغايه كوبري السكة الحديد وتركب ميكروباص محطة مصر لغايه كوبري محرم بك وتمشي لغايه وجهتك\n  الوقت: 26 دقيقة | التكلفة: 11 جنيه | مشي: 862 متر | وسيلة: ميكروباص | تنقلات: 1\n\nرحلة 5:\n  وتركب ميكروباص محطة مصر لغايه محطة مصر وبعدين تمشي لغايه محطة مصر وتركب ميكروباص الرصافة لغايه الرصافة\n  الوقت: 30 دقيقة | التكلفة: 14 جنيه | مشي: 174 متر | وسيلة: ميكروباص | تنقلات: 1",
+      "category": "tool calling",
+      "response_quality_judgment": {
+        "response_quality_score": 1.0,
+        "passed": true,
+        "reasoning": {
+          "response_quality": "Used local keyword fallback because Grok judge was unavailable or disabled.",
+          "hallucination": "Not evaluated by the Grok judge in this category."
+        },
+        "source": "local_fallback"
+      },
+      "ambiguity_judgment": {
+        "ambiguity_score": 1.0,
+        "passed": true,
+        "reasoning": "Used local clarification check fallback because Grok judge was unavailable or disabled.",
+        "source": "local_fallback",
+        "judge_error": "Grok judge request failed with HTTP 403"
+      },
+      "hallucination_judgment": {
+        "hallucination_score": 1.0,
+        "passed": true,
+        "reasoning": "Used local hallucination check fallback because the Grok judge is reserved for response quality and ambiguity only.",
+        "source": "local_fallback"
+      }
+    },
+    {
+      "query": "اروح ميدان الساعة ازاي في مواصله لهناك اصلا من مكاني ولا محتاج كذا مواصله31.191377411119817, 29.919049014808774",
+      "tool_calling": true,
+      "correct_args": true,
+      "response_quality": 1.0,
+      "ambiguity_handling": 1.0,
+      "hallucination_free": 1.0,
+      "tokens": 7961,
+      "planner_output": [
+        {
+          "tool": "geocode_location",
+          "save_as": "destination",
+          "args": {
+            "place_name": "ميدان الساعة"
+          }
+        },
+        {
+          "tool": "get_routes",
+          "args": {
+            "start_lat": 31.191377411119817,
+            "start_lon": 29.919049014808774,
+            "end_lat": "$destination.lat",
+            "end_lon": "$destination.lon",
+            "max_transfers": 2,
+            "walking_cutoff": 2500,
+            "priority": "balanced",
+            "top_k": 5
+          }
+        }
+      ],
+      "tool_results": [
+        {
+          "step": "destination",
+          "tool": "geocode_location",
+          "raw_args": {
+            "place_name": "ميدان الساعة"
+          },
+          "resolved_args": {
+            "place_name": "ميدان الساعة"
+          },
+          "result": {
+            "lat": 31.2434725,
+            "lon": 29.9848443,
+            "formatted_address": "ميدان الساعة، As Soyouf Qebli (Include Izbat Derbanah), Montaza 1, Alexandria, Egypt"
+          }
+        },
+        {
+          "step": "step_2",
+          "tool": "get_routes",
+          "raw_args": {
+            "start_lat": 31.191377411119817,
+            "start_lon": 29.919049014808774,
+            "end_lat": "$destination.lat",
+            "end_lon": "$destination.lon",
+            "max_transfers": 2,
+            "walking_cutoff": 2500,
+            "priority": "balanced",
+            "top_k": 5
+          },
+          "resolved_args": {
+            "start_lat": 31.191377411119817,
+            "start_lon": 29.919049014808774,
+            "end_lat": 31.2434725,
+            "end_lon": 29.9848443,
+            "max_transfers": 2,
+            "walking_cutoff": 2500,
+            "priority": "balanced",
+            "top_k": 5
+          },
+          "result": {
+            "journeys": [
+              {
+                "route_number": 1,
+                "text_summary": "امشي لغايه كوبري للمشاة قناة السويس وتركب ميكروباص الساعة (ميدان الساعة) لغايه ميدان الساعة وتمشي لغايه وجهتك",
+                "summary": {
+                  "total_time_minutes": 45,
+                  "walking_distance_meters": 931,
+                  "transit_distance_meters": 17064,
+                  "total_distance_meters": 17995,
+                  "transfers": 0,
+                  "cost": 9,
+                  "modes_ar": [
+                    "ميكروباص"
+                  ],
+                  "main_streets_ar": []
+                }
+              },
+              {
+                "route_number": 2,
+                "text_summary": "امشي لغايه باب شرق وتركب ميكروباص سيدي بشر لغايه كلية فيكتوريا وتمشي لغايه وجهتك",
+                "summary": {
+                  "total_time_minutes": 51,
+                  "walking_distance_meters": 2176,
+                  "transit_distance_meters": 7869,
+                  "total_distance_meters": 10045,
+                  "transfers": 0,
+                  "cost": 6,
+                  "modes_ar": [
+                    "ميكروباص"
+                  ],
+                  "main_streets_ar": [
+                    "شارع ابوقير"
+                  ]
+                }
+              },
+              {
+                "route_number": 3,
+                "text_summary": "امشي لغايه كوبري للمشاة قناة السويس وتركب ميكروباص السيوف (فلكي) لغايه أبو كمال - السيوف وتمشي لغايه وجهتك",
+                "summary": {
+                  "total_time_minutes": 50,
+                  "walking_distance_meters": 2189,
+                  "transit_distance_meters": 14903,
+                  "total_distance_meters": 17092,
+                  "transfers": 0,
+                  "cost": 8,
+                  "modes_ar": [
+                    "ميكروباص"
+                  ],
+                  "main_streets_ar": []
+                }
+              },
+              {
+                "route_number": 4,
+                "text_summary": "امشي لغايه كوبري للمشاة قناة السويس وتركب ميكروباص شارع 45 لغايه الفلكي - السيوف وتمشي لغايه وجهتك",
+                "summary": {
+                  "total_time_minutes": 51,
+                  "walking_distance_meters": 2246,
+                  "transit_distance_meters": 14865,
+                  "total_distance_meters": 17111,
+                  "transfers": 0,
+                  "cost": 8,
+                  "modes_ar": [
+                    "ميكروباص"
+                  ],
+                  "main_streets_ar": [
+                    "مصطفى كامل"
+                  ]
+                }
+              },
+              {
+                "route_number": 5,
+                "text_summary": "امشي لغايه كوبري محرم بك وتركب ميكروباص المندرة لغايه نفق المحروسة وتمشي لغايه وجهتك",
+                "summary": {
+                  "total_time_minutes": 52,
+                  "walking_distance_meters": 2660,
+                  "transit_distance_meters": 10601,
+                  "total_distance_meters": 13261,
+                  "transfers": 0,
+                  "cost": 7,
+                  "modes_ar": [
+                    "ميكروباص"
+                  ],
+                  "main_streets_ar": [
+                    "بحر"
+                  ]
+                }
+              }
+            ],
+            "selected_priority": "balanced",
+            "num_journeys": 5,
+            "raw_summary": null
+          }
+        }
+      ],
+      "final_response": "أهلاً بيك! علشان تروح ميدان الساعة من مكانك، فيه أكتر من اختيار للمواصلات، وكلهم عبارة عن ميكروباص مباشر:\n\nرحلة 1:\n  امشي لغاية كوبري للمشاة قناة السويس وتركب ميكروباص الساعة (ميدان الساعة) لغاية ميدان الساعة وتمشي لغاية وجهتك\n  الوقت: 45 دقيقة | التكلفة: 9 جنيه | مشي: 931 متر | وسيلة: ميكروباص\n\nرحلة 2:\n  امشي لغاية باب شرق وتركب ميكروباص سيدي بشر لغاية كلية فيكتوريا وتمشي لغاية وجهتك\n  الوقت: 51 دقيقة | التكلفة: 6 جنيه | مشي: 2176 متر | وسيلة: ميكروباص | الشارع الرئيسي: شارع ابوقير\n\nرحلة 3:\n  امشي لغاية كوبري للمشاة قناة السويس وتركب ميكروباص السيوف (فلكي) لغاية أبو كمال - السيوف وتمشي لغاية وجهتك\n  الوقت: 50 دقيقة | التكلفة: 8 جنيه | مشي: 2189 متر | وسيلة: ميكروباص\n\nرحلة 4:\n  امشي لغاية كوبري للمشاة قناة السويس وتركب ميكروباص شارع 45 لغاية الفلكي - السيوف وتمشي لغاية وجهتك\n  الوقت: 51 دقيقة | التكلفة: 8 جنيه | مشي: 2246 متر | وسيلة: ميكروباص | الشارع الرئيسي: مصطفى كامل\n\nرحلة 5:\n  امشي لغاية كوبري محرم بك وتركب ميكروباص المندرة لغاية نفق المحروسة وتمشي لغاية وجهتك\n  الوقت: 52 دقيقة | التكلفة: 7 جنيه | مشي: 2660 متر | وسيلة: ميكروباص | الشارع الرئيسي: بحر",
+      "category": "response quality",
+      "response_quality_judgment": {
+        "response_quality_score": 1.0,
+        "passed": true,
+        "reasoning": {
+          "response_quality": "Used local keyword fallback because Grok judge was unavailable or disabled.",
+          "hallucination": "Not evaluated by the Grok judge in this category."
+        },
+        "source": "local_fallback",
+        "judge_error": "Grok judge request failed with HTTP 403"
+      },
+      "ambiguity_judgment": {
+        "ambiguity_score": 1.0,
+        "passed": true,
+        "reasoning": "Used local clarification check fallback because Grok judge was unavailable or disabled.",
+        "source": "local_fallback",
+        "judge_error": "Grok judge request failed with HTTP 403"
+      },
+      "hallucination_judgment": {
+        "hallucination_score": 1.0,
+        "passed": true,
+        "reasoning": "Used local hallucination check fallback because the Grok judge is reserved for response quality and ambiguity only.",
+        "source": "local_fallback"
+      }
+    },
+    {
+      "query": "انهاردة هروح انطونيادس هل فى مواصلات متوفرة ولا لا انهارده علشان احدد انزل بدرى ولا انزل فى معادي عادى31.191377411119817, 29.919049014808774",
+      "tool_calling": true,
+      "correct_args": true,
+      "response_quality": 1.0,
+      "ambiguity_handling": 1.0,
+      "hallucination_free": 0.0,
+      "tokens": 8633,
+      "planner_output": [
+        {
+          "tool": "geocode_location",
+          "save_as": "destination",
+          "args": {
+            "place_name": "انطونيادس",
+            "user_lat": 31.191377411119817,
+            "user_lng": 29.919049014808774,
+            "bias": true
+          }
+        },
+        {
+          "tool": "get_routes",
+          "args": {
+            "start_lat": 31.191377411119817,
+            "start_lon": 29.919049014808774,
+            "end_lat": "$destination.lat",
+            "end_lon": "$destination.lon",
+            "max_transfers": 2,
+            "walking_cutoff": 2500,
+            "priority": "time",
+            "top_k": 5
+          }
+        }
+      ],
+      "tool_results": [
+        {
+          "step": "destination",
+          "tool": "geocode_location",
+          "raw_args": {
+            "place_name": "انطونيادس",
+            "user_lat": 31.191377411119817,
+            "user_lng": 29.919049014808774,
+            "bias": true
+          },
+          "resolved_args": {
+            "place_name": "انطونيادس",
+            "user_lat": 31.191377411119817,
+            "user_lng": 29.919049014808774,
+            "bias": true
+          },
+          "result": {
+            "lat": 31.1967216,
+            "lon": 29.897701299999998,
+            "formatted_address": "أنطونيادس، Al Attarin, Alexandria, Egypt"
+          }
+        },
+        {
+          "step": "step_2",
+          "tool": "get_routes",
+          "raw_args": {
+            "start_lat": 31.191377411119817,
+            "start_lon": 29.919049014808774,
+            "end_lat": "$destination.lat",
+            "end_lon": "$destination.lon",
+            "max_transfers": 2,
+            "walking_cutoff": 2500,
+            "priority": "time",
+            "top_k": 5
+          },
+          "resolved_args": {
+            "start_lat": 31.191377411119817,
+            "start_lon": 29.919049014808774,
+            "end_lat": 31.1967216,
+            "end_lon": 29.897701299999998,
+            "max_transfers": 2,
+            "walking_cutoff": 2500,
+            "priority": "time",
+            "top_k": 5
+          },
+          "result": {
+            "journeys": [
+              {
+                "route_number": 1,
+                "text_summary": "امشي لغايه كوبري محرم بك وتركب ميكروباص محطة الرمل لغايه محطة الرمل وتمشي لغايه وجهتك",
+                "summary": {
+                  "total_time_minutes": 28,
+                  "walking_distance_meters": 1340,
+                  "transit_distance_meters": 5752,
+                  "total_distance_meters": 7092,
+                  "transfers": 0,
+                  "cost": 6,
+                  "modes_ar": [
+                    "ميكروباص"
+                  ],
+                  "main_streets_ar": [
+                    "بحر"
+                  ]
+                }
+              },
+              {
+                "route_number": 2,
+                "text_summary": "امشي لغايه كوبري محرم بك وتركب ميكروباص محطة مصر لغايه محطة مصر وتمشي لغايه وجهتك",
+                "summary": {
+                  "total_time_minutes": 29,
+                  "walking_distance_meters": 1512,
+                  "transit_distance_meters": 4545,
+                  "total_distance_meters": 6057,
+                  "transfers": 0,
+                  "cost": 5,
+                  "modes_ar": [
+                    "ميكروباص"
+                  ],
+                  "main_streets_ar": [
+                    "شارع ابوقير"
+                  ]
+                }
+              },
+              {
+                "route_number": 3,
+                "text_summary": "امشي لغايه كوبري محرم بك وتركب ميكروباص (المنشية أو بحري (رأس التين)) لغايه القنصلية الفرنسية وتمشي لغايه وجهتك",
+                "summary": {
+                  "total_time_minutes": 28,
+                  "walking_distance_meters": 1441,
+                  "transit_distance_meters": 5935,
+                  "total_distance_meters": 7376,
+                  "transfers": 0,
+                  "cost": 6,
+                  "modes_ar": [
+                    "ميكروباص"
+                  ],
+                  "main_streets_ar": [
+                    "بحر",
+                    "محمودية"
+                  ]
+                }
+              },
+              {
+                "route_number": 4,
+                "text_summary": "امشي لغايه استاد الاسكندرية وتركب ميكروباص محطة مصر لغايه محطة مصر وتمشي لغايه وجهتك",
+                "summary": {
+                  "total_time_minutes": 24,
+                  "walking_distance_meters": 1856,
+                  "transit_distance_meters": 668,
+                  "total_distance_meters": 2524,
+                  "transfers": 0,
+                  "cost": 4,
+                  "modes_ar": [
+                    "ميكروباص"
+                  ],
+                  "main_streets_ar": [
+                    "شارع ابوقير"
+                  ]
+                }
+              },
+              {
+                "route_number": 5,
+                "text_summary": "امشي لغايه استاد الاسكندرية وتركب اتوبيس 735 محطة مصر لغايه محطة مصر وتمشي لغايه وجهتك",
+                "summary": {
+                  "total_time_minutes": 24,
+                  "walking_distance_meters": 1856,
+                  "transit_distance_meters": 680,
+                  "total_distance_meters": 2536,
+                  "transfers": 0,
+                  "cost": 4,
+                  "modes_ar": [
+                    "اتوبيس"
+                  ],
+                  "main_streets_ar": [
+                    "بحر"
+                  ]
+                }
+              }
+            ],
+            "selected_priority": "time",
+            "num_journeys": 5,
+            "raw_summary": null
+          }
+        }
+      ],
+      "final_response": "أهلاً بيك! فيه مواصلات متاحة لـ \"أنطونيادس\" من موقعك الحالي.\n\nرحلة 1:\n  امشي لغايه كوبري محرم بك وتركب ميكروباص محطة الرمل لغايه محطة الرمل وتمشي لغايه وجهتك\n  الوقت: 28 دقيقة | التكلفة: 6 جنيه | مشي: 1340 متر | وسيلة: ميكروباص\n\nرحلة 2:\n  امشي لغايه كوبري محرم بك وتركب ميكروباص محطة مصر لغايه محطة مصر وتمشي لغايه وجهتك\n  الوقت: 29 دقيقة | التكلفة: 5 جنيه | مشي: 1512 متر | وسيلة: ميكروباص\n\nرحلة 3:\n  امشي لغايه كوبري محرم بك وتركب ميكروباص (المنشية أو بحري (رأس التين)) لغايه القنصلية الفرنسية وتمشي لغايه وجهتك\n  الوقت: 28 دقيقة | التكلفة: 6 جنيه | مشي: 1441 متر | وسيلة: ميكروباص\n\nرحلة 4:\n  امشي لغايه استاد الاسكندرية وتركب ميكروباص محطة مصر لغايه محطة مصر وتمشي لغايه وجهتك\n  الوقت: 24 دقيقة | التكلفة: 4 جنيه | مشي: 1856 متر | وسيلة: ميكروباص\n\nرحلة 5:\n  امشي لغايه استاد الاسكندرية وتركب اتوبيس 735 محطة مصر لغايه محطة مصر وتمشي لغايه وجهتك\n  الوقت: 24 دقيقة | التكلفة: 4 جنيه | مشي: 1856 متر | وسيلة: اتوبيس",
+      "category": "response quality",
+      "response_quality_judgment": {
+        "response_quality_score": 1.0,
+        "passed": true,
+        "reasoning": {
+          "response_quality": "Used local keyword fallback because Grok judge was unavailable or disabled.",
+          "hallucination": "Not evaluated by the Grok judge in this category."
+        },
+        "source": "local_fallback",
+        "judge_error": "Grok judge request failed with HTTP 403"
+      },
+      "ambiguity_judgment": {
+        "ambiguity_score": 1.0,
+        "passed": true,
+        "reasoning": "Used local clarification check fallback because Grok judge was unavailable or disabled.",
+        "source": "local_fallback",
+        "judge_error": "Grok judge request failed with HTTP 403"
+      },
+      "hallucination_judgment": {
+        "hallucination_score": 0.0,
+        "passed": false,
+        "reasoning": "Used local hallucination check fallback because the Grok judge is reserved for response quality and ambiguity only.",
+        "source": "local_fallback"
+      }
+    },
+    {
+      "query": " اوصل ازاي لبنزينة رشدي من غير م انزل و اطلع كتير 31.191377411119817, 29.919049014808774",
+      "tool_calling": true,
+      "correct_args": false,
+      "response_quality": 1.0,
+      "ambiguity_handling": 1.0,
+      "hallucination_free": 0.0,
+      "tokens": 8149,
+      "planner_output": [
+        {
+          "tool": "geocode_location",
+          "save_as": "destination",
+          "args": {
+            "place_name": "بنزينة رشدي"
+          }
+        },
+        {
+          "tool": "get_routes",
+          "args": {
+            "start_lat": 31.191377411119817,
+            "start_lon": 29.919049014808774,
+            "end_lat": "$destination.lat",
+            "end_lon": "$destination.lon",
+            "max_transfers": 2,
+            "walking_cutoff": 2500,
+            "priority": "balanced",
+            "top_k": 5
+          }
+        }
+      ],
+      "tool_results": [
+        {
+          "step": "destination",
+          "tool": "geocode_location",
+          "raw_args": {
+            "place_name": "بنزينة رشدي"
+          },
+          "resolved_args": {
+            "place_name": "بنزينة رشدي"
+          },
+          "result": {
+            "lat": 31.2284179,
+            "lon": 29.952156,
+            "formatted_address": "بنزينة غاز، رشدي باشا، Mustafa Kamel WA Bolkli, Sidi Gaber, Alexandria, Egypt"
+          }
+        },
+        {
+          "step": "step_2",
+          "tool": "get_routes",
+          "raw_args": {
+            "start_lat": 31.191377411119817,
+            "start_lon": 29.919049014808774,
+            "end_lat": "$destination.lat",
+            "end_lon": "$destination.lon",
+            "max_transfers": 2,
+            "walking_cutoff": 2500,
+            "priority": "balanced",
+            "top_k": 5
+          },
+          "resolved_args": {
+            "start_lat": 31.191377411119817,
+            "start_lon": 29.919049014808774,
+            "end_lat": 31.2284179,
+            "end_lon": 29.952156,
+            "max_transfers": 2,
+            "walking_cutoff": 2500,
+            "priority": "balanced",
+            "top_k": 5
+          },
+          "result": {
+            "journeys": [
+              {
+                "route_number": 1,
+                "text_summary": "امشي لغايه كوبري محرم بك وتركب ميكروباص المندرة لغايه فندق صن رايز وتمشي لغايه وجهتك",
+                "summary": {
+                  "total_time_minutes": 32,
+                  "walking_distance_meters": 1675,
+                  "transit_distance_meters": 6600,
+                  "total_distance_meters": 8275,
+                  "transfers": 0,
+                  "cost": 6,
+                  "modes_ar": [
+                    "ميكروباص"
+                  ],
+                  "main_streets_ar": [
+                    "بحر"
+                  ]
+                }
+              },
+              {
+                "route_number": 2,
+                "text_summary": "امشي لغايه باب شرق وتركب ميكروباص سيدي بشر لغايه معرض سيارات منصور أوبل وتمشي لغايه وجهتك",
+                "summary": {
+                  "total_time_minutes": 35,
+                  "walking_distance_meters": 1949,
+                  "transit_distance_meters": 3966,
+                  "total_distance_meters": 5915,
+                  "transfers": 0,
+                  "cost": 5,
+                  "modes_ar": [
+                    "ميكروباص"
+                  ],
+                  "main_streets_ar": [
+                    "شارع ابوقير"
+                  ]
+                }
+              },
+              {
+                "route_number": 3,
+                "text_summary": "امشي لغايه استاد الإسكندرية وتركب ميني باص 20 الملاحة لغايه فندق صن رايز وتمشي لغايه وجهتك",
+                "summary": {
+                  "total_time_minutes": 40,
+                  "walking_distance_meters": 1941,
+                  "transit_distance_meters": 6342,
+                  "total_distance_meters": 8283,
+                  "transfers": 0,
+                  "cost": 6,
+                  "modes_ar": [
+                    "ميني باص"
+                  ],
+                  "main_streets_ar": [
+                    "بحر",
+                    "مصطفى كامل"
+                  ]
+                }
+              },
+              {
+                "route_number": 4,
+                "text_summary": "امشي لغايه استاد الإسكندرية وتركب (اتوبيس 739 أو اتوبيس 735) لغايه فندق صن رايز وتمشي لغايه وجهتك",
+                "summary": {
+                  "total_time_minutes": 40,
+                  "walking_distance_meters": 1941,
+                  "transit_distance_meters": 6342,
+                  "total_distance_meters": 8283,
+                  "transfers": 0,
+                  "cost": 6,
+                  "modes_ar": [
+                    "اتوبيس"
+                  ],
+                  "main_streets_ar": [
+                    "بحر",
+                    "مصطفى كامل"
+                  ]
+                }
+              },
+              {
+                "route_number": 5,
+                "text_summary": "امشي لغايه كوبري محرم بك وتركب ميكروباص سيدي جابر لغايه محطة سيدى جابر وتمشي لغايه وجهتك",
+                "summary": {
+                  "total_time_minutes": 46,
+                  "walking_distance_meters": 2365,
+                  "transit_distance_meters": 7852,
+                  "total_distance_meters": 10217,
+                  "transfers": 0,
+                  "cost": 6,
+                  "modes_ar": [
+                    "ميكروباص"
+                  ],
+                  "main_streets_ar": [
+                    "بحر"
+                  ]
+                }
+              }
+            ],
+            "selected_priority": "balanced",
+            "num_journeys": 5,
+            "raw_summary": null
+          }
+        }
+      ],
+      "final_response": "هذه هي الرحلات الممكنة لبنزينة رشدي:\n\nرحلة 1:\n  امشي لغايه كوبري محرم بك وتركب ميكروباص المندرة لغايه فندق صن رايز وتمشي لغايه وجهتك\n  الوقت: 32 دقيقة | التكلفة: 6 جنيه | مشي: 1675 متر | وسيلة: ميكروباص\n\nرحلة 2:\n  امشي لغايه باب شرق وتركب ميكروباص سيدي بشر لغايه معرض سيارات منصور أوبل وتمشي لغايه وجهتك\n  الوقت: 35 دقيقة | التكلفة: 5 جنيه | مشي: 1949 متر | وسيلة: ميكروباص | الشارع الرئيسي: شارع ابوقير\n\nرحلة 3:\n  امشي لغايه استاد الإسكندرية وتركب ميني باص 20 الملاحة لغايه فندق صن رايز وتمشي لغايه وجهتك\n  الوقت: 40 دقيقة | التكلفة: 6 جنيه | مشي: 1941 متر | وسيلة: ميني باص | الشارع الرئيسي: بحر، مصطفى كامل\n\nرحلة 4:\n  امشي لغايه استاد الإسكندرية وتركب (اتوبيس 739 أو اتوبيس 735) لغايه فندق صن رايز وتمشي لغايه وجهتك\n  الوقت: 40 دقيقة | التكلفة: 6 جنيه | مشي: 1941 متر | وسيلة: اتوبيس | الشارع الرئيسي: بحر، مصطفى كامل\n\nرحلة 5:\n  امشي لغايه كوبري محرم بك وتركب ميكروباص سيدي جابر لغايه محطة سيدى جابر وتمشي لغايه وجهتك\n  الوقت: 46 دقيقة | التكلفة: 6 جنيه | مشي: 2365 متر | وسيلة: ميكروباص",
+      "category": "correct args",
+      "response_quality_judgment": {
+        "response_quality_score": 1.0,
+        "passed": true,
+        "reasoning": {
+          "response_quality": "Used local keyword fallback because Grok judge was unavailable or disabled.",
+          "hallucination": "Not evaluated by the Grok judge in this category."
+        },
+        "source": "local_fallback"
+      },
+      "ambiguity_judgment": {
+        "ambiguity_score": 1.0,
+        "passed": true,
+        "reasoning": "Used local clarification check fallback because Grok judge was unavailable or disabled.",
+        "source": "local_fallback",
+        "judge_error": "Grok judge request failed with HTTP 403"
+      },
+      "hallucination_judgment": {
+        "hallucination_score": 0.0,
+        "passed": false,
+        "reasoning": "Used local hallucination check fallback because the Grok judge is reserved for response quality and ambiguity only.",
+        "source": "local_fallback"
+      }
+    },
+    {
+      "query": "هل فيه مواصلات حاليا ف سيدي جابر  31.191377411119817, 29.919049014808774",
+      "tool_calling": false,
+      "correct_args": true,
+      "response_quality": 0.0,
+      "ambiguity_handling": 1.0,
+      "hallucination_free": 1.0,
+      "tokens": 0,
+      "planner_output": [],
+      "tool_results": [],
+      "final_response": "عذرا، في مشكلة في الاتصال حاليا.",
+      "category": "tool calling",
+      "response_quality_judgment": {
+        "response_quality_score": 0.0,
+        "passed": false,
+        "reasoning": {
+          "response_quality": "Used local keyword fallback because Grok judge was unavailable or disabled.",
+          "hallucination": "Not evaluated by the Grok judge in this category."
+        },
+        "source": "local_fallback"
+      },
+      "ambiguity_judgment": {
+        "ambiguity_score": 1.0,
+        "passed": true,
+        "reasoning": "Used local clarification check fallback because Grok judge was unavailable or disabled.",
+        "source": "local_fallback",
+        "judge_error": "Grok judge request failed with HTTP 403"
+      },
+      "hallucination_judgment": {
+        "hallucination_score": 1.0,
+        "passed": true,
+        "reasoning": "Used local hallucination check fallback because the Grok judge is reserved for response quality and ambiguity only.",
+        "source": "local_fallback"
+      }
+    },
+    {
+      "query": "ايه هو متوسط سعر المواصلات ال هركبها لو هروح لحد جامع يحيي31.191377411119817, 29.919049014808774",
+      "tool_calling": false,
+      "correct_args": true,
+      "response_quality": 0.0,
+      "ambiguity_handling": 1.0,
+      "hallucination_free": 1.0,
+      "tokens": 0,
+      "planner_output": [],
+      "tool_results": [],
+      "final_response": "عذرا، في مشكلة في الاتصال حاليا.",
+      "category": "response quality",
+      "response_quality_judgment": {
+        "response_quality_score": 0.0,
+        "passed": false,
+        "reasoning": {
+          "response_quality": "Used local keyword fallback because Grok judge was unavailable or disabled.",
+          "hallucination": "Not evaluated by the Grok judge in this category."
+        },
+        "source": "local_fallback",
+        "judge_error": "Grok judge request failed with HTTP 403"
+      },
+      "ambiguity_judgment": {
+        "ambiguity_score": 1.0,
+        "passed": true,
+        "reasoning": "Used local clarification check fallback because Grok judge was unavailable or disabled.",
+        "source": "local_fallback",
+        "judge_error": "Grok judge request failed with HTTP 403"
+      },
+      "hallucination_judgment": {
+        "hallucination_score": 1.0,
+        "passed": true,
+        "reasoning": "Used local hallucination check fallback because the Grok judge is reserved for response quality and ambiguity only.",
+        "source": "local_fallback"
+      }
+    },
+    {
+      "query": " هل في مواصلات في محطة مصر بدل ما اطلب اوبر？ 31.191377411119817, 29.919049014808774",
+      "tool_calling": true,
+      "correct_args": false,
+      "response_quality": 0.0,
+      "ambiguity_handling": 1.0,
+      "hallucination_free": 1.0,
+      "tokens": 5886,
+      "planner_output": [
+        {
+          "tool": "geocode_location",
+          "save_as": "station",
+          "args": {
+            "place_name": "محطة مصر",
+            "user_lat": 31.191377411119817,
+            "user_lng": 29.919049014808774,
+            "bias": true
+          }
+        },
+        {
+          "tool": "db_tools",
+          "args": {
+            "lat": "$station.lat",
+            "lon": "$station.lon"
+          }
+        }
+      ],
+      "tool_results": [
+        {
+          "step": "station",
+          "tool": "geocode_location",
+          "raw_args": {
+            "place_name": "محطة مصر",
+            "user_lat": 31.191377411119817,
+            "user_lng": 29.919049014808774,
+            "bias": true
+          },
+          "resolved_args": {
+            "place_name": "محطة مصر",
+            "user_lat": 31.191377411119817,
+            "user_lng": 29.919049014808774,
+            "bias": true
+          },
+          "result": {
+            "lat": 31.192980499999997,
+            "lon": 29.9052509,
+            "formatted_address": "محطة مصر اسكندرية، Moharram Bek, Al Bab Al Gadid WA Mansha, Moharam Bek, مصر"
+          }
+        },
+        {
+          "step": "step_2",
+          "tool": "db_tools",
+          "raw_args": {
+            "lat": "$station.lat",
+            "lon": "$station.lon"
+          },
+          "resolved_args": {
+            "lat": 31.192980499999997,
+            "lon": 29.9052509
+          },
+          "result": {
+            "trips": [
+              {
+                "route_name_ar": "أبو قير - محطة مصر (ميدان الشهداء)"
+              },
+              {
+                "route_name_ar": "العوايد - محطة مصر (ميدان الشهداء)"
+              },
+              {
+                "route_name_ar": "أبيس ٨ - محطة مصر (ميدان الشهداء)"
+              },
+              {
+                "route_name_ar": "العصافرة - محطة مصر (ميدان الشهداء)"
+              },
+              {
+                "route_name_ar": "الحضرة - محطة مصر (ميدان الشهداء)"
+              }
+            ]
+          }
+        }
+      ],
+      "final_response": "أيوة يا فندم، فيه مواصلات في محطة مصر بدل أوبر. دي شوية خطوط ممكن تفيدك:\n\n*   أبو قير - محطة مصر (ميدان الشهداء)\n*   العوايد - محطة مصر (ميدان الشهداء)\n*   أبيس ٨ - محطة مصر (ميدان الشهداء)\n*   العصافرة - محطة مصر (ميدان الشهداء)\n*   الحضرة - محطة مصر (ميدان الشهداء)",
+      "category": "tool calling",
+      "response_quality_judgment": {
+        "response_quality_score": 0.0,
+        "passed": false,
+        "reasoning": {
+          "response_quality": "Used local keyword fallback because Grok judge was unavailable or disabled.",
+          "hallucination": "Not evaluated by the Grok judge in this category."
+        },
+        "source": "local_fallback"
+      },
+      "ambiguity_judgment": {
+        "ambiguity_score": 1.0,
+        "passed": true,
+        "reasoning": "Used local clarification check fallback because Grok judge was unavailable or disabled.",
+        "source": "local_fallback",
+        "judge_error": "Grok judge request failed with HTTP 403"
+      },
+      "hallucination_judgment": {
+        "hallucination_score": 1.0,
+        "passed": true,
+        "reasoning": "Used local hallucination check fallback because the Grok judge is reserved for response quality and ambiguity only.",
+        "source": "local_fallback"
+      }
+    },
+    {
+      "query": " السكه زحمه ولا لا لو همشي من شارع ابو قير وهل فيه مواصلات ولا لا لو هروح محطة مصر 31.191377411119817, 29.919049014808774",
+      "tool_calling": false,
+      "correct_args": false,
+      "response_quality": 1.0,
+      "ambiguity_handling": 1.0,
+      "hallucination_free": 0.0,
+      "tokens": 8538,
+      "planner_output": [
+        {
+          "tool": "check_traffic",
+          "args": {
+            "street_name": "Abou Qir"
+          }
+        },
+        {
+          "tool": "geocode_location",
+          "save_as": "destination",
+          "args": {
+            "place_name": "محطة مصر"
+          }
+        },
+        {
+          "tool": "get_routes",
+          "args": {
+            "start_lat": 31.191377411119817,
+            "start_lon": 29.919049014808774,
+            "end_lat": "$destination.lat",
+            "end_lon": "$destination.lon",
+            "max_transfers": 2,
+            "walking_cutoff": 2500,
+            "priority": "balanced",
+            "top_k": 5,
+            "filters": {
+              "main_streets": {
+                "include": [
+                  "Abou Qir"
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "tool_results": [
+        {
+          "step": "step_1",
+          "tool": "check_traffic",
+          "raw_args": {
+            "street_name": "Abou Qir"
+          },
+          "resolved_args": {
+            "street_name": "Abou Qir"
+          },
+          "result": {
+            "overall_status": "moderate"
+          }
+        },
+        {
+          "step": "destination",
+          "tool": "geocode_location",
+          "raw_args": {
+            "place_name": "محطة مصر"
+          },
+          "resolved_args": {
+            "place_name": "محطة مصر"
+          },
+          "result": {
+            "lat": 31.192980499999997,
+            "lon": 29.9052509,
+            "formatted_address": "محطة مصر اسكندرية، Moharram Bek, Al Bab Al Gadid WA Mansha, Moharam Bek, مصر"
+          }
+        },
+        {
+          "step": "step_3",
+          "tool": "get_routes",
+          "raw_args": {
+            "start_lat": 31.191377411119817,
+            "start_lon": 29.919049014808774,
+            "end_lat": "$destination.lat",
+            "end_lon": "$destination.lon",
+            "max_transfers": 2,
+            "walking_cutoff": 2500,
+            "priority": "balanced",
+            "top_k": 5,
+            "filters": {
+              "main_streets": {
+                "include": [
+                  "Abou Qir"
+                ]
+              }
+            }
+          },
+          "resolved_args": {
+            "start_lat": 31.191377411119817,
+            "start_lon": 29.919049014808774,
+            "end_lat": 31.192980499999997,
+            "end_lon": 29.9052509,
+            "max_transfers": 2,
+            "walking_cutoff": 2500,
+            "priority": "balanced",
+            "top_k": 5,
+            "filters": {
+              "main_streets": {
+                "include": [
+                  "Abou Qir"
+                ]
+              }
+            }
+          },
+          "result": {
+            "journeys": [
+              {
+                "route_number": 1,
+                "text_summary": "امشي لغايه وجهتك",
+                "summary": {
+                  "total_time_minutes": 19,
+                  "walking_distance_meters": 1582,
+                  "transit_distance_meters": 0,
+                  "total_distance_meters": 1582,
+                  "transfers": 0,
+                  "cost": 0,
+                  "modes_ar": [
+                    "مشي"
+                  ],
+                  "main_streets_ar": []
+                }
+              },
+              {
+                "route_number": 2,
+                "text_summary": "امشي لغايه استاد الاسكندرية وتركب ميكروباص محطة مصر لغايه محطة مصر وتمشي لغايه وجهتك",
+                "summary": {
+                  "total_time_minutes": 15,
+                  "walking_distance_meters": 1055,
+                  "transit_distance_meters": 668,
+                  "total_distance_meters": 1723,
+                  "transfers": 0,
+                  "cost": 4,
+                  "modes_ar": [
+                    "ميكروباص"
+                  ],
+                  "main_streets_ar": [
+                    "شارع ابوقير"
+                  ]
+                }
+              },
+              {
+                "route_number": 3,
+                "text_summary": "امشي لغايه كوبري محرم بك وتركب ميكروباص محطة مصر لغايه محطة مصر وتمشي لغايه وجهتك",
+                "summary": {
+                  "total_time_minutes": 25,
+                  "walking_distance_meters": 1225,
+                  "transit_distance_meters": 4545,
+                  "total_distance_meters": 5770,
+                  "transfers": 0,
+                  "cost": 5,
+                  "modes_ar": [
+                    "ميكروباص"
+                  ],
+                  "main_streets_ar": [
+                    "شارع ابوقير"
+                  ]
+                }
+              },
+              {
+                "route_number": 4,
+                "text_summary": "امشي لغايه كوبري محرم بك وتركب اتوبيس 10 محطة الرمل لغايه الخالدين وتمشي لغايه وجهتك",
+                "summary": {
+                  "total_time_minutes": 37,
+                  "walking_distance_meters": 2326,
+                  "transit_distance_meters": 3926,
+                  "total_distance_meters": 6252,
+                  "transfers": 0,
+                  "cost": 5,
+                  "modes_ar": [
+                    "اتوبيس"
+                  ],
+                  "main_streets_ar": [
+                    "شارع ابوقير"
+                  ]
+                }
+              },
+              {
+                "route_number": 5,
+                "text_summary": "امشي لغايه باب شرق وتركب ميكروباص المنشية لغايه محطة الرمل وتمشي لغايه وجهتك",
+                "summary": {
+                  "total_time_minutes": 38,
+                  "walking_distance_meters": 2590,
+                  "transit_distance_meters": 2089,
+                  "total_distance_meters": 4679,
+                  "transfers": 0,
+                  "cost": 5,
+                  "modes_ar": [
+                    "ميكروباص"
+                  ],
+                  "main_streets_ar": [
+                    "محمودية",
+                    "شارع ابوقير"
+                  ]
+                }
+              }
+            ],
+            "selected_priority": "balanced",
+            "num_journeys": 5,
+            "raw_summary": null
+          }
+        }
+      ],
+      "final_response": "الرد النهائي:\nبالنسبة لحالة المرور في شارع أبو قير، هي \"متوسطة\".\n\nفيه مواصلات متاحة عشان تروح محطة مصر:\n\nرحلة 1:\n  امشي لغايه استاد الاسكندرية وتركب ميكروباص محطة مصر لغايه محطة مصر وتمشي لغايه وجهتك\n  الوقت: 15 دقيقة | التكلفة: 4 جنيه | مشي: 1055 متر | وسيلة: ميكروباص | الشارع الرئيسي: شارع ابوقير\n\nرحلة 2:\n  امشي لغايه وجهتك\n  الوقت: 19 دقيقة | التكلفة: 0 جنيه | مشي: 1582 متر | وسيلة: مشي\n\nرحلة 3:\n  امشي لغايه كوبري محرم بك وتركب ميكروباص محطة مصر لغايه محطة مصر وتمشي لغايه وجهتك\n  الوقت: 25 دقيقة | التكلفة: 5 جنيه | مشي: 1225 متر | وسيلة: ميكروباص | الشارع الرئيسي: شارع ابوقير\n\nرحلة 4:\n  امشي لغايه كوبري محرم بك وتركب اتوبيس 10 محطة الرمل لغايه الخالدين وتمشي لغايه وجهتك\n  الوقت: 37 دقيقة | التكلفة: 5 جنيه | مشي: 2326 متر | وسيلة: اتوبيس | الشارع الرئيسي: شارع ابوقير\n\nرحلة 5:\n  امشي لغايه باب شرق وتركب ميكروباص المنشية لغايه محطة الرمل وتمشي لغايه وجهتك\n  الوقت: 38 دقيقة | التكلفة: 5 جنيه | مشي: 2590 متر | وسيلة: ميكروباص | الشارع الرئيسي: محمودية، شارع ابوقير",
+      "category": "tool calling",
+      "response_quality_judgment": {
+        "response_quality_score": 1.0,
+        "passed": true,
+        "reasoning": {
+          "response_quality": "Used local keyword fallback because Grok judge was unavailable or disabled.",
+          "hallucination": "Not evaluated by the Grok judge in this category."
+        },
+        "source": "local_fallback"
+      },
+      "ambiguity_judgment": {
+        "ambiguity_score": 1.0,
+        "passed": true,
+        "reasoning": "Used local clarification check fallback because Grok judge was unavailable or disabled.",
+        "source": "local_fallback",
+        "judge_error": "Grok judge request failed with HTTP 403"
+      },
+      "hallucination_judgment": {
+        "hallucination_score": 0.0,
+        "passed": false,
+        "reasoning": "Used local hallucination check fallback because the Grok judge is reserved for response quality and ambiguity only.",
+        "source": "local_fallback"
+      }
+    },
+    {
+      "query": "انا دلوقتي في باب شرق وهركب مشروع ابو سلمان وهنزل عند علي ابن ابي طالب ، المشروع هيعدي علي كوبري الابراهيمية؟ 31.191377411119817, 29.919049014808774",
+      "tool_calling": false,
+      "correct_args": true,
+      "response_quality": 0.0,
+      "ambiguity_handling": 1.0,
+      "hallucination_free": 1.0,
+      "tokens": 0,
+      "planner_output": [],
+      "tool_results": [],
+      "final_response": "عذرا، في مشكلة في الاتصال حاليا.",
+      "category": "response quality",
+      "response_quality_judgment": {
+        "response_quality_score": 0.0,
+        "passed": false,
+        "reasoning": {
+          "response_quality": "Used local keyword fallback because Grok judge was unavailable or disabled.",
+          "hallucination": "Not evaluated by the Grok judge in this category."
+        },
+        "source": "local_fallback",
+        "judge_error": "Grok judge request failed with HTTP 403"
+      },
+      "ambiguity_judgment": {
+        "ambiguity_score": 1.0,
+        "passed": true,
+        "reasoning": "Used local clarification check fallback because Grok judge was unavailable or disabled.",
+        "source": "local_fallback",
+        "judge_error": "Grok judge request failed with HTTP 403"
+      },
+      "hallucination_judgment": {
+        "hallucination_score": 1.0,
+        "passed": true,
+        "reasoning": "Used local hallucination check fallback because the Grok judge is reserved for response quality and ambiguity only.",
+        "source": "local_fallback"
+      }
+    },
+    {
+      "query": "ايه اكتر طريق فاضي ممكن أركب منه يعني أبو قير ولا بحر الزحمة فين لو كده ممكن امشي الحتة ديه واركب من بعدها 31.191377411119817, 29.919049014808774",
+      "tool_calling": true,
+      "correct_args": true,
+      "response_quality": 0.0,
+      "ambiguity_handling": 1.0,
+      "hallucination_free": 1.0,
+      "tokens": 5224,
+      "planner_output": [
+        {
+          "tool": "check_traffic",
+          "args": {
+            "street_name": "Abou Qir"
+          }
+        },
+        {
+          "tool": "check_traffic",
+          "args": {
+            "street_name": "Coastal"
+          }
+        }
+      ],
+      "tool_results": [
+        {
+          "step": "step_1",
+          "tool": "check_traffic",
+          "raw_args": {
+            "street_name": "Abou Qir"
+          },
+          "resolved_args": {
+            "street_name": "Abou Qir"
+          },
+          "result": {
+            "overall_status": "moderate"
+          }
+        },
+        {
+          "step": "step_2",
+          "tool": "check_traffic",
+          "raw_args": {
+            "street_name": "Coastal"
+          },
+          "resolved_args": {
+            "street_name": "Coastal"
+          },
+          "result": {
+            "overall_status": "clear"
+          }
+        }
+      ],
+      "final_response": "بالنسبة للطرق، طريق أبو قير حالته \"متوسط\" وفي زحمة شوية، لكن طريق البحر (الكورنيش) \"سريع\" وفاضي. لو حبيت تمشي حتة وتركب بعدها، ممكن تستغل إن طريق البحر فاضي.",
+      "category": "tool calling",
+      "response_quality_judgment": {
+        "response_quality_score": 0.0,
+        "passed": false,
+        "reasoning": {
+          "response_quality": "Used local keyword fallback because Grok judge was unavailable or disabled.",
+          "hallucination": "Not evaluated by the Grok judge in this category."
+        },
+        "source": "local_fallback"
+      },
+      "ambiguity_judgment": {
+        "ambiguity_score": 1.0,
+        "passed": true,
+        "reasoning": "Used local clarification check fallback because Grok judge was unavailable or disabled.",
+        "source": "local_fallback",
+        "judge_error": "Grok judge request failed with HTTP 403"
+      },
+      "hallucination_judgment": {
+        "hallucination_score": 1.0,
+        "passed": true,
+        "reasoning": "Used local hallucination check fallback because the Grok judge is reserved for response quality and ambiguity only.",
+        "source": "local_fallback"
+      }
+    },
+    {
+      "query": "قولي اي علامة مميزة في الطريق من باب شرق لحد علي ابن ابي طالب عشان اعرف اني قربت من المكان اللي هنزل فيه 31.191377411119817, 29.919049014808774",
+      "tool_calling": false,
+      "correct_args": true,
+      "response_quality": 0.0,
+      "ambiguity_handling": 1.0,
+      "hallucination_free": 1.0,
+      "tokens": 0,
+      "planner_output": [],
+      "tool_results": [],
+      "final_response": "عذرا، في مشكلة في الاتصال حاليا.",
+      "category": "response quality",
+      "response_quality_judgment": {
+        "response_quality_score": 0.0,
+        "passed": false,
+        "reasoning": {
+          "response_quality": "Used local keyword fallback because Grok judge was unavailable or disabled.",
+          "hallucination": "Not evaluated by the Grok judge in this category."
+        },
+        "source": "local_fallback",
+        "judge_error": "Grok judge request failed with HTTP 403"
+      },
+      "ambiguity_judgment": {
+        "ambiguity_score": 1.0,
+        "passed": true,
+        "reasoning": "Used local clarification check fallback because Grok judge was unavailable or disabled.",
+        "source": "local_fallback",
+        "judge_error": "Grok judge request failed with HTTP 403"
+      },
+      "hallucination_judgment": {
+        "hallucination_score": 1.0,
+        "passed": true,
+        "reasoning": "Used local hallucination check fallback because the Grok judge is reserved for response quality and ambiguity only.",
+        "source": "local_fallback"
+      }
+    },
+    {
+      "query": "أي أكثر وسيله ترشيحها لمشواري لو عاوز أروح مستشفي وينجت ف أقصر وقت ممكن إزاي 31.191377411119817, 29.919049014808774",
+      "tool_calling": false,
+      "correct_args": true,
+      "response_quality": 0.0,
+      "ambiguity_handling": 1.0,
+      "hallucination_free": 1.0,
+      "tokens": 0,
+      "planner_output": [],
+      "tool_results": [],
+      "final_response": "عذرا، في مشكلة في الاتصال حاليا.",
+      "category": "response quality",
+      "response_quality_judgment": {
+        "response_quality_score": 0.0,
+        "passed": false,
+        "reasoning": {
+          "response_quality": "Used local keyword fallback because Grok judge was unavailable or disabled.",
+          "hallucination": "Not evaluated by the Grok judge in this category."
+        },
+        "source": "local_fallback",
+        "judge_error": "Grok judge request failed with HTTP 403"
+      },
+      "ambiguity_judgment": {
+        "ambiguity_score": 1.0,
+        "passed": true,
+        "reasoning": "Used local clarification check fallback because Grok judge was unavailable or disabled.",
+        "source": "local_fallback",
+        "judge_error": "Grok judge request failed with HTTP 403"
+      },
+      "hallucination_judgment": {
+        "hallucination_score": 1.0,
+        "passed": true,
+        "reasoning": "Used local hallucination check fallback because the Grok judge is reserved for response quality and ambiguity only.",
+        "source": "local_fallback"
+      }
+    },
+    {
+      "query": "قولي معلومات عن the walk وانا مروحتهوش قبل كده 31.191377411119817, 29.919049014808774",
+      "tool_calling": true,
+      "correct_args": true,
+      "response_quality": 0.0,
+      "ambiguity_handling": 1.0,
+      "hallucination_free": 1.0,
+      "tokens": 0,
+      "planner_output": [],
+      "tool_results": [],
+      "final_response": "عذرا، في مشكلة في الاتصال حاليا.",
+      "category": "response quality",
+      "response_quality_judgment": {
+        "response_quality_score": 0.0,
+        "passed": false,
+        "reasoning": {
+          "response_quality": "Used local keyword fallback because Grok judge was unavailable or disabled.",
+          "hallucination": "Not evaluated by the Grok judge in this category."
+        },
+        "source": "local_fallback",
+        "judge_error": "Grok judge request failed with HTTP 403"
+      },
+      "ambiguity_judgment": {
+        "ambiguity_score": 1.0,
+        "passed": true,
+        "reasoning": "Used local clarification check fallback because Grok judge was unavailable or disabled.",
+        "source": "local_fallback",
+        "judge_error": "Grok judge request failed with HTTP 403"
+      },
+      "hallucination_judgment": {
+        "hallucination_score": 1.0,
+        "passed": true,
+        "reasoning": "Used local hallucination check fallback because the Grok judge is reserved for response quality and ambiguity only.",
+        "source": "local_fallback"
+      }
+    },
+    {
+      "query": " انا راكب مشروع المندرة بحر دلوقتي وعايز اوصل عند بوابة نادي سبورتنج ممكن انزل ف نفق سبورتنج وامشيها؟ ممكن يكون اوفر وقت لو العربية كملت ولفت ؟ 31.191377411119817, 29.919049014808774",
+      "tool_calling": false,
+      "correct_args": true,
+      "response_quality": 0.0,
+      "ambiguity_handling": 1.0,
+      "hallucination_free": 1.0,
+      "tokens": 0,
+      "planner_output": [],
+      "tool_results": [],
+      "final_response": "عذرا، في مشكلة في الاتصال حاليا.",
+      "category": "tool calling",
+      "response_quality_judgment": {
+        "response_quality_score": 0.0,
+        "passed": false,
+        "reasoning": {
+          "response_quality": "Used local keyword fallback because Grok judge was unavailable or disabled.",
+          "hallucination": "Not evaluated by the Grok judge in this category."
+        },
+        "source": "local_fallback"
+      },
+      "ambiguity_judgment": {
+        "ambiguity_score": 1.0,
+        "passed": true,
+        "reasoning": "Used local clarification check fallback because Grok judge was unavailable or disabled.",
+        "source": "local_fallback",
+        "judge_error": "Grok judge request failed with HTTP 403"
+      },
+      "hallucination_judgment": {
+        "hallucination_score": 1.0,
+        "passed": true,
+        "reasoning": "Used local hallucination check fallback because the Grok judge is reserved for response quality and ambiguity only.",
+        "source": "local_fallback"
+      }
+    },
+    {
+      "query": "اروح ازاي  من شارع ابو قير لزيزينيا وانا معايا شنطة تقيلة ومش عايز امشي كتير31.191377411119817, 29.919049014808774",
+      "tool_calling": false,
+      "correct_args": true,
+      "response_quality": 0.0,
+      "ambiguity_handling": 1.0,
+      "hallucination_free": 1.0,
+      "tokens": 0,
+      "planner_output": [],
+      "tool_results": [],
+      "final_response": "عذرا، في مشكلة في الاتصال حاليا.",
+      "category": "correct args",
+      "response_quality_judgment": {
+        "response_quality_score": 0.0,
+        "passed": false,
+        "reasoning": {
+          "response_quality": "Used local keyword fallback because Grok judge was unavailable or disabled.",
+          "hallucination": "Not evaluated by the Grok judge in this category."
+        },
+        "source": "local_fallback"
+      },
+      "ambiguity_judgment": {
+        "ambiguity_score": 1.0,
+        "passed": true,
+        "reasoning": "Used local clarification check fallback because Grok judge was unavailable or disabled.",
+        "source": "local_fallback",
+        "judge_error": "Grok judge request failed with HTTP 403"
+      },
+      "hallucination_judgment": {
+        "hallucination_score": 1.0,
+        "passed": true,
+        "reasoning": "Used local hallucination check fallback because the Grok judge is reserved for response quality and ambiguity only.",
+        "source": "local_fallback"
+      }
+    },
+    {
+      "query": "ازاي اروح من زعربانة للسكة الحديد من غير ما اركب توناية 31.191377411119817, 29.919049014808774",
+      "tool_calling": false,
+      "correct_args": true,
+      "response_quality": 0.0,
+      "ambiguity_handling": 1.0,
+      "hallucination_free": 1.0,
+      "tokens": 0,
+      "planner_output": [],
+      "tool_results": [],
+      "final_response": "عذرا، في مشكلة في الاتصال حاليا.",
+      "category": "correct args",
+      "response_quality_judgment": {
+        "response_quality_score": 0.0,
+        "passed": false,
+        "reasoning": {
+          "response_quality": "Used local keyword fallback because Grok judge was unavailable or disabled.",
+          "hallucination": "Not evaluated by the Grok judge in this category."
+        },
+        "source": "local_fallback"
+      },
+      "ambiguity_judgment": {
+        "ambiguity_score": 1.0,
+        "passed": true,
+        "reasoning": "Used local clarification check fallback because Grok judge was unavailable or disabled.",
+        "source": "local_fallback",
+        "judge_error": "Grok judge request failed with HTTP 403"
+      },
+      "hallucination_judgment": {
+        "hallucination_score": 1.0,
+        "passed": true,
+        "reasoning": "Used local hallucination check fallback because the Grok judge is reserved for response quality and ambiguity only.",
+        "source": "local_fallback"
+      }
+    },
+    {
+      "query": "ازاي اروح سموحة واعدي من شارع ابو قير بس من غير ما ادخل من مصطفي كامل 31.191377411119817, 29.919049014808774",
+      "tool_calling": false,
+      "correct_args": true,
+      "response_quality": 0.0,
+      "ambiguity_handling": 1.0,
+      "hallucination_free": 1.0,
+      "tokens": 0,
+      "planner_output": [],
+      "tool_results": [],
+      "final_response": "عذرا، في مشكلة في الاتصال حاليا.",
+      "category": "correct args",
+      "response_quality_judgment": {
+        "response_quality_score": 0.0,
+        "passed": false,
+        "reasoning": {
+          "response_quality": "Used local keyword fallback because Grok judge was unavailable or disabled.",
+          "hallucination": "Not evaluated by the Grok judge in this category."
+        },
+        "source": "local_fallback"
+      },
+      "ambiguity_judgment": {
+        "ambiguity_score": 1.0,
+        "passed": true,
+        "reasoning": "Used local clarification check fallback because Grok judge was unavailable or disabled.",
+        "source": "local_fallback",
+        "judge_error": "Grok judge request failed with HTTP 403"
+      },
+      "hallucination_judgment": {
+        "hallucination_score": 1.0,
+        "passed": true,
+        "reasoning": "Used local hallucination check fallback because the Grok judge is reserved for response quality and ambiguity only.",
+        "source": "local_fallback"
+      }
+    }
+  ]
+}

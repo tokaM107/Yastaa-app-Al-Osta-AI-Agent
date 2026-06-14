@@ -1,0 +1,921 @@
+[
+    {
+        "input": "ازاي اروح فتح الله ستانلي فأسرع وقت وبأقل تكاليف 31.191377411119817, 29.919049014808774",
+        "category": "correct args",
+        "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tools": [
+                {
+                    "name": "geocode_location",
+                    "save_as": "end",
+                    "args": {
+                        "place_name": "فتح الله ستانلي"
+                    }
+                },
+                {
+                    "name": "get_routes",
+                    "args": {
+                        "start_lat": "$current_location.lat",
+                        "start_lon": "$current_location.lon",
+                        "end_lat": "$end.lat",
+                        "end_lon": "$end.lon",
+                        "max_transfers": 2,
+                        "walking_cutoff": 2500,
+                        "priority": "balanced",
+                        "top_k": 5
+                    }
+                }
+            ],
+            "should_ask_clarification": false
+        }
+    },
+    {
+        "input": "لو عايز اروح قسم سيدي جابر ايه المواصلات المتاحة ليا اركبها وتكون مواصلة واحدة بس 31.191377411119817, 29.919049014808774",
+        "category": "correct args",
+        "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tools": [
+                {
+                    "name": "geocode_location",
+                    "args": {
+                        "place_name": "قسم سيدي جابر"
+                    }
+                },
+                {
+                    "name": "get_routes",
+                    "args": {
+                        "start_lat": "$current_location.lat",
+                        "start_lon": "$current_location.lon",
+                        "end_lat": "$end.lat",
+                        "end_lon": "$end.lon",
+                        "max_transfers": 1,
+                        "walking_cutoff": 2500,
+                        "priority": "balanced",
+                        "top_k": 5
+                    }
+                }
+            ],
+            "should_ask_clarification": false
+        }
+    },
+    {
+        "input": "انا رايح من محطة مصر لزيزينيا قلي ارخص طريقة 31.191377411119817, 29.919049014808774",
+        "category": "correct args",
+        "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tools": [
+                {
+                    "name": "geocode_location",
+                    "save_as": "start",
+                    "args": {
+                        "place_name": "محطة مصر"
+                    }
+                },
+                {
+                    "name": "geocode_location",
+                    "save_as": "end",
+                    "args": {
+                        "place_name": "زيزينيا"
+                    }
+                },
+                {
+                    "name": "get_routes",
+                    "args": {
+                        "start_lat": "$start.lat",
+                        "start_lon": "$start.lon",
+                        "end_lat": "$end.lat",
+                        "end_lon": "$end.lon",
+                        "max_transfers": 2,
+                        "walking_cutoff": 1500,
+                        "priority": "cost",
+                        "top_k": 5
+                    }
+                }
+            ],
+            "should_ask_clarification": false
+        }
+    },
+    {
+        "input": "لو عايز اروح من مكان لآخر ايه افضل طريقة 31.191377411119817, 29.919049014808774",
+        "category": "ambiguity handling",
+        "expected_behavior": {
+            "should_call_tool": false,
+            "expected_tools": [],
+            "should_ask_clarification": true
+        }
+    },
+    {
+        "input": "ازاى اقدر اوصل لسيتي سنتر وانا مروحتوش قبل كده وايه احسن طريق اقدر ارجع بيه 31.191377411119817, 29.919049014808774",
+        "category": "tool calling",
+        "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tools": [
+                {
+                    "name": "geocode_location",
+                    "save_as": "end",
+                    "args": {
+                        "place_name": "سيتي سنتر"
+                    }
+                },
+                {
+                    "name": "get_routes",
+                    "args": {
+                        "start_lat": "$current_location.lat",
+                        "start_lon": "$current_location.lon",
+                        "end_lat": "$end.lat",
+                        "end_lon": "$end.lon",
+                        "max_transfers": 2,
+                        "walking_cutoff": 2500,
+                        "priority": "balanced",
+                        "top_k": 5
+                    }
+                },
+                {
+                    "name": "get_routes",
+                    "args": {
+                        "start_lat": "$end.lat",
+                        "start_lon": "$end.lon",
+                        "end_lat": "$current_location.lat",
+                        "end_lon": "$current_location.lon",
+                        "max_transfers": 2,
+                        "walking_cutoff": 2500,
+                        "priority": "balanced",
+                        "top_k": 5
+                    }
+                }
+            ],
+            "should_ask_clarification": false
+        }
+    },
+    {
+        "input": "اسرع طريقه اقدر اروح بيها كلية حاسبات 31.191377411119817, 29.919049014808774",
+        "category": "ambiguity handling",
+        "expected_behavior": {
+            "should_call_tool": false,
+            "expected_tools": [],
+            "should_ask_clarification": true
+        }
+    },
+    {
+        "input": "لو انا رايح مناسبة وعايز اجيب حلويات من شهد الملكة ايه احسن طريقة اقدر اروح بيها وانا ساكن في محرم بك والمناسبة هتبقي في الحضرة 31.191377411119817, 29.919049014808774",
+        "category": "tool calling",
+        "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tools": [
+                {
+                    "name": "geocode_location",
+                    "save_as": "start",
+                    "args": {
+                        "place_name": "محرم بك"
+                    }
+                },
+                {
+                    "name": "geocode_location",
+                    "save_as": "sweets_stop",
+                    "args": {
+                        "place_name": "شهد الملكة"
+                    }
+                },
+                {
+                    "name": "geocode_location",
+                    "save_as": "end",
+                    "args": {
+                        "place_name": "الحضرة"
+                    }
+                },
+                {
+                    "name": "get_routes",
+                    "args": {
+                        "start_lat": "$start.lat",
+                        "start_lon": "$start.lon",
+                        "end_lat": "$sweets_stop.lat",
+                        "end_lon": "$sweets_stop.lon",
+                        "max_transfers": 2,
+                        "walking_cutoff": 2500,
+                        "priority": "balanced",
+                        "top_k": 5
+                    }
+                },
+                {
+                    "name": "get_routes",
+                    "args": {
+                        "start_lat": "$sweets_stop.lat",
+                        "start_lon": "$sweets_stop.lon",
+                        "end_lat": "$end.lat",
+                        "end_lon": "$end.lon",
+                        "max_transfers": 2,
+                        "walking_cutoff": 2500,
+                        "priority": "balanced",
+                        "top_k": 5
+                    }
+                }
+            ],
+            "should_ask_clarification": false
+        }
+    },
+    {
+        "input": " ايه احسن طريقة اعرف اوصل بيها من عند هندسة لحد المندرة وادفع قليل 31.191377411119817, 29.919049014808774",
+        "category": "correct args",
+        "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tools": [
+                {
+                    "name": "geocode_location",
+                    "save_as": "start",
+                    "args": {
+                        "place_name": "هندسة"
+                    }
+                },
+                {
+                    "name": "geocode_location",
+                    "save_as": "end",
+                    "args": {
+                        "place_name": "المندرة"
+                    }
+                },
+                {
+                    "name": "get_routes",
+                    "args": {
+                        "start_lat": "$start.lat",
+                        "start_lon": "$start.lon",
+                        "end_lat": "$end.lat",
+                        "end_lon": "$end.lon",
+                        "max_transfers": 2,
+                        "walking_cutoff": 1500,
+                        "priority": "cost",
+                        "top_k": 5
+                    }
+                }
+            ],
+            "should_ask_clarification": false
+        }
+    },
+    {
+        "input": "ايه هي أحسن طرق فاضية دلوقتي و المواصلات فيها شغالة مش واقفة 31.191377411119817, 29.919049014808774",
+        "category": "ambiguity handling",
+        "expected_behavior": {
+            "should_call_tool": false,
+            "expected_tools": [],
+            "should_ask_clarification": true
+        }
+    },
+    {
+        "input": "ايه المواصلات المتاحة من محطة مصر 31.191377411119817, 29.919049014808774",
+        "category": "tool calling",
+        "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tools": [
+                {
+                    "name": "geocode_location",
+                    "save_as": "start",
+                    "args": {
+                        "place_name": "محطة مصر"
+                    }
+                },
+                {
+                    "name": "db_tools",
+                    "args": {
+                        "lat": "$start.lat",
+                        "lon": "$start.lon",
+                        "radius_m": 1000
+                    }
+                }
+            ],
+            "should_ask_clarification": false
+        }
+    },
+    {
+        "input": "ايه نوعية الحوادث البتحصل علي طريق البحر 31.191377411119817, 29.919049014808774",
+        "category": "ambiguity handling",
+        "expected_behavior": {
+            "should_call_tool": false,
+            "expected_tools": [],
+            "should_ask_clarification": true
+        }
+    },
+    {
+        "input": "قارن بين المحمودية وابو قير من حيث الوقت و السعر عشان الفلوس اللي معايا يادوب لو هروح من مصطفي كامل لفيكتوريا 31.191377411119817, 29.919049014808774",
+        "category": "response quality",
+        "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tools": [
+                {
+                    "name": "geocode_location",
+                    "save_as": "start",
+                    "args": {
+                        "place_name": "مصطفي كامل"
+                    }
+                },
+                {
+                    "name": "geocode_location",
+                    "save_as": "end",
+                    "args": {
+                        "place_name": "فيكتوريا"
+                    }
+                },
+                {
+                    "name": "get_routes",
+                    "args": {
+                        "start_lat": "$start.lat",
+                        "start_lon": "$start.lon",
+                        "end_lat": "$end.lat",
+                        "end_lon": "$end.lon",
+                        "max_transfers": 2,
+                        "walking_cutoff": 1500,
+                        "priority": "cost",
+                        "top_k": 5,
+                        "filters": {
+                            "main_streets": {
+                                "include": [
+                                    "Mahmoudia"
+                                ],
+                                "include_match": "any"
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "get_routes",
+                    "args": {
+                        "start_lat": "$start.lat",
+                        "start_lon": "$start.lon",
+                        "end_lat": "$end.lat",
+                        "end_lon": "$end.lon",
+                        "max_transfers": 2,
+                        "walking_cutoff": 1500,
+                        "priority": "cost",
+                        "top_k": 5,
+                        "filters": {
+                            "main_streets": {
+                                "include": [
+                                    "Abou Qir"
+                                ],
+                                "include_match": "any"
+                            }
+                        }
+                    }
+                }
+            ],
+            "should_ask_clarification": false
+        }
+    },
+    {
+        "input": "هل في مشاريع محموديه دلوقتي في موقف شارع 3031.191377411119817, 29.919049014808774",
+        "category": "correct args",
+        "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tools": [
+                {
+                    "name": "geocode_location",
+                    "save_as": "location",
+                    "args": {
+                        "place_name": "موقف شارع 30"
+                    }
+                },
+                {
+                    "name": "db_tools",
+                    "args": {
+                        "lat": "$location.lat",
+                        "lon": "$location.lon",
+                        "radius_m": 1000,
+                        "starts": true
+                    }
+                }
+            ],
+            "should_ask_clarification": false
+        }
+    },
+    {
+        "input": "ايه المواصلات المتاحة من العوايد للديب مول31.191377411119817, 29.919049014808774",
+        "category": "tool calling",
+        "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tools": [
+                {
+                    "name": "geocode_location",
+                    "save_as": "start",
+                    "args": {
+                        "place_name": "العوايد"
+                    }
+                },
+                {
+                    "name": "geocode_location",
+                    "save_as": "end",
+                    "args": {
+                        "place_name": "الديب مول"
+                    }
+                },
+                {
+                    "name": "get_routes",
+                    "args": {
+                        "start_lat": "$start.lat",
+                        "start_lon": "$start.lon",
+                        "end_lat": "$end.lat",
+                        "end_lon": "$end.lon",
+                        "max_transfers": 2,
+                        "walking_cutoff": 2500,
+                        "priority": "balanced",
+                        "top_k": 5
+                    }
+                }
+            ],
+            "should_ask_clarification": false
+        }
+    },
+    {
+        "input": "اروح ميدان الساعة ازاي في مواصله لهناك اصلا من مكاني ولا محتاج كذا مواصله31.191377411119817, 29.919049014808774",
+        "category": "response quality",
+        "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tools": [
+                {
+                    "name": "geocode_location",
+                    "save_as": "end",
+                    "args": {
+                        "place_name": "ميدان الساعة"
+                    }
+                },
+                {
+                    "name": "get_routes",
+                    "args": {
+                        "start_lat": "$current_location.lat",
+                        "start_lon": "$current_location.lon",
+                        "end_lat": "$end.lat",
+                        "end_lon": "$end.lon",
+                        "max_transfers": 2,
+                        "walking_cutoff": 2500,
+                        "priority": "balanced",
+                        "top_k": 5
+                    }
+                }
+            ],
+            "should_ask_clarification": false
+        }
+    },
+    {
+        "input": "انهاردة هروح انطونيادس هل فى مواصلات متوفرة ولا لا انهارده علشان احدد انزل بدرى ولا انزل فى معادي عادى31.191377411119817, 29.919049014808774",
+        "category": "response quality",
+        "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tools": [
+                {
+                    "name": "geocode_location",
+                    "save_as": "end",
+                    "args": {
+                        "place_name": "انطونيادس"
+                    }
+                },
+                {
+                    "name": "get_routes",
+                    "args": {
+                        "start_lat": "$current_location.lat",
+                        "start_lon": "$current_location.lon",
+                        "end_lat": "$end.lat",
+                        "end_lon": "$end.lon",
+                        "max_transfers": 2,
+                        "walking_cutoff": 2500,
+                        "priority": "time",
+                        "top_k": 5
+                    }
+                }
+            ],
+            "should_ask_clarification": false
+        }
+    },
+    {
+        "input": " اوصل ازاي لبنزينة رشدي من غير م انزل و اطلع كتير 31.191377411119817, 29.919049014808774",
+        "category": "correct args",
+        "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tools": [
+                {
+                    "name": "geocode_location",
+                    "args": {
+                        "place_name": "بنزينة رشدي"
+                    }
+                },
+                {
+                    "name": "get_routes",
+                    "args": {
+                        "start_lat": "$current_location.lat",
+                        "start_lon": "$current_location.lon",
+                        "end_lat": "$end.lat",
+                        "end_lon": "$end.lon",
+                        "max_transfers": 1,
+                        "walking_cutoff": 2500,
+                        "priority": "balanced",
+                        "top_k": 5
+                    }
+                }
+            ],
+            "should_ask_clarification": false
+        }
+    },
+    {
+        "input": "هل فيه مواصلات حاليا ف سيدي جابر  31.191377411119817, 29.919049014808774",
+        "category": "tool calling",
+        "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tools": [
+                {
+                    "name": "geocode_location",
+                    "save_as": "location",
+                    "args": {
+                        "place_name": "سيدي جابر"
+                    }
+                },
+                {
+                    "name": "db_tools",
+                    "args": {
+                        "lat": "$location.lat",
+                        "lon": "$location.lon",
+                        "radius_m": 1000,
+                        "starts": true
+                    }
+                }
+            ],
+            "should_ask_clarification": false
+        }
+    },
+    {
+        "input": "ايه هو متوسط سعر المواصلات ال هركبها لو هروح لحد جامع يحيي31.191377411119817, 29.919049014808774",
+        "category": "response quality",
+        "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tools": [
+                {
+                    "name": "geocode_location",
+                    "args": {
+                        "place_name": "جامع يحيي"
+                    }
+                },
+                {
+                    "name": "get_routes",
+                    "args": {
+                        "start_lat": "$current_location.lat",
+                        "start_lon": "$current_location.lon",
+                        "end_lat": "$end.lat",
+                        "end_lon": "$end.lon",
+                        "max_transfers": 2,
+                        "walking_cutoff": 2500,
+                        "priority": "cost",
+                        "top_k": 5
+                    }
+                }
+            ],
+            "should_ask_clarification": false
+        }
+    },
+    {
+        "input": " هل في مواصلات في محطة مصر بدل ما اطلب اوبر？ 31.191377411119817, 29.919049014808774",
+        "category": "tool calling",
+        "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tools": [
+                {
+                    "name": "geocode_location",
+                    "save_as": "location",
+                    "args": {
+                        "place_name": "محطة مصر"
+                    }
+                },
+                {
+                    "name": "db_tools",
+                    "args": {
+                        "lat": "$location.lat",
+                        "lon": "$location.lon",
+                        "radius_m": 1000,
+                        "starts": true
+                    }
+                }
+            ],
+            "should_ask_clarification": false
+        }
+    },
+    {
+        "input": " السكه زحمه ولا لا لو همشي من شارع ابو قير وهل فيه مواصلات ولا لا لو هروح محطة مصر 31.191377411119817, 29.919049014808774",
+        "category": "tool calling",
+        "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tools": [
+                {
+                    "name": "geocode_location",
+                    "save_as": "location",
+                    "args": {
+                        "place_name": "محطة مصر"
+                    }
+                },
+                {
+                    "name": "db_tools",
+                    "args": {
+                        "lat": "$location.lat",
+                        "lon": "$location.lon",
+                        "radius_m": 1000,
+                        "starts": true
+                    }
+                },
+                {
+                    "name": "check_traffic",
+                    "args": {
+                        "street_name": "Abou Qir"
+                    }
+                }
+            ],
+            "should_ask_clarification": false
+        }
+    },
+    {
+        "input": "انا دلوقتي في باب شرق وهركب مشروع ابو سلمان وهنزل عند علي ابن ابي طالب ، المشروع هيعدي علي كوبري الابراهيمية؟ 31.191377411119817, 29.919049014808774",
+        "category": "response quality",
+        "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tools": [
+                {
+                    "name": "geocode_location",
+                    "save_as": "start",
+                    "args": {
+                        "place_name": "باب شرق"
+                    }
+                },
+                {
+                    "name": "geocode_location",
+                    "save_as": "end",
+                    "args": {
+                        "place_name": "علي ابن ابي طالب"
+                    }
+                },
+                {
+                    "name": "get_routes",
+                    "args": {
+                        "start_lat": "$start.lat",
+                        "start_lon": "$start.lon",
+                        "end_lat": "$end.lat",
+                        "end_lon": "$end.lon",
+                        "max_transfers": 2,
+                        "walking_cutoff": 2500,
+                        "priority": "balanced",
+                        "top_k": 5,
+                        "filters": {
+                            "modes": {
+                                "include": [
+                                    "P_O_14"
+                                ],
+                                "include_match": "any"
+                            }
+                        }
+                    }
+                }
+            ],
+            "should_ask_clarification": false
+        }
+    },
+    {
+        "input": "ايه اكتر طريق فاضي ممكن أركب منه يعني أبو قير ولا بحر الزحمة فين لو كده ممكن امشي الحتة ديه واركب من بعدها 31.191377411119817, 29.919049014808774",
+        "category": "tool calling",
+        "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tools": [
+                {
+                    "name": "check_traffic",
+                    "args": {
+                        "street_name": "Abou Qir"
+                    }
+                },
+                {
+                    "name": "check_traffic",
+                    "args": {
+                        "street_name": "Coastal"
+                    }
+                }
+            ],
+            "should_ask_clarification": false
+        }
+    },
+    {
+        "input": "قولي اي علامة مميزة في الطريق من باب شرق لحد علي ابن ابي طالب عشان اعرف اني قربت من المكان اللي هنزل فيه 31.191377411119817, 29.919049014808774",
+        "category": "response quality",
+        "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tools": [
+                {
+                    "name": "geocode_location",
+                    "save_as": "start",
+                    "args": {
+                        "place_name": "باب شرق"
+                    }
+                },
+                {
+                    "name": "geocode_location",
+                    "save_as": "end",
+                    "args": {
+                        "place_name": "علي ابن ابي طالب"
+                    }
+                },
+                {
+                    "name": "get_routes",
+                    "args": {
+                        "start_lat": "$start.lat",
+                        "start_lon": "$start.lon",
+                        "end_lat": "$end.lat",
+                        "end_lon": "$end.lon",
+                        "max_transfers": 2,
+                        "walking_cutoff": 2500,
+                        "priority": "balanced",
+                        "top_k": 5
+                    }
+                }
+            ],
+            "should_ask_clarification": false
+        }
+    },
+    {
+        "input": "أي أكثر وسيله ترشيحها لمشواري لو عاوز أروح مستشفي وينجت ف أقصر وقت ممكن إزاي 31.191377411119817, 29.919049014808774",
+        "category": "response quality",
+        "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tools": [
+                {
+                    "name": "geocode_location",
+                    "args": {
+                        "place_name": "مستشفى وينجت"
+                    }
+                },
+                {
+                    "name": "get_routes",
+                    "args": {
+                        "start_lat": "$current_location.lat",
+                        "start_lon": "$current_location.lon",
+                        "end_lat": "$end.lat",
+                        "end_lon": "$end.lon",
+                        "max_transfers": 2,
+                        "walking_cutoff": 2500,
+                        "priority": "time",
+                        "top_k": 5
+                    }
+                }
+            ],
+            "should_ask_clarification": false
+        }
+    },
+    {
+        "input": "قولي معلومات عن the walk وانا مروحتهوش قبل كده 31.191377411119817, 29.919049014808774",
+        "category": "response quality",
+        "expected_behavior": {
+            "should_call_tool": false,
+            "expected_tools": [],
+            "should_ask_clarification": false
+        }
+    },
+    {
+        "input": " انا راكب مشروع المندرة بحر دلوقتي وعايز اوصل عند بوابة نادي سبورتنج ممكن انزل ف نفق سبورتنج وامشيها؟ ممكن يكون اوفر وقت لو العربية كملت ولفت ؟ 31.191377411119817, 29.919049014808774",
+        "category": "tool calling",
+        "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tools": [
+                {
+                    "name": "geocode_location",
+                    "save_as": "end",
+                    "args": {
+                        "place_name": "بوابة نادي سبورتنج"
+                    }
+                },
+                {
+                    "name": "get_routes",
+                    "args": {
+                        "start_lat": "$start.lat",
+                        "start_lon": "$start.lon",
+                        "end_lat": "$end.lat",
+                        "end_lon": "$end.lon",
+                        "max_transfers": 2,
+                        "walking_cutoff": 2500,
+                        "priority": "time",
+                        "top_k": 5,
+                        "filters": {
+                            "modes": {
+                                "include": [
+                                    "P_O_14"
+                                ],
+                                "include_match": "any"
+                            }
+                        }
+                    }
+                }
+            ],
+            "should_ask_clarification": false
+        }
+    },
+    {
+        "input": "اروح ازاي  من شارع ابو قير لزيزينيا وانا معايا شنطة تقيلة ومش عايز امشي كتير31.191377411119817, 29.919049014808774",
+        "category": "correct args",
+        "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tools": [
+                {
+                    "name": "geocode_location",
+                    "save_as": "end",
+                    "args": {
+                        "place_name": "زيزينيا"
+                    }
+                },
+                {
+                    "name": "get_routes",
+                    "args": {
+                        "start_lat": "$start.lat",
+                        "start_lon": "$start.lon",
+                        "end_lat": "$end.lat",
+                        "end_lon": "$end.lon",
+                        "max_transfers": 2,
+                        "walking_cutoff": 1000,
+                        "priority": "balanced",
+                        "top_k": 5
+                    }
+                }
+            ],
+            "should_ask_clarification": false
+        }
+    },
+    {
+        "input": "ازاي اروح من زعربانة للسكة الحديد من غير ما اركب توناية 31.191377411119817, 29.919049014808774",
+        "category": "correct args",
+        "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tools": [
+                {
+                    "name": "geocode_location",
+                    "save_as": "end",
+                    "args": {
+                        "place_name": "السكة الحديد"
+                    }
+                },
+                {
+                    "name": "geocode_location",
+                    "save_as": "start",
+                    "args": {
+                        "place_name": "زعربانة"
+                    }
+                },
+                {
+                    "name": "get_routes",
+                    "args": {
+                        "start_lat": "$start.lat",
+                        "start_lon": "$start.lon",
+                        "end_lat": "$end.lat",
+                        "end_lon": "$end.lon",
+                        "max_transfers": 2,
+                        "walking_cutoff": 1500,
+                        "priority": "balanced",
+                        "top_k": 5,
+                        "filters": {
+                            "modes": {
+                                "exclude": [
+                                    "P_B_8"
+                                ]
+                            }
+                        }
+                    }
+                }
+            ],
+            "should_ask_clarification": false
+        }
+    },
+    {
+        "input": "ازاي اروح سموحة واعدي من شارع ابو قير بس من غير ما ادخل من مصطفي كامل 31.191377411119817, 29.919049014808774",
+        "category": "correct args",
+        "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tools": [
+                {
+                    "name": "geocode_location",
+                    "save_as": "end",
+                    "args": {
+                        "place_name": "سموحة"
+                    }
+                },
+                {
+                    "name": "get_routes",
+                    "args": {
+                        "start_lat": "$start.lat",
+                        "start_lon": "$start.lon",
+                        "end_lat": "$end.lat",
+                        "end_lon": "$end.lon",
+                        "max_transfers": 2,
+                        "walking_cutoff": 1500,
+                        "priority": "balanced",
+                        "top_k": 5,
+                        "filters": {
+                            "main_streets": {
+                                "include": [
+                                    "Abou Qir"
+                                ],
+                                "exclude": [
+                                    "Mostafa Kamel"
+                                ]
+                            }
+                        }
+                    }
+                }
+            ],
+            "should_ask_clarification": false
+        }
+    }
+]
