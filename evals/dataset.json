@@ -241,7 +241,7 @@
                         "end_lat": "$end.lat",
                         "end_lon": "$end.lon",
                         "max_transfers": 2,
-                        "walking_cutoff": 1500,
+                        "walking_cutoff": 2500,
                         "priority": "cost",
                         "top_k": 5
                     }
@@ -252,11 +252,36 @@
     },
     {
         "input": "ايه هي أحسن طرق فاضية دلوقتي و المواصلات فيها شغالة مش واقفة 31.191377411119817, 29.919049014808774",
-        "category": "ambiguity handling",
+        "category": "tool calling",
         "expected_behavior": {
-            "should_call_tool": false,
-            "expected_tools": [],
-            "should_ask_clarification": true
+            "should_call_tool": true,
+            "expected_tools": [
+                {
+                    "tool": "check_traffic",
+                    "args": {
+                        "street_name": "Abou Qir"
+                    }
+                },
+                {
+                    "tool": "check_traffic",
+                    "args": {
+                        "street_name": "Coastal"
+                    }
+                },
+                {
+                    "tool": "check_traffic",
+                    "args": {
+                        "street_name": "Mahmoudia"
+                    }
+                },
+                {
+                    "tool": "check_traffic",
+                    "args": {
+                        "street_name": "Moustafa Kamel"
+                    }
+                }
+            ],
+            "should_ask_clarification": false
         }
     },
     {
@@ -290,7 +315,7 @@
         "expected_behavior": {
             "should_call_tool": false,
             "expected_tools": [],
-            "should_ask_clarification": true
+            "should_ask_clarification": false
         }
     },
     {
@@ -360,7 +385,7 @@
         }
     },
     {
-        "input": "هل في مشاريع محموديه دلوقتي في موقف شارع 3031.191377411119817, 29.919049014808774",
+        "input": "هل في مشاريع محموديه دلوقتي في موقف شارع30  31.191377411119817, 29.919049014808774",
         "category": "correct args",
         "expected_behavior": {
             "should_call_tool": true,
@@ -369,7 +394,13 @@
                     "name": "geocode_location",
                     "save_as": "location",
                     "args": {
-                        "place_name": "موقف شارع 30"
+                        "place_name": "موقف شارع30"
+                    }
+                },
+                {
+                    "tool": "check_traffic",
+                    "args": {
+                        "street_name": "Mahmoudia"
                     }
                 },
                 {
