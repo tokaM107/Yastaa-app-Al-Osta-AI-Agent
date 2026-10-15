@@ -1,140 +1,148 @@
-# Al-Osta AI Agent
+# Al-Osta: Alexandria Multimodal Routing Agent
 
-Personalized trip planning in multi-modal transport networks for Alexandria.
+Al-Osta is a conversational assistant for planning public transport trips in Alexandria, Egypt. It turns Egyptian Arabic requests into geocoding, routing, nearby transit, and traffic queries, then explains the results in natural language. The agent is part of the **Yastaaa** trip planning project; this repository also contains the routing and supporting API services.
 
-![alt text](image-2.png)
-## Project Overview
+![Yastaaa application preview](image-2.png)
 
-`Yastaaa` is a mobile application that helps people in Alexandria discover public transportation routes and plan trips. The application relies on an intelligent routing system and the Al-Osta AI Agent to provide a conversational, user-friendly experience.
+## What the system does
 
-Instead of exposing users to complex routing logic or raw transit data, the system lets them ask questions naturally while the backend uses deterministic tools and routing logic to produce accurate results.
+- Finds multimodal journeys between named places or coordinates, with options for time, fare, walking distance, transfers, transport modes, and streets.
+- Looks up nearby transit services and checks traffic for supported streets.
+- Carries recent conversation, tool activity, and trip details across turns so users can refine a request.
+- Returns route summaries with estimated time, fare, walking distance, transfers, and modes when the routing service provides them.
 
-My contribution was designing and implementing the Al-Osta AI Agent, including the memory system that supports multi-step travel assistance.
+The repository includes a command line agent (`main.py`), a local chat interface (`ui_app.py`), and separate REST and gRPC services. The chat interface is a development UI; the Yastaaa mobile application itself is not included here.
 
-## Agent Architecture
+## Architecture
 
-The agent follows a three-stage Reasoner-Executor-Synthesizer architecture:
+The agent uses a **Reasoner → Executor → Synthesizer** flow:
 
-- Reasoner: interprets the user request and breaks it into actionable steps.
-- Executor: calls the required tools and services deterministically.
-- Synthesizer: turns the tool outputs into a clear final response.
+1. **Reasoner:** `gemini-2.5-flash` interprets the request and produces a structured tool plan.
+2. **Executor:** Python validates and resolves plan arguments, calls the relevant services, and records their outputs. This stage does not call an LLM.
+3. **Synthesizer:** `gemini-2.5-flash-lite` uses the request, tool outputs, and conversation context to write the response.
 
-This structure keeps the agent reliable, reduces unnecessary token usage, and makes the workflow easier to control.
+![Al-Osta agent architecture](image.png)
 
-![Al-Osta AI Agent architecture](image.png)
+| Agent tool | Purpose | Backing service |
+| --- | --- | --- |
+| `geocode_location` | Resolve an Alexandria place name to coordinates | Geocoding API, port `8003` |
+| `get_routes` | Find and rank journeys between coordinates | Routing API, port `8000` |
+| `db_tools` | Find transit trips near a coordinate | DB Tools API, port `8002` |
+| `check_traffic` | Check traffic for a supported street | Traffic Updater API, port `8001` |
 
-### Reasoner
+The routing service loads the bundled GTFS and OpenStreetMap data, builds a transit and walking network, estimates journey cost and time, filters candidates, and ranks the returned routes. Its local network caches are in `data/utils/`. The DB Tools service requires a separate PostgreSQL database; the repository does not provision it.
 
-The Reasoner understands the user request and converts it into a sequence of steps. It decides which tools are needed, in what order they should run, and what information must be collected before answering.
+### Conversation memory
 
-### Executor
+The agent keeps three bounded forms of state:
 
-The Executor runs the plan produced by the Reasoner. It interacts with external tools, databases, and services to gather the required data and perform the needed computations. The Executor uses no LLM tokens during execution; it only passes tool results and the user query to the Synthesizer.
+- **ConversationBuffer:** recent user and assistant turns, for follow-up references.
+- **ToolLog:** recent tool calls and compact results, to help avoid repeated lookups.
+- **TripState:** structured origin, destination, preferences, recent locations, and route context.
 
-### Core Tools
+Before planning a turn, the Reasoner receives relevant memory. After tool execution, the state is updated and supplied to the Synthesizer. See `memory/` for the implementations.
 
-- `check_traffic`: checks the current traffic status for a street group in Alexandria.
-- `db_tools`: finds nearby transit trips around a coordinate using the DB Tools API.
-- `geocode_location`: converts a place name in Alexandria into a single latitude/longitude pair.
-- `get_routes`: finds multimodal transportation routes between two points using coordinates and routing preferences.
+![Agent memory flow](image-1.png)
 
-### Synthesizer
+## Getting started
 
-The Synthesizer turns the Executor results into a concise, user-friendly final response. It combines retrieved information with conversation context so the answer directly addresses the user’s request.
+### Prerequisites
 
+- Python 3.10 or newer.
+- A Gemini API key for the agent.
+- Network access for Gemini and the geocoding and traffic integrations.
+- A PostgreSQL database with the expected transit data and `SUPABASE_*` connection settings if using nearby transit queries.
 
-## Memory Architecture
+From the repository root, install the declared dependencies plus the two packages imported by the agent tools but currently absent from `requirements.txt`:
 
-The memory system is designed to support multi-step travel assistance while keeping the agent efficient, context-aware, and easy to control. Instead of using one general-purpose memory store, the agent separates memory into three specialized layers:
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements.txt
+python -m pip install google-genai requests
+```
 
-- Conversation memory
-- Tool memory
-- Trip-state memory
+Create a local `.env` file (it is ignored by Git) with the credentials you need:
 
-This modular design helps the agent preserve the most relevant information across turns without overwhelming the language model with unnecessary history.
+```dotenv
+GEMINI_API_KEY=your_key_here
+# Required only for the DB Tools service:
+SUPABASE_HOST=your_postgres_host
+SUPABASE_PORT=6543
+SUPABASE_DB_NAME=postgres
+SUPABASE_DB_USER=your_user
+SUPABASE_DB_PASSWORD=your_password
+DB_TOOLS_BASE_URL=http://localhost:8002
+```
 
-### Main Design
+Start each required service in a separate terminal from the repository root:
 
-The memory layer is intentionally lightweight:
+```bash
+python -m uvicorn routing_api.main:app --port 8000
+python -m uvicorn traffic_updater.main:app --port 8001
+python -m uvicorn db_tools.main:app --port 8002
+python -m uvicorn geocoding_api.main:app --port 8003
+```
 
-- ConversationBuffer stores recent dialogue turns between the user and the assistant.
-- ToolLog stores which tools were called, which parameters were used, and what they returned.
-- TripState stores structured trip data such as origin, destination, mode preference, last route snapshot, and recently seen locations.
+The agent calls the routing, traffic, and geocoding services directly on `localhost`. Set `DB_TOOLS_BASE_URL=http://localhost:8002` because the DB Tools client otherwise defaults to port `8086`. The routing service may take time to load its network data at startup. Start DB Tools only when its database has been configured; queries that depend on it will otherwise fail.
 
-### ConversationBuffer
+Run the command line assistant or the development chat UI:
 
-ConversationBuffer stores recent dialogue between the user and the assistant. Its purpose is to preserve short-term context so the agent can understand references such as "that place", "the previous route", or "change the destination". It keeps only the most recent turns to avoid prompt growth and reduce token usage.
+```bash
+python main.py
+# or, in another terminal:
+python -m uvicorn ui_app:app --port 8080
+```
 
-### ToolLog
+Open `http://localhost:8080` for the UI. For example, ask: `ازاي اروح من محطة مصر لستانلي بأقل تكلفة؟`
 
-ToolLog records the tools called by the Executor, together with their parameters and outputs. This is useful because the agent’s behavior depends not only on the user’s latest message, but also on what actions have already been taken. If geocoding or routing has already been performed, the agent can reuse that information instead of repeating the same operation.
+## Benchmark methodology
 
-The system summarizes tool results before storing them, which keeps the log compact while preserving the essential facts needed for later reasoning.
+The committed benchmark consists of [30 Egyptian Arabic prompts](evals/dataset.json) and one saved [evaluation run](evals/eval_results.json). Each prompt belongs to **one** category, and each category score is the mean of its cases.
 
-### TripState
+| Category | Cases | How it is scored |
+| --- | ---: | --- |
+| Tool calling | 10 | Deterministic, count aware F1 over expected and planned tool names; call order is ignored. |
+| Correct arguments | 9 | Fraction of expected **static** argument values matched in the plan, averaged over cases. Dynamic references such as `$destination.lat` are skipped. |
+| Response quality | 8 | Scores of 0, 0.5, or 1 for how fully the final answer addresses the request. |
+| Ambiguity handling | 3 | Local heuristic checks whether clarification was requested without tool calls when the prompt requires it. |
 
-TripState holds normalized travel information such as origin, destination, mode preference, recent locations, the last route snapshot, and inferred intent. Unlike the ConversationBuffer, it stores semantic state rather than raw natural language. This makes it useful for route requests, nearby-trip lookups, and traffic queries.
+The evaluator runs a fresh agent instance for each prompt, records the Reasoner plan, tool results, final response, judgment, and agent token count, then writes the JSON report.
 
-### Workflow
+### Reproduce the benchmark
 
-- Before planning, the agent uses the trip-state snapshot, recent conversation, and cached tool outputs to build the Reasoner context.
-- During execution, the agent updates memory by logging tool calls and storing newly discovered locations or route details.
-- After execution, the Synthesizer uses the conversation history, recent tool log, and current trip snapshot to generate the final response.
+With the services running and `GEMINI_API_KEY` set, run:
 
-![Integrated agent with memory](image-1.png)
+```bash
+python evals/eval.py --output evals/eval_results.local.json
+```
 
-## Tech Stack
-
-- LLM client: Gemini
-- Reasoner model: `gemini-2.5-flash`
-- Synthesizer model: `gemini-2.5-flash-lite`
-- Maps services: Google Maps API for traffic and geocoding
-- `grok-4-latest` api for evals LLM judje 
-
-## Evaluation
-
-The agent was evaluated using four initial criteria:
-
-| Criterion | Description |
-| --- | --- |
-| Tool calling | The agent must choose the correct tools before execution. |
-| Correct arguments | The agent must pass the right parameters to each tool. |
-| Ambiguity handling | The agent must recognize unrelated or unclear requests and ask for clarification. |
-| Response quality | The final response should be complete, clear, and useful. |
-
-### Evaluation Scenarios
-
-- For a route request such as "from Manshya to Loran", the agent should first call the geocoding tool and then call the routing tool.
-- For a traffic request such as "traffic status in Abu Qir Street", the agent should call the traffic tool.
-- For a low-fare request such as "go to Bahri with the lowest fare", the agent should use the cost-related routing options.
-- For an unrelated request such as "how to cook molokhia", the agent should respond that the request is unrelated and ask for clarification.
-
-The evaluation dataset contains 30 test cases covering the four categories above. Each test case includes the input, category, and expected behavior.
+The output path above preserves the committed result file. The default runner pauses for 300 seconds after each batch of five prompts. Use `--batch-size` and `--pause-seconds` to change that schedule. `GEMINI_JUDGE_API_KEY` can supply a separate judge key, and `--judge-model` selects the judge model (default: `gemini-2.5-flash`).
 
 ## Results
 
-Add the final evaluation scores, observations, and any comparison notes here once the experiment results are finalized.
+Across 30 queries, Al-Osta performed best at tool calling (**0.84**), followed by correct arguments (**0.81**) and response quality (**0.75**). Ambiguity handling scored **0.67**. The agent used an average of **7,849 tokens per query**, compared with approximately **11,500** for ReAct in the supplied comparison.
 
-## Repository Structure
+![Token usage per query: ReAct versus plan and execute](evals/charts/tokens-by-tool-count.png)
+
+![Mean token consumption per query by category](evals/charts/tokens-by-category.png)
+
+![Per-category evaluation scores across 30 queries](evals/charts/evaluation-scores.png)
+
+## Repository map
 
 ```text
-Alexandria-Multimodal-Routing-Engine/
-├── agent.py
-├── llm_client.py
-├── main.py
-├── ui_app.py
-├── requirements.txt
-├── README
-├── Dokcerfile
-├── data/
-│   ├── gtfsAlex/
-│   └── utils/
-├── db_tools/
-├── evals/
-├── geocoding_api/
-├── memory/
-├── prompts/
-├── routing_api/
-├── tools/
-└── traffic_updater/
+agent.py             Reasoner, executor, synthesizer, and turn orchestration
+main.py              Command line chat entry point
+ui_app.py            Local web chat interface
+llm_client.py        Gemini client and token usage capture
+memory/              Conversation, tool, and trip state
+tools/               Agent tool schemas and HTTP clients
+routing_api/         Journey search, filtering, ranking, and REST/gRPC API
+geocoding_api/       Place lookup and REST/gRPC API
+db_tools/            Database-backed nearby transit queries
+traffic_updater/     Traffic and travel-time update service
+data/                GTFS feed, map data, and routing caches
+evals/               Benchmark prompts, evaluator, saved results, and charts
+prompts/             Reasoner and Synthesizer instructions
 ```
